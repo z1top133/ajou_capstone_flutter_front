@@ -248,7 +248,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       dropdownValue_gender = newValue;
                     });
                   },
-                  items: <String>['남', '녀']
+                  items: <String>['남', '여']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
