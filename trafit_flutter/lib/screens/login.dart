@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant_ui_kit/screens/Mbti_ei_screen.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
+import 'package:restaurant_ui_kit/util/User.dart';
 
 
 
@@ -153,11 +155,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               onPressed: (){
+                user.add({
+
+                }
+                );
                 //로그인 버튼 클릭시 user_email, user_password 서버에 보내고 User 정보 받아온 뒤 User list에 저장
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context){
-                      return MainScreen();
+                      if(user[0]['mbti']==null)
+                        return Mbti_ei("hello",0);
+                      else
+                        return MainScreen();
                     },
                   ),
                 );

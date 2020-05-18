@@ -12,8 +12,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _usernameControl = new TextEditingController();
   final TextEditingController _emailControl = new TextEditingController();
   final TextEditingController _passwordControl = new TextEditingController();
-  final TextEditingController _age = new TextEditingController();
-  final TextEditingController _gender = new TextEditingController();
+  final TextEditingController _ageControl = new TextEditingController();
+  final TextEditingController _genderControl = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +202,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 obscureText: true,
                 maxLines: 1,
-                controller: _passwordControl,//비밀번호 컨트롤러
+                controller: _ageControl,//비밀번호 컨트롤러
               ),
             ),
           ),
@@ -243,7 +243,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 obscureText: true,
                 maxLines: 1,
-                controller: _passwordControl,//비밀번호 컨트롤러
+                controller: _genderControl,//비밀번호 컨트롤러
               ),
             ),
           ),
