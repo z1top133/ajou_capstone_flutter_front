@@ -229,7 +229,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Row(
                   children: <Widget>[
                     Icon(
-                      Icons.people
+                      Icons.perm_identity,
                     ),
                     SizedBox(width: 15.0),
                     Text("gender",style: TextStyle(color: Colors.grey, fontSize: 15),),
@@ -278,7 +278,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Row(
                   children: <Widget>[
                     Icon(
-                        Icons.people
+                      Icons.perm_identity,
                     ),
                     SizedBox(width: 15.0),
                     Text("age",style: TextStyle(color: Colors.grey, fontSize: 15),),
