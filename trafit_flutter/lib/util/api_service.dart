@@ -8,7 +8,7 @@ const Map<String, String> headers1 = {"Content-type": "application/json"};
 
 String _hostname() {
   if (Platform.isAndroid)
-    return 'http://10.0.2.2:3000';
+    return 'http://49.50.165.39:8888/pushData';
   else
     return 'http://localhost:3000';
 }
@@ -29,9 +29,11 @@ class ApiService{
       'room_num': _roomNum,
       'mbti': _mbti
     };
-
-    Response response = await post(_hostname()+'/register', headers: headers1, body: jsonEncode(pass));
-
+    print(pass);
+    Response response = await post(_hostname(), headers: headers1, body: jsonEncode(pass));
+    int statusCode = response.statusCode;
+    String body = response.body;
+    print('Status: $statusCode, $body');
     return jsonDecode(response.body);//json으로 파싱
   }
   Future<Map<String, dynamic>> login(_id, _password) async{
@@ -41,7 +43,7 @@ class ApiService{
       'password': _password,
     };
 
-    Response response = await post(_hostname()+'/register', headers: headers1, body: jsonEncode(pass));
+    Response response = await post(_hostname()+'/user', headers: headers1, body: jsonEncode(pass));
 
     return jsonDecode(response.body);//json으로 파싱
   }

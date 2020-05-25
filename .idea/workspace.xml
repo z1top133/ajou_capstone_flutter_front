@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="69956285-d5ac-4e30-97d7-7496d07c6e7c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/.filecache" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/.filecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/app.dill" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/app.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/debug_android_application.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/debug_android_application.stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/flutter_assets.d" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/flutter_assets.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/kernel_snapshot.d" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/kernel_snapshot.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/kernel_snapshot.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.dart_tool/flutter_build/b14345de2e68c8e7bc7756a842be89ae/kernel_snapshot.stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/flutter/debug/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/flutter/debug/flutter_assets/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/debug-mergeJniLibs/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/debug-mergeJniLibs/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/packageDebug/tmp/debug/zip-cache/7uel_DqIqa5TMPx89lC49QJ5rfo=" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/incremental/packageDebug/tmp/debug/zip-cache/7uel_DqIqa5TMPx89lC49QJ5rfo=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/io/flutter/plugins/GeneratedPluginRegistrant.class" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/io/flutter/plugins/GeneratedPluginRegistrant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/merged_assets/debug/mergeDebugAssets/out/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/merged_assets/debug/mergeDebugAssets/out/flutter_assets/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/merged_assets/debug/mergeDebugAssets/out/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/merged_assets/debug/mergeDebugAssets/out/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexBuilder/debug/44/io/flutter/plugins/GeneratedPluginRegistrant.dex" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexBuilder/debug/44/io/flutter/plugins/GeneratedPluginRegistrant.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexBuilder/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexBuilder/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexMerger/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/dexMerger/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/mergeJavaRes/debug/0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/mergeJavaRes/debug/0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/mergeJavaRes/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/mergeJavaRes/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/mergeJniLibs/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/apk/app.apk" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/apk/app.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/apk/app.apk.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/apk/app.apk.sha1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/flutter-apk/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/flutter-apk/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/app/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/build/cache.dill" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/build/cache.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/lib/screens/details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/lib/screens/details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/lib/screens/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/lib/screens/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/lib/util/api_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/lib/util/api_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/lib/util/categories.dart" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/lib/util/categories.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trafit_flutter/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/trafit_flutter/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trafit_flutter/lib/screens/ChatPage.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trafit_flutter/lib/screens/details.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/trafit_flutter/lib/util/api_service.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/trafit_ajou_capstone.iml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/codeStyles/Project.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="449" />
+    <option name="y" value="36" />
+    <option name="width" value="1213" />
+    <option name="height" value="998" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="trafit_ajou_capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trafit_ajou_capstone" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trafit_ajou_capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trafit_ajou_capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="trafit_flutter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trafit_ajou_capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trafit_ajou_capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="trafit_flutter" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trafit_ajou_capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trafit_ajou_capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="trafit_flutter" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trafit_ajou_capstone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trafit_ajou_capstone" type="462c0819:PsiDirectoryNode" />
+              <item name="trafit_flutter" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="69956285-d5ac-4e30-97d7-7496d07c6e7c" name="Default Changelist" comment="" />
+      <created>1590400035425</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590400035425</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.21375267" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Flutter Inspector" />
+      <window_info anchor="right" id="Flutter Outline" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Flutter Performance" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/trafit_flutter/lib/screens/ChatPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trafit_flutter/lib/screens/details.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trafit_flutter/lib/util/api_service.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

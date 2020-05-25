@@ -14,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final TextEditingController _useridControl = new TextEditingController();
+  final TextEditingController _useremailControl = new TextEditingController();
   final TextEditingController _passwordControl = new TextEditingController();
 
 
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderSide: BorderSide(color: Colors.white,),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  hintText: "ID",
+                  hintText: "Email",
                   hintStyle: TextStyle(
                     fontSize: 15.0,
                     color: Colors.black,
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 maxLines: 1,
-                controller: _useridControl,
+                controller: _useremailControl,
               ),
             ),
           ),
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               onPressed: (){
-                apiService.login(_useridControl, _passwordControl);
+                apiService.login(_useremailControl, _passwordControl);
 
 
 

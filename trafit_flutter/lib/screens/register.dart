@@ -17,6 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailControl = new TextEditingController();
   final TextEditingController _passwordControl = new TextEditingController();
   final TextEditingController _introduceControl = new TextEditingController();
+  final TextEditingController _emailcodeControl = new TextEditingController();
   final TextEditingController _ageControl = new TextEditingController();
   TextEditingController _genderControl = new TextEditingController();
   List<int> ageList = [1980];
@@ -93,6 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
           SizedBox(height: 10.0),
+
           Card(
             elevation: 3.0,
             child: Container(
@@ -165,50 +167,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  hintText: "Email",
-                  prefixIcon: Icon(
-                    Icons.mail_outline,
-                    color: Colors.black,
-                  ),
-                  hintStyle: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.grey,
-                  ),
-                ),
-                maxLines: 1,
-                controller: _emailControl, //이메일 컨트롤러
-              ),
-            ),
-          ),
-          SizedBox(height: 10.0),
-          Card(
-            elevation: 3.0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5.0),
-                ),
-              ),
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
                   hintText: "Password",
                   prefixIcon: Icon(
                     Icons.lock_outline,
@@ -225,6 +183,151 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           ),
+          SizedBox(height: 10.0),
+          Card(
+            elevation: 3.0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(13.0, 0, 0, 0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.mail_outline,
+                    ),
+                    SizedBox(width: 15.0),
+                    Flexible(
+                      child: TextField(
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(0.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          hintText: "Email",
+                          hintStyle: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        maxLines: 1,
+                        controller: _emailControl, //이메일 컨트롤러
+                      ),
+                    ),
+                    Container(
+                      width: 110,
+                      height: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0,0.0,20.0,0.0),
+                        child: RaisedButton(
+                          child: Text(
+                            "인증번호 전송".toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 10.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                          onPressed: () {
+                          },
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Card(
+            elevation: 3.0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(13.0, 0, 0, 0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.mail_outline,
+                    ),
+                    SizedBox(width: 15.0),
+                    Flexible(
+                      child: TextField(
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(0.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          hintText: "인증 코드",
+                          hintStyle: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        maxLines: 1,
+                        controller: _emailcodeControl, //이메일 컨트롤러
+                      ),
+                    ),
+                    Container(
+                      width: 80,
+                      height: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0,0.0,20.0,0.0),
+                        child: RaisedButton(
+                          child: Text(
+                            "인증".toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 10.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                          onPressed: () {
+                          },
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           SizedBox(height: 10.0),
           Card(
             elevation: 3.0,
@@ -380,13 +483,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               onPressed: () {
                 apiService.register(
-                    _useridControl,
-                    _usernameControl,
-                    _emailControl,
-                    _passwordControl,
+                    _useridControl.text,
+                    _usernameControl.text,
+                    _emailControl.text,
+                    _passwordControl.text,
                     dropdownValue_gender,
                     dropdownValue_age,
-                    _introduceControl,
+                    _introduceControl.text,
                     null,
                     null,
                     null);
@@ -406,13 +509,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 //                );
 
                 //회원가입 정보 User.dart의 user에 저장 후 json 변환
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return MainScreen();
-                    },
-                  ),
-                );
+//                Navigator.of(context).push(
+//                  MaterialPageRoute(
+//                    builder: (BuildContext context) {
+//                      return MainScreen();
+//                    },
+//                  ),
+//                );
               },
               color: Theme.of(context).accentColor,
             ),
@@ -434,5 +537,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ],
       ),
     );
+  }
+
+  void _handleSubmitted(String value) {
+    _emailcodeControl.clear();
   }
 }

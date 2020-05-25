@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_ui_kit/screens/ChatPage.dart';
+import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
 import 'package:restaurant_ui_kit/screens/post_screen.dart';
 import 'package:restaurant_ui_kit/util/ChatRoom.dart';
@@ -147,59 +149,67 @@ class _ProductDetailsState extends State<ProductDetails> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: chatrooms == null ? 0 : chatrooms.length,
                 itemBuilder: (BuildContext context, int index) {
-                  if(widget._category==chatrooms[index]['category']){
-                  Map chatroom = chatrooms[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    elevation: 4.0,
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 25.0,
-                        backgroundImage: AssetImage(
-                          "${chatroom['user_photo']}",
+                  if (widget._category == chatrooms[index]['category']) {
+                    Map chatroom = chatrooms[index];
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      elevation: 4.0,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          radius: 25.0,
+                          backgroundImage: AssetImage(
+                            "${chatroom['user_photo']}",
+                          ),
                         ),
-                      ),
-                      title: Text("${chatroom['user_name']}"),
-                      subtitle: Column(
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Text(
-                                "February 14, 2020",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 7.0),
-                          Text(
-                            "${chatroom["comment"]}",
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
-                            child: Container(
-                              child: FlatButton(
-                                child: Text(
-                                    "채팅방 입장",
+                        title: Text("${chatroom['user_name']}"),
+                        subtitle: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  "February 14, 2020",
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w300,
-                                    color: Theme.of(context).accentColor,
                                   ),
                                 ),
-                                color: Colors.black,
-                                textColor: Colors.white,
+                              ],
+                            ),
+                            SizedBox(height: 7.0),
+                            Text(
+                              "${chatroom["comment"]}",
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
+                              child: Container(
+                                child: FlatButton(
+                                    child: Text(
+                                      "채팅방 입장",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    color: Theme.of(context).accentColor,
+                                    textColor: Colors.white,
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                            return ChatPage();
+                                          },
+                                        ),
+                                      );
+                                    }),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  );}
-                  else
+                    );
+                  } else
                     return SizedBox(height: 0.0);
                 },
               ),
@@ -223,7 +233,8 @@ class _ProductDetailsState extends State<ProductDetails> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return Postscreen(widget._img, widget._name, widget._category);
+                  return Postscreen(
+                      widget._img, widget._name, widget._category);
                 },
               ),
             );
