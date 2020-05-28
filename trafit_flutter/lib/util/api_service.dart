@@ -8,14 +8,18 @@ const Map<String, String> headers1 = {"Content-type": "application/json"};
 
 String _hostname() {
   if (Platform.isAndroid)
-    return 'http://49.50.165.39:8888/pushData';
+    return 'http://49.50.174.200:3100';
   else
     return 'http://localhost:3000';
 }
 
 class ApiService{
 
-  Future<Map<String, dynamic>> register(_id ,_username, _email, _password, _gender, _age, _introduce, _emailFlag, _roomNum, _mbti) async{
+  Map<String,dynamic> makeJson(String toJson){
+    return jsonDecode(toJson);
+  }
+
+  Future<String> register(_id ,_username, _email, _password, _gender, _age, _introduce, _emailFlag, _roomNum, _mbti) async{
 
     Map<String, dynamic> pass = {//변수를 json으로
       'id' : _id,
@@ -30,23 +34,58 @@ class ApiService{
       'mbti': _mbti
     };
     print(pass);
-    Response response = await post(_hostname(), headers: headers1, body: jsonEncode(pass));
+    Response response = await post(_hostname()+ '/register', headers: headers1, body: jsonEncode(pass));
     int statusCode = response.statusCode;
-    String body = response.body;
+    String body = response.body.toString();
     print('Status: $statusCode, $body');
-    return jsonDecode(response.body);//json으로 파싱
+    return body;//json으로 파싱
   }
-  Future<Map<String, dynamic>> login(_id, _password) async{
+  Future<String> login(_id, _password) async{
 
     Map<String, dynamic> pass = {//변수를 json으로
       'id': _id,
       'password': _password,
     };
 
-    Response response = await post(_hostname()+'/user', headers: headers1, body: jsonEncode(pass));
+    Response response = await post(_hostname()+'/login_check', headers: headers1, body: jsonEncode(pass));
+
+    return response.body.toString();//json으로 파싱
+  }
+
+  Future<String> Id_check(_id) async{
+
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id': _id
+    };
+
+    Response response = await post(_hostname()+'/id_check', headers: headers1, body: jsonEncode(pass));
+    String abc = response.body.toString();
+    return abc;//json으로 파싱
+  }
+
+  Future<Map<String, dynamic>> emailAuth(_email) async{
+
+    Map<String, dynamic> pass = {//변수를 json으로
+      'email': _email
+    };
+
+    Response response = await post(_hostname()+'/emailauth', headers: headers1, body: jsonEncode(pass));
 
     return jsonDecode(response.body);//json으로 파싱
   }
+  Future<String> emailauthCheck(_code) async{
+
+    Map<String, dynamic> pass = {//변수를 json으로
+      'authCode': _code
+    };
+
+    Response response = await post(_hostname()+'/emailauth/authprocess', headers: headers1, body: jsonEncode(pass));
+    String emailauthMessage = response.body.toString();
+    print(response.body);
+    return emailauthMessage;//json으로 파싱
+  }
+
+
 
   Future<List> test1(_id) async{
     Map<String, dynamic> pass = {//변수를 json으로
@@ -54,7 +93,7 @@ class ApiService{
     };
 
     Response response = await post(_hostname()+'/test1', headers: headers1, body: jsonEncode(pass));
-
+    print(response);
     return jsonDecode(response.body);
   }
 

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/util/User.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 ApiService apiService = new ApiService();
 
@@ -21,14 +22,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _ageControl = new TextEditingController();
   TextEditingController _genderControl = new TextEditingController();
   List<int> ageList = [1980];
-
+  int idCheck = 0;
+  int genderCheck = 0;
+  String dropdownValue_age = '20';
+  String dropdownValue_gender = '남';
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < 22; i++) {
-      ageList.add(1981 + i);
-    }
-    String dropdownValue_gender = '남';
-    int dropdownValue_age = 1980;
     return Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0, 20, 0),
       child: ListView(
@@ -49,6 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           ),
+
           SizedBox(height: 30.0),
           Card(
             elevation: 3.0,
@@ -59,42 +59,84 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Radius.circular(5.0),
                 ),
               ),
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    borderSide: BorderSide(
-                      color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(13.0, 0, 0, 0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.mail_outline,
                     ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
+                    SizedBox(width: 15.0),
+                    Flexible(
+                      child: TextField(
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(0.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          hintText: "ID",
+                          hintStyle: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        maxLines: 1,
+                        controller: _useridControl, //이메일 컨트롤러
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  hintText: "ID",
-                  prefixIcon: Icon(
-                    Icons.perm_identity,
-                    color: Colors.black,
-                  ),
-                  hintStyle: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.grey,
-                  ),
+                    Container(
+                      width: 100,
+                      height: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0,0.0,20.0,0.0),
+                        child: RaisedButton(
+                          child: Text(
+                            "중복 확인".toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 10.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                          onPressed: () async{
+                            String abc = await apiService.Id_check(_useridControl.text);
+//                            String abc = '중복되지 않음';
+                            if(abc == '중복되지 않음'){
+                              idCheck = 1;
+                              Fluttertoast.showToast(
+                                msg: "가입 가능한 아이디 입니다.",
+                                toastLength: Toast.LENGTH_LONG,
+                              );
+                            }
+                            else{
+                              Fluttertoast.showToast(
+                                msg: "중복된 아이디입니다.",
+                                toastLength: Toast.LENGTH_LONG,
+                              );
+                            }
+                          },
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                maxLines: 1,
-                controller: _useridControl, //유저이름 컨트롤러
               ),
             ),
           ),
           SizedBox(height: 10.0),
-
           Card(
             elevation: 3.0,
             child: Container(
@@ -232,7 +274,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     Container(
-                      width: 110,
+                      width: 120,
                       height: 30,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0.0,0.0,20.0,0.0),
@@ -245,6 +287,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                           onPressed: () {
+                            apiService.emailAuth(_emailControl.text);
                           },
                           color: Theme.of(context).accentColor,
                         ),
@@ -317,6 +360,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                           onPressed: () {
+                            apiService.emailauthCheck(_emailcodeControl.text);
                           },
                           color: Theme.of(context).accentColor,
                         ),
@@ -353,6 +397,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(width: 15.0),
                     DropdownButton<String>(
                       value: dropdownValue_gender,
+                      autofocus: true,
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),
@@ -379,6 +424,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
           SizedBox(height: 10.0),
+
           Card(
             elevation: 3.0,
             child: Container(
@@ -401,8 +447,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     ),
                     SizedBox(width: 35.0),
-                    DropdownButton<int>(
+                    DropdownButton<String>(
                       value: dropdownValue_age,
+                      autofocus: true,
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),
@@ -410,15 +457,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 2,
                         color: Colors.grey,
                       ),
-                      onChanged: (int newValue) {
+                      onChanged: (String newValue) {
                         setState(() {
                           dropdownValue_age = newValue;
                         });
                       },
-                      items: ageList.map<DropdownMenuItem<int>>((int value) {
-                        return DropdownMenuItem<int>(
+                      items: <String>['20', '21','22','23','24','25','26','27','28','29','30','31','32','33','34','35']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value.toString()),
+                          child: Text(value),
                         );
                       }).toList(),
                     ),
@@ -481,7 +529,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {
+              onPressed: () {//중복체크 했고, 인증 완료 되었을 때 가입 가능한 조건문
                 apiService.register(
                     _useridControl.text,
                     _usernameControl.text,

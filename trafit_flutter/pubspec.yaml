@@ -30,7 +30,7 @@ dependencies:
   flutter_form_builder: ^3.10.1
   http: ^0.12.0
   flutter_socket_io: ^0.6.0
-
+  fluttertoast: ^4.0.1
 
 dev_dependencies:
   flutter_test:

@@ -32,6 +32,10 @@
         "source": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\image_picker\\intermediates\\packaged_res\\debug\\xml\\flutter_image_picker_file_paths.xml"
     },
     {
+        "merged": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\res\\merged\\debug\\drawable_toast_bg.xml.flat",
+        "source": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\fluttertoast\\intermediates\\packaged_res\\debug\\drawable\\toast_bg.xml"
+    },
+    {
         "merged": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\res\\merged\\debug\\layout-v16_notification_template_custom_big.xml.flat",
         "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\7852ac33e75b86467ddd0ff0473d64c6\\res\\layout-v16\\notification_template_custom_big.xml"
     },
@@ -70,6 +74,10 @@
     {
         "merged": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\7852ac33e75b86467ddd0ff0473d64c6\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\res\\merged\\debug\\layout_toast_custom.xml.flat",
+        "source": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\fluttertoast\\intermediates\\packaged_res\\debug\\layout\\toast_custom.xml"
     },
     {
         "merged": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
