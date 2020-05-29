@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant_ui_kit/screens/Mbti_ei_screen.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
+import 'package:restaurant_ui_kit/util/User.dart';
+import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'dart:convert';
 
 
-
+ApiService apiService = new ApiService();
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -11,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final TextEditingController _usernameControl = new TextEditingController();
+  final TextEditingController _useridControl = new TextEditingController();
   final TextEditingController _passwordControl = new TextEditingController();
 
 
@@ -65,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderSide: BorderSide(color: Colors.white,),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  hintText: "Username",
+                  hintText: "ID",
                   hintStyle: TextStyle(
                     fontSize: 15.0,
                     color: Colors.black,
@@ -76,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 maxLines: 1,
-                controller: _usernameControl,
+                controller: _useridControl,
               ),
             ),
           ),
@@ -152,12 +156,31 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: (){
+              onPressed: () {
+
+               // String abc = await apiService.login(_useridControl.text, _passwordControl.text);
+                //String ttt = '{"id": "z1top123","email":"z1top123@naver.com"}';
+                //Map<String, dynamic>map = jsonDecode(abc);
+                /*user.add(
+                  {
+                    "id" : map['id'],
+                    "email": map['email']
+                  }
+                );
+                print(user[1]);
+*/
+
+
+
+
                 //로그인 버튼 클릭시 user_email, user_password 서버에 보내고 User 정보 받아온 뒤 User list에 저장
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context){
-                      return MainScreen();
+                      if(user[0]['mbti']==null)
+                        return Mbti_ei("hello",0);
+                      else
+                        return MainScreen();
                     },
                   ),
                 );

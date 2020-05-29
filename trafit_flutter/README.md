@@ -1,1 +1,1 @@
-trafit-동행 서비스
+Trafit by echoAplus (Ajou Capstone)
