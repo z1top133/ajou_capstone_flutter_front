@@ -8,17 +8,6 @@ List user = [
       "gender":"male",
       "email_auth_flag":"true",
       "room_num":"1",//속해 있는 채팅방 번호
-    },
-    {
-      "id": "assets/cm1.jpeg",
-      "email": "Nulla porttitor accumsan tincidunt. Vestibulum ante "
-          "ipsum primis in faucibus orci luctus et ultrices posuere "
-          "cubilia Curae",
-      "password": "Jane Doe",
-      "introduce":"sd",
-      "age":"sd",
-      "gender":"male",
-      "email_auth_flag":"true",
-      "room_num":"1",
+      "mbti": null,
     },
 ];

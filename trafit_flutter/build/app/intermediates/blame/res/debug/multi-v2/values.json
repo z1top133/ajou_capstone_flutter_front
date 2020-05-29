@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\pc\\Desktop\\atornel-RestaurantAppUIKit-f2e8b41\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\cap\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pc\\Desktop\\atornel-RestaurantAppUIKit-f2e8b41\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\cap\\ajou_capstone_flutter_front-develope\\trafit_flutter\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\7852ac33e75b86467ddd0ff0473d64c6\\res\\values\\values.xml",
+                    "source": "C:\\Users\\jaehu\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\bd8c6f31a0fa3c59e546c59bed4edf63\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,91,98,141,173,210,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,83,84,88,89,90",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

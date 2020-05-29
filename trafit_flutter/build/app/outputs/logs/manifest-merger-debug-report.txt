@@ -1,166 +1,172 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:1-34:12
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:1-34:12
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:1-34:12
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:1-34:12
-MERGED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:1-34:12
-MERGED from [:shared_preferences] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
-MERGED from [:shared_preferences_web] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences_web\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
-MERGED from [:shared_preferences_macos] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences_macos\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
-MERGED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-22:12
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\flutter_plugin_android_lifecycle\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\fragment-1.1.0.aar\30643c3a049d4f375942b8f817b0334c\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\cb0ed93dc2d73ee43a372b52da700bef\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\4ed64b19c101a14b48a935834ae10349\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\activity-1.0.0.aar\e19932f564bc6a5b38cee4b2524e9dd4\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\8b2cf94c123c6e448d019803f17b3024\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\7852ac33e75b86467ddd0ff0473d64c6\AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.2.0.aar\75fd7fa5969cecada32614521826dd63\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\savedstate-1.0.0.aar\7dbcc623f06573d82dae3c60167e2cc6\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\8070fcc2e1d2162dacfea5dd5f9b5bd0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\1e2b1c2b83705dd4ca424cf64ad2364b\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.0.aar\532f5da149ea8cf4e8059af374881810\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\f29196a1e87aa6983c0df5f2361297c4\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.1.0.aar\985632fc62e7c66a853b18c8b71ed6ae\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:1-34:12
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:1-34:12
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:1-34:12
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:1-34:12
+MERGED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:1-34:12
+MERGED from [:fluttertoast] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\fluttertoast\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [:phone_number] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\phone_number\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_socket_io] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_socket_io\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-22:12
+MERGED from [:flutter_plugin_android_lifecycle] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_plugin_android_lifecycle\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_keyboard_visibility] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_keyboard_visibility\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\fragment-1.1.0.aar\0f37e3b73af9c5c8ac03de63be73abfa\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\f3440caaf8b0a4476b3360abd5a32755\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\7eae2119ab1fbf6d6536c1d3d8ca6fba\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\activity-1.0.0.aar\2437c21c400eea5faaa134a41c8df03c\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\1d6d7a18d045ecf09745afd8c68ce55f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\bd8c6f31a0fa3c59e546c59bed4edf63\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.2.0.aar\b376cdf4e36fec53fa62f4620da4ba44\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\savedstate-1.0.0.aar\da7b580970dce30fb98e46eae3f05c85\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\aab840087671515eff04411c8de4264f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\6d307ff8ee5ba21b3b8cce323e5006f2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.0.aar\c36df208ee06932884cdadcf53467f00\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\3b7499d079a4c23e85ff1af3fe09d3b6\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.1.0.aar\0fa032bea0629a45bf40f28ac3060833\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:2:5-45
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:2:5-45
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:1-34:12
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:1-34:12
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:1-34:12
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:1-34:12
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:1:11-69
 application
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:9:5-33:19
-MERGED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:10:5-20:19
-MERGED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:10:5-20:19
-MERGED from [androidx.core:core:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\7852ac33e75b86467ddd0ff0473d64c6\AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\7852ac33e75b86467ddd0ff0473d64c6\AndroidManifest.xml:24:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\f29196a1e87aa6983c0df5f2361297c4\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\f29196a1e87aa6983c0df5f2361297c4\AndroidManifest.xml:24:5-25:19
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:9:5-33:19
+MERGED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:10:5-20:19
+MERGED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:10:5-20:19
+MERGED from [androidx.core:core:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\bd8c6f31a0fa3c59e546c59bed4edf63\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\bd8c6f31a0fa3c59e546c59bed4edf63\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\3b7499d079a4c23e85ff1af3fe09d3b6\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\3b7499d079a4c23e85ff1af3fe09d3b6\AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\7852ac33e75b86467ddd0ff0473d64c6\AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\bd8c6f31a0fa3c59e546c59bed4edf63\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:11:9-42
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:11:9-42
 	android:icon
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:12:9-43
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:12:9-43
 	android:name
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:10:9-57
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:10:9-57
 activity#com.jideguru.restaurant_ui_kit.MainActivity
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:13:9-32:20
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:13:9-32:20
 	android:screenOrientation
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:20:13-49
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:20:13-49
 	android:launchMode
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:15:13-43
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:15:13-43
 	android:hardwareAccelerated
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:18:13-47
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:18:13-47
 	android:windowSoftInputMode
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:19:13-55
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:19:13-55
 	android:configChanges
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:17:13-144
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:17:13-144
 	android:theme
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:16:13-47
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:16:13-47
 	android:name
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:14:13-41
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:14:13-41
 meta-data#io.flutter.app.android.SplashScreenUntilFirstFrame
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:25:13-27:40
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:25:13-27:40
 	android:value
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:27:17-37
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:27:17-37
 	android:name
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:26:17-82
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:26:17-82
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:28:13-31:29
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:28:13-31:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:29:17-68
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:29:17-68
 	android:name
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:29:25-66
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:29:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:30:17-76
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:30:17-76
 	android:name
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml:30:27-74
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:30:27-74
 uses-sdk
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml
-MERGED from [:shared_preferences] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_web] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences_web\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_web] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences_web\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_macos] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences_macos\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_macos] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\shared_preferences_macos\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\flutter_plugin_android_lifecycle\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\flutter_plugin_android_lifecycle\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\fragment-1.1.0.aar\30643c3a049d4f375942b8f817b0334c\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\fragment-1.1.0.aar\30643c3a049d4f375942b8f817b0334c\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\cb0ed93dc2d73ee43a372b52da700bef\AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\cb0ed93dc2d73ee43a372b52da700bef\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\4ed64b19c101a14b48a935834ae10349\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\4ed64b19c101a14b48a935834ae10349\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\activity-1.0.0.aar\e19932f564bc6a5b38cee4b2524e9dd4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\activity-1.0.0.aar\e19932f564bc6a5b38cee4b2524e9dd4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\8b2cf94c123c6e448d019803f17b3024\AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\8b2cf94c123c6e448d019803f17b3024\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\7852ac33e75b86467ddd0ff0473d64c6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\7852ac33e75b86467ddd0ff0473d64c6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.2.0.aar\75fd7fa5969cecada32614521826dd63\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.2.0.aar\75fd7fa5969cecada32614521826dd63\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\savedstate-1.0.0.aar\7dbcc623f06573d82dae3c60167e2cc6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\savedstate-1.0.0.aar\7dbcc623f06573d82dae3c60167e2cc6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\8070fcc2e1d2162dacfea5dd5f9b5bd0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\8070fcc2e1d2162dacfea5dd5f9b5bd0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\1e2b1c2b83705dd4ca424cf64ad2364b\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\1e2b1c2b83705dd4ca424cf64ad2364b\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.0.aar\532f5da149ea8cf4e8059af374881810\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.0.aar\532f5da149ea8cf4e8059af374881810\AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\f29196a1e87aa6983c0df5f2361297c4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\f29196a1e87aa6983c0df5f2361297c4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.1.0.aar\985632fc62e7c66a853b18c8b71ed6ae\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.1.0.aar\985632fc62e7c66a853b18c8b71ed6ae\AndroidManifest.xml:20:5-44
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml
-INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml
+MERGED from [:fluttertoast] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\fluttertoast\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\fluttertoast\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:phone_number] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\phone_number\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:phone_number] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\phone_number\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_socket_io] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_socket_io\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_socket_io] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_socket_io\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_plugin_android_lifecycle\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_plugin_android_lifecycle\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_keyboard_visibility] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_keyboard_visibility\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_keyboard_visibility] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\flutter_keyboard_visibility\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\fragment-1.1.0.aar\0f37e3b73af9c5c8ac03de63be73abfa\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\fragment-1.1.0.aar\0f37e3b73af9c5c8ac03de63be73abfa\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\f3440caaf8b0a4476b3360abd5a32755\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\f3440caaf8b0a4476b3360abd5a32755\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\7eae2119ab1fbf6d6536c1d3d8ca6fba\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\7eae2119ab1fbf6d6536c1d3d8ca6fba\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\activity-1.0.0.aar\2437c21c400eea5faaa134a41c8df03c\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\activity-1.0.0.aar\2437c21c400eea5faaa134a41c8df03c\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\1d6d7a18d045ecf09745afd8c68ce55f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\1d6d7a18d045ecf09745afd8c68ce55f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\bd8c6f31a0fa3c59e546c59bed4edf63\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\bd8c6f31a0fa3c59e546c59bed4edf63\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.2.0.aar\b376cdf4e36fec53fa62f4620da4ba44\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.2.0.aar\b376cdf4e36fec53fa62f4620da4ba44\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\savedstate-1.0.0.aar\da7b580970dce30fb98e46eae3f05c85\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\savedstate-1.0.0.aar\da7b580970dce30fb98e46eae3f05c85\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\aab840087671515eff04411c8de4264f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\aab840087671515eff04411c8de4264f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\6d307ff8ee5ba21b3b8cce323e5006f2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\6d307ff8ee5ba21b3b8cce323e5006f2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.0.aar\c36df208ee06932884cdadcf53467f00\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.0.aar\c36df208ee06932884cdadcf53467f00\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\3b7499d079a4c23e85ff1af3fe09d3b6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.1.0.aar\3b7499d079a4c23e85ff1af3fe09d3b6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.1.0.aar\0fa032bea0629a45bf40f28ac3060833\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\jaehu\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.1.0.aar\0fa032bea0629a45bf40f28ac3060833\AndroidManifest.xml:20:5-44
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml:6:5-66
+ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
-		ADDED from C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\android\app\src\debug\AndroidManifest.xml:6:22-64
+		ADDED from C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\AndroidManifest.xml:6:22-64
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-80
+ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-80
 	android:name
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:22-77
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:22-77
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:8:5-81
+ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:8:5-81
 	android:name
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:8:22-78
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:8:22-78
 provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
-ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:9-19:20
+ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:9-19:20
 	android:grantUriPermissions
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:15:13-47
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:15:13-47
 	android:authorities
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:13:13-74
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:13:13-74
 	android:exported
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:14:13-37
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:14:13-37
 	android:name
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:12:13-82
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:12:13-82
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:16:13-18:75
+ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:16:13-18:75
 	android:resource
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:18:17-72
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:18:17-72
 	android:name
-		ADDED from [:image_picker] C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:17:17-67
+		ADDED from [:image_picker] C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\image_picker\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:17:17-67
