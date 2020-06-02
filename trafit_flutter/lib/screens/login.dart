@@ -160,18 +160,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 String abc = await apiService.login(_useridControl.text, _passwordControl.text);
                 String ttt = '{"id": "z1top123","email":"z1top123@naver.com"}';
+                print(abc);
                 Map<String, dynamic>map = jsonDecode(abc);
                 user.add(
-                  {
-                    "id" : map['id'],
-                    "email": map['email']
-                  }
+                    {
+                      "id" : map['id'],
+                      "email": map['email'],
+                      "age": map['age'],
+                      "gender" : map['gender'],
+                      "room_num" : map['room_num'],
+                      "mbti" : map['mbti'],
+                      "introduce" : map['introduce']
+                    }
                 );
-                print(user[1]);
-
-
-
-
 
                 //로그인 버튼 클릭시 user_email, user_password 서버에 보내고 User 정보 받아온 뒤 User list에 저장
                 Navigator.of(context).push(

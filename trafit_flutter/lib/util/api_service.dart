@@ -63,15 +63,15 @@ class ApiService{
     return abc;//json으로 파싱
   }
 
-  Future<Map<String, dynamic>> emailAuth(_email) async{
+  Future<String> emailAuth(_email) async{
 
     Map<String, dynamic> pass = {//변수를 json으로
       'email': _email
     };
 
     Response response = await post(_hostname()+'/emailauth', headers: headers1, body: jsonEncode(pass));
-
-    return jsonDecode(response.body);//json으로 파싱
+    String abc = response.body.toString();
+    return abc;//json으로 파싱
   }
   Future<String> emailauthCheck(_code) async{
 
