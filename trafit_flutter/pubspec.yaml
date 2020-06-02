@@ -84,7 +84,9 @@ flutter:
     - assets/greece.jpg
     - assets/korea.jpg
     - assets/germany.jpg
-
+    - assets/jeewon.jpg
+    - assets/youngho.jpg
+    - assets/youngjun.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

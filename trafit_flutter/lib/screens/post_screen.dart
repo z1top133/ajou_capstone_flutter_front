@@ -59,10 +59,10 @@ class _PostscreenState extends State<Postscreen> {
           leading: CircleAvatar(
             radius: 25.0,
             backgroundImage: AssetImage(
-              "assets/cm1.jpeg", //로그인 사용자 프로필 사진
+              "assets/jeewon.jpg", //로그인 사용자 프로필 사진
             ),
           ),
-          title: Text("Jane Doe"), //로그인 사용자 이름
+          title: Text("이지원"), //로그인 사용자 이름
           subtitle: Column(
             children: <Widget>[
               Row(
@@ -150,7 +150,7 @@ class _PostscreenState extends State<Postscreen> {
 //        "comment": "$_comment",
 //        "name": "JeeWon Lee"
         "user_id": "z1top133",
-        "user_photo": "assets/cm3.jpeg",
+        "user_photo": "assets/jeewon.jpg",
         "user_name": "이지원",
         "comment": "$_comment",
         "chatlog_flag": "sd",

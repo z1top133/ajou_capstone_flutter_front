@@ -69,7 +69,7 @@ class ApiService{
       'email': _email
     };
 
-    Response response = await post(_hostname()+'/emailauth', headers: headers1, body: jsonEncode(pass));
+    Response response = await post(_hostname()+'http://49.50.174.200:3000/emailauth', headers: headers1, body: jsonEncode(pass));
     String abc = response.body.toString();
     return abc;//json으로 파싱
   }
@@ -79,7 +79,7 @@ class ApiService{
       'authCode': _code
     };
 
-    Response response = await post(_hostname()+'/emailauth/authprocess', headers: headers1, body: jsonEncode(pass));
+    Response response = await post(_hostname()+'http://49.50.174.200:3000/emailauth/authprocess', headers: headers1, body: jsonEncode(pass));
     String emailauthMessage = response.body.toString();
     print(response.body);
     return emailauthMessage;//json으로 파싱

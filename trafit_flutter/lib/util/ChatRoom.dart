@@ -2,8 +2,8 @@ List chatrooms = [
   {
     "room_num":"1",
     "user_id": "z1top133",
-    "user_photo": "assets/cm1.jpeg",
-    "user_name": "이지원",
+    "user_photo": "assets/youngho.jpg",
+    "user_name": "김영호",
     "comment": "5/25 파리 저녁 맥주 동행 구해요!!",
     "chatlog_flag": "sd",
     "num": "1",
@@ -13,7 +13,7 @@ List chatrooms = [
   {
     "room_num":"2",
     "user_id": "z1top133",
-    "user_photo": "assets/cm2.jpeg",
+    "user_photo": "assets/youngjun.jpg",
     "user_name": "홍영준",
     "comment": "5/25 루브르 박물관 동행 구해요!!",
     "chatlog_flag": "sd",
@@ -35,7 +35,7 @@ List chatrooms = [
   {
     "room_num":"4",
     "user_id": "z1top133",
-    "user_photo": "assets/cm4.jpeg",
+    "user_photo": "assets/youngho.jpg",
     "user_name": "김영호",
     "comment": "5/26 파리 저녁 맥주 동행 구해요~",
     "chatlog_flag": "sd",
