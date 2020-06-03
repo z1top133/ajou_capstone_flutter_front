@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_socket_io/flutter_socket_io.dart';
+import 'package:flutter_socket_io/socket_io_manager.dart';
 import 'package:restaurant_ui_kit/screens/ChatPage.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
@@ -25,9 +27,24 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails>{
+  SocketIO socketIO;
   bool isFav = false;
   ApiService apiService = new ApiService();
   List<dynamic> room;
+
+  @override
+  void initState(){
+    socketIO = SocketIOManager().createSocketIO(
+      'http://49.50.174.200:3001',
+      '/',
+    );
+    socketIO.init();
+    print('init');
+    socketIO.connect();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     //print(widget._name);

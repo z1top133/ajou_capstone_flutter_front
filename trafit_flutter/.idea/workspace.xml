@@ -43,16 +43,16 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\widgets" />
+      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\screens" />
+      <recent name="C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\assets" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\assets" />
       <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\util" />
       <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\screens" />
       <recent name="C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\lib\widgets" />
-      <recent name="C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\assets" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\widgets" />
-      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\screens" />
       <recent name="C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\assets" />
     </key>
   </component>
@@ -101,7 +101,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

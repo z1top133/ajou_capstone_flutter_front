@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_socket_io/flutter_socket_io.dart';
 import 'package:flutter_socket_io/socket_io_manager.dart';
 import 'package:restaurant_ui_kit/screens/login.dart';
+import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'dart:convert';
 
 import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const String _name = "username";
 
@@ -22,16 +24,18 @@ final ThemeData kDefaultTheme = ThemeData(
   // 전송버튼에 적용할 색상으로 이용
   accentColor: Colors.orangeAccent[400],
 );
-
+String username;
 
 class ChatPage extends StatelessWidget {
-  final int room_num;
-  ChatPage(this.room_num);
+  int num;
+  ChatPage(this.num);
+  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'France',
-      home: ChatScreen(),
+      home: ChatScreen(num),
       // defaultTargetPlatform을 사용하기 위해서는 foundation.dart 패키지의 추가 필요
       theme: defaultTargetPlatform == TargetPlatform.android
           ? kIOSTheme
@@ -41,15 +45,22 @@ class ChatPage extends StatelessWidget {
 }
 
 class ChatScreen extends StatefulWidget {
+  final int num;
+  ChatScreen(this.num);
+  
   ChatScreenState createState() => ChatScreenState();
 }
 
 // 화면 구성용 상태 위젯. 애니메이션 효과를 위해 TickerProviderStateMixin를 가짐
 class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   SocketIO socketIO;
+  SharedPreferences sharedPreferences;
+  String id;
+  
+
   // 입력한 메시지를 저장하는 리스트
   final List<ChatMessage> _message = <ChatMessage>[];
-
+  
   // 텍스트필드 제어용 컨트롤러
   final TextEditingController _textController = TextEditingController();
   final ScrollController scrollController = ScrollController();
@@ -60,14 +71,17 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     /*ApiService apiService = new ApiService();
-
+    
     apiService.test2(3).then((result) {
       debugPrint(result['message']);
     });*/
+    SharedPreferences.getInstance().then((value) => {
+      
+    });
 
     socketIO = SocketIOManager().createSocketIO(
       //'http://172.30.1.18:3001',
-      'http://218.148.42.126:8001',
+      'http://49.50.174.200:3001',
       //'https://trafit2186.herokuapp.com/',
       '/',
     );
@@ -97,12 +111,32 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       // 위젯의 애니메이션 효과 발생
       message.animationController.forward();
     });
+    socketIO.subscribe('kickip_message', (jsonData) {
+      socketIO.sendMessage('kicked', json.encode({'id' : 'hy2186', 'room' : 100000}));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return MainScreen();
+          },
+        ),
+      );
+    });
+
 
     socketIO.connect();
-
-    //socketIO.sendMessage('joinRoom', json.encode({'id': 'dudwns', 'room': 1}));
+    //print(widget.num);
+    _loadAsync();
 
     super.initState();
+  }
+
+  _loadAsync() async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      id = sharedPreferences.getString('id');
+      username = sharedPreferences.getString('username');
+    });
+    socketIO.sendMessage('joinRoom', json.encode({'id': id, 'room': widget.num}));
   }
 
   @override
@@ -117,13 +151,13 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
 
         child: Column(
           children: <Widget>[
-            /*RaisedButton(
+            RaisedButton(
               child: Text('RaisedButton'),
               onPressed: () => {
               socketIO.sendMessage(
               'kickip', json.encode({'id': 'dudwns'}))
               },
-            ),*/
+            ),
             // 리스트뷰를 Flexible로 추가.
             Flexible(
               // 리스트뷰 추가
@@ -149,7 +183,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           ],
         ),
         // iOS의 경우 데코레이션 효과 적용
-        decoration: Theme.of(context).platform == TargetPlatform.android
+        decoration: Theme.of(context).platform == TargetPlatform.iOS
             ? BoxDecoration(
             border: Border(top: BorderSide(color: Colors.grey[200])),
             image: DecorationImage(
@@ -226,7 +260,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       _isComposing = false;
     });
     socketIO.sendMessage(
-        'send_message', json.encode({'message': text, 'id': 'wogud'}));
+        'send_message', json.encode({'message': text, 'id': id}));
     // 입력받은 텍스트를 이용해서 리스트에 추가할 메시지 생성
     ChatMessageS message = ChatMessageS(
       text: text,
@@ -366,7 +400,7 @@ class ChatMessageS extends ChatMessage {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   // 사용자명을 subhead 테마로 출력
-                  Text(_name, style: TextStyle(fontSize: 9)),
+                  Text(username, style: TextStyle(fontSize: 9)),
                   // 입력받은 메시지 출력
                   Container(child: SizedBox(height: 7,), color: Colors.red,),
                   Container(
