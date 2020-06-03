@@ -151,13 +151,13 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
 
         child: Column(
           children: <Widget>[
-            RaisedButton(
+            /*RaisedButton(
               child: Text('RaisedButton'),
               onPressed: () => {
               socketIO.sendMessage(
               'kickip', json.encode({'id': 'dudwns'}))
               },
-            ),
+            ),*/
             // 리스트뷰를 Flexible로 추가.
             Flexible(
               // 리스트뷰 추가
@@ -405,7 +405,7 @@ class ChatMessageS extends ChatMessage {
                   Container(child: SizedBox(height: 7,), color: Colors.red,),
                   Container(
                     margin: const EdgeInsets.only(top: 5.0),
-                    decoration: new BoxDecoration(color: Colors.greenAccent, shape: BoxShape.circle),
+                    //decoration: new BoxDecoration(color: Colors.greenAccent, shape: BoxShape.circle),
                     child: Text(text, style: TextStyle(fontSize: 15, fontFamily: 'RobotoSlab')),
                   ),
                   Container(child: SizedBox(height: 10,), color: Colors.red,),
