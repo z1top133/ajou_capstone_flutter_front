@@ -554,8 +554,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {//중복체크 했고, 인증 완료 되었을 때 가입 가능한 조건문
-                apiService.register(
+              onPressed: () async{//중복체크 했고, 인증 완료 되었을 때 가입 가능한 조건문
+                Map<String, dynamic> response = await apiService.register(
                     _useridControl.text,
                     _usernameControl.text,
                     _emailControl.text,
@@ -567,10 +567,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     null,
                     null);
                 Fluttertoast.showToast(
-                  msg: "회원가입이 완료되었습니다!",
+                  msg: response['message'],
                   toastLength: Toast.LENGTH_LONG,
                 );
-
+                
 //                user.add(
 //                  {
 //                    "id": "$_useridControl",

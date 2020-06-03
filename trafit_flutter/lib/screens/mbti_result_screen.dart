@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/util/User.dart';
+import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:restaurant_ui_kit/util/mbti_result.dart';
 import 'package:restaurant_ui_kit/util/mbti_result_percentage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class result_screen extends StatefulWidget {
@@ -293,8 +296,17 @@ class _result_screenState extends State<result_screen> {
                 elevation: 4.0,
                 child: FlatButton(
                   child: Text("결과 제출"),
-                  onPressed: (){
-                    user[0]['mbti']=widget.E_I + widget.N_S + widget.T_F + widget.J_P;
+                  onPressed: () async{
+                    ApiService apiService = new ApiService();
+                    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                    String id = sharedPreferences.getString('id');
+                    Map<String, dynamic> response = await apiService.mbti_set(id , widget.E_I + widget.N_S + widget.T_F + widget.J_P);
+
+                    Fluttertoast.showToast(
+                      msg: response['message'],
+                      toastLength: Toast.LENGTH_LONG,
+                    );
+                    //user[0]['mbti']=widget.E_I + widget.N_S + widget.T_F + widget.J_P;
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) {

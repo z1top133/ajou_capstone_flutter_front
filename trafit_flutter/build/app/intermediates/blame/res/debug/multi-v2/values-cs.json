@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-cs\\values-cs.xml",
+            "outputFile": "C:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-cs\\values-cs.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\7852ac33e75b86467ddd0ff0473d64c6\\res\\values-cs\\values-cs.xml",
+                    "source": "C:\\Users\\JKing\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\b21712e8dc4cdfa0c8e8dac216296423\\res\\values-cs\\values-cs.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

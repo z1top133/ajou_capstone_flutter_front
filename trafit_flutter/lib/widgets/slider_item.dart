@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_ui_kit/screens/details.dart';
+import 'package:restaurant_ui_kit/screens/login.dart';
+import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:restaurant_ui_kit/util/const.dart';
 import 'package:restaurant_ui_kit/widgets/smooth_star_rating.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SliderItem extends StatelessWidget {
   final String name;
@@ -95,14 +98,18 @@ class SliderItem extends StatelessWidget {
           ),
         ],
       ),
-      onTap: () {
+      onTap: () async{
+        ApiService apiService = new ApiService();
+        List<dynamic> rooms = await apiService.show_room(category);
+        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              print('$name');
+              //print('$name');
               print('$img');
-              print('$category');
-              return ProductDetails('$name', '$img','$category');
+              //print(category+'dd');
+              return ProductDetails('$name', '$img','$category', rooms);
             },
           ),
         );

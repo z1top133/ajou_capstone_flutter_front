@@ -4,6 +4,7 @@ import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
 import 'package:restaurant_ui_kit/screens/post_screen.dart';
 import 'package:restaurant_ui_kit/util/ChatRoom.dart';
+import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:restaurant_ui_kit/util/comments.dart';
 import 'package:restaurant_ui_kit/util/const.dart';
 import 'package:restaurant_ui_kit/util/travel_spots.dart';
@@ -15,20 +16,24 @@ class ProductDetails extends StatefulWidget {
   final String _name;
   final String _img;
   final String _category;
+  final List<dynamic> rooms;
 
-  ProductDetails(this._name, this._img, this._category);
+  ProductDetails(this._name, this._img, this._category, this.rooms);
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _ProductDetailsState extends State<ProductDetails>{
   bool isFav = false;
-
+  ApiService apiService = new ApiService();
+  List<dynamic> room;
   @override
   Widget build(BuildContext context) {
-    print(widget._name);
-    print(widget._img);
+    //print(widget._name);
+    //print(widget._img);
+    //print(widget.rooms[0]['comment']);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -144,13 +149,17 @@ class _ProductDetailsState extends State<ProductDetails> {
             Padding(
               padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
               child: ListView.builder(
+                
+
                 shrinkWrap: true,
                 primary: false,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: chatrooms == null ? 0 : chatrooms.length,
-                itemBuilder: (BuildContext context, int index) {
-                  if (widget._category == chatrooms[index]['category']) {
-                    Map chatroom = chatrooms[index];
+                itemCount: chatrooms == null ? 0 : widget.rooms.length,
+                itemBuilder: (BuildContext context, int index) {     
+                  //print(widget._category);
+                  //print(widget.rooms[index]['category']);           
+                  if (widget.rooms.length != 0) {
+                    Map chatroom = widget.rooms[index];
                     return Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
@@ -159,7 +168,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         leading: CircleAvatar(
                           radius: 25.0,
                           backgroundImage: AssetImage(
-                            "${chatroom['user_photo']}",
+                            chatroom['user_photo'],
                           ),
                         ),
                         title: Text("${chatroom['user_name']}"),
@@ -178,7 +187,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             ),
                             SizedBox(height: 7.0),
                             Text(
-                              "${chatroom["comment"]}",
+                              "${chatroom['comment']}"
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
@@ -198,7 +207,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {
-                                            return ChatPage();
+                                            return ChatPage(chatroom['room_num']);
                                           },
                                         ),
                                       );
@@ -234,7 +243,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               MaterialPageRoute(
                 builder: (BuildContext context) {
                   return Postscreen(
-                      widget._img, widget._name, widget._category);
+                      widget._img, widget._name, widget._category, widget.rooms);
                 },
               ),
             );
