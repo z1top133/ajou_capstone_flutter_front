@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'MyIP.dart';
 
 const Map<String, String> headers1 = {"Content-type": "application/json"};
 
 String _hostname() {
   if (Platform.isAndroid)
-    return 'http://218.148.42.126:3001';
+    return 'http://$myIP:3001';
   else
     return 'http://localhost:3000';
 }
@@ -108,16 +109,19 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  Future<Map<String, dynamic>> post_room(_id, _username, _comment, _category) async{
-    Map<String, dynamic> pass = {//변수를 json으로
-      'id' : _id,
-      'username': _username,
-      'comment': _comment,
-      'category': _category
-    };
+  Future<Map<String, dynamic>> post_room(File file,_id, _username, _comment, _category, _date, _mbti) async{
+    final length = await file.length();
+    var request = new MultipartRequest('POST', Uri.parse(_hostname()+'/post_room'));
+    request.fields['id'] =  _id;
+    request.fields['username'] = _username;
+    request.fields['comment'] = _comment;
+    request.fields['category'] = _category;
+    request.fields['date'] = _date;
+    request.fields['mbti'] = _mbti;
 
-    Response response = await post(_hostname()+'/post_room', headers: headers1, body: jsonEncode(pass));
-    
+    request.files.add(new MultipartFile('image', file.readAsBytes().asStream(), length, filename: "profile.jpg"));
+    Response response = await Response.fromStream(await request.send());
+
     return jsonDecode(response.body);
   }
 
@@ -131,13 +135,37 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  Future<bool> upload(File file) async{
+  Future<Map<String, dynamic>> upload(File file, String id) async{
     final length = await file.length();
 
     var request = new MultipartRequest('POST', Uri.parse(_hostname()+'/upload'));
+    request.fields['id'] =  id;
     request.files.add(new MultipartFile('image', file.readAsBytes().asStream(), length, filename: "profile.jpg"));
     Response response = await Response.fromStream(await request.send());
 
-    return true;
+    return jsonDecode(response.body);
+  }
+
+  Future<Map<String, dynamic>> show_profile(String id) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id': id
+    };
+
+    Response response = await post(_hostname()+'/show_profile', headers: headers1, body: jsonEncode(pass));
+    
+    return jsonDecode(response.body);
+  }
+
+  Future<Map<String, dynamic>> enter_room(int num, String id, String username, String mbti) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id': id,
+      'username': username,
+      'mbti': mbti,
+      'room': num
+    };
+
+    Response response = await post(_hostname()+'/enter_room', headers: headers1, body: jsonEncode(pass));
+    
+    return jsonDecode(response.body);
   }
 }

@@ -109,7 +109,7 @@ class SliderItem extends StatelessWidget {
               //print('$name');
               print('$img');
               //print(category+'dd');
-              return ProductDetails('$name', '$img','$category', rooms);
+              return ProductDetails('$name', '$img','$category');
             },
           ),
         );

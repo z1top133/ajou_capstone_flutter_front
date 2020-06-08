@@ -1,12 +1,21 @@
+import 'dart:io';
+import 'dart:async';
+import 'dart:typed_data';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart' show rootBundle;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_socket_io/socket_io_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:restaurant_ui_kit/screens/Mbti_ei_screen.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
-import 'package:restaurant_ui_kit/util/User.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
+import 'package:restaurant_ui_kit/util/MySocket.dart';
+import 'package:restaurant_ui_kit/util/MyIP.dart';
+
+
 
 
 ApiService apiService = new ApiService();
@@ -159,21 +168,39 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               onPressed: () async {
-                
                 Map<String, dynamic> response = await apiService.login(_useridControl.text, _passwordControl.text);
-                
-                SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-                
-                sharedPreferences.setString('id', _useridControl.text);
-                debugPrint(response['username']);
-                sharedPreferences.setString('username', response['username']);
+
                 Fluttertoast.showToast(
                   msg: response['message'],
                   toastLength: Toast.LENGTH_LONG,
                 );
-              
-                
+                              
                 if(response['code'] == 200){
+                  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                  sharedPreferences.setString('id', _useridControl.text);
+                  sharedPreferences.setString('username', response['username']);
+                  sharedPreferences.setString('mbti', response['mbti']);
+                  
+                  Directory dir = await getTemporaryDirectory();
+                  File file = File(dir.path + '/profile.jpg');
+                  
+                  if(response['img'] != null){//프로필 사진이 있는 경우
+                    file.writeAsBytes(Uint8List.fromList(response['img']['data'].cast<int>()));
+                  }
+                  else{//없는 경우
+                    if(response['mbti']!=null){
+                      final byteData = await rootBundle.load('assets/mbti/'+response['mbti']+'.png');
+                      file.writeAsBytesSync(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+                    }
+                  }
+
+                  socketIO = SocketIOManager().createSocketIO(
+                    'http://$myIP:3002',
+                    '/',
+                  );
+                  socketIO.init();
+                  socketIO.connect();
+
                   Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context){
@@ -186,7 +213,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 );
                 }
                 //로그인 버튼 클릭시 user_email, user_password 서버에 보내고 User 정보 받아온 뒤 User list에 저장
-                
               },
               color: Theme.of(context).accentColor,
             ),
@@ -212,5 +238,10 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> writeToFile(Uint8List data) async{
+    Directory dir = await getExternalStorageDirectory();
+    return new File(dir.path + '/profile.jpg').writeAsBytes(data);
   }
 }

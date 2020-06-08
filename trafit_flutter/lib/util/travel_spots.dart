@@ -3,7 +3,6 @@ List<Map> travel_spots = [
     "img": "assets/paris.jpg",
     "name": "프랑스",
     "category": "1"
-
   },
   {
     "img": "assets/rome.jpg",

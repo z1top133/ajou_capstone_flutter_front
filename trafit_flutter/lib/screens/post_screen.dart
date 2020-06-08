@@ -1,29 +1,56 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:restaurant_ui_kit/screens/details.dart';
-import 'package:restaurant_ui_kit/screens/login.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
-import 'package:restaurant_ui_kit/util/ChatRoom.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
-import 'package:restaurant_ui_kit/util/comments.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
+
+Directory dir;
+Future<SharedPreferences> call() async{
+  dir = await getTemporaryDirectory();
+  return SharedPreferences.getInstance();
+}
 
 class Postscreen extends StatefulWidget {
   final String _name;
   final String _img;
   final String _category;
-  final List<dynamic> rooms;
-
-  Postscreen(this._name, this._img, this._category, this.rooms);
+  
+  Postscreen(this._name, this._img, this._category);
   @override
   _PostscreenState createState() => _PostscreenState();
 }
 
 class _PostscreenState extends State<Postscreen> {
   final TextEditingController _commentControl = new TextEditingController();
+  Future<SharedPreferences> shared;
+  ImageProvider imageProvider;
+
+  @override
+  void initState(){    
+    super.initState();
+    shared = call();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: shared,
+      builder: (BuildContext context, AsyncSnapshot<SharedPreferences> snapshot){
+        if(snapshot.hasData){
+          return body(snapshot.data);
+        }
+        else{
+          return Text('Calculating answer...');
+        }
+      }
+    );
+  }
+
+  Widget body(SharedPreferences shared){
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -63,18 +90,18 @@ class _PostscreenState extends State<Postscreen> {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundImage: AssetImage(
-              "assets/jeewon.jpg", //로그인 사용자 프로필 사진
-            ),
+            backgroundImage: Image.memory(
+              File(dir.path + '/profile.jpg').readAsBytesSync() //로그인 사용자 프로필 사진
+            ).image,
           ),
-          title: Text("이지원"), //로그인 사용자 이름
+          title: Text(shared.getString('username')), //로그인 사용자 이름
           subtitle: Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
                   SizedBox(width: 6.0),
                   Text(
-                    "February 14, 2020", //현재 날짜
+                    DateFormat('yy.MM.dd kk:mm').format(DateTime.now()), //현재 날짜
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w300,
@@ -133,7 +160,7 @@ class _PostscreenState extends State<Postscreen> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return ProductDetails(widget._img, widget._name, widget._category, widget.rooms);
+                          return ProductDetails(widget._img, widget._name, widget._category);
                         },
                       ),
                     );
@@ -148,19 +175,21 @@ class _PostscreenState extends State<Postscreen> {
   }
 
   Future _addpost(String category) async{
+    ApiService apiService = new ApiService();
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String id = sharedPreferences.getString('id');
     String username = sharedPreferences.getString('username');
+    String mbti = sharedPreferences.getString('mbti');
     String _comment = _commentControl.text;
-    ApiService apiService = new ApiService();
+    String date = DateFormat('yy.MM.dd kk:mm').format(DateTime.now());
 
-    Map<String, dynamic> response = await apiService.post_room(id, username, _comment, category);
+    Map<String, dynamic> response = await apiService.post_room(File(dir.path + '/profile.jpg'), id, username, _comment, category, date, mbti);
     Fluttertoast.showToast(
       msg: response['message'],
         toastLength: Toast.LENGTH_LONG,
     );
 
-    setState(() {
+    /*setState(() {
       chatrooms.add({
 //        "img": "assets/cm1.jpeg",
 //        "comment": "$_comment",
@@ -174,6 +203,6 @@ class _PostscreenState extends State<Postscreen> {
         "max_num": "5",
         "category": "$category",
       });
-    });
+    });*/
   }
 }

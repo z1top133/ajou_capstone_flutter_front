@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/util/User.dart';
@@ -300,6 +304,12 @@ class _result_screenState extends State<result_screen> {
                     ApiService apiService = new ApiService();
                     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                     String id = sharedPreferences.getString('id');
+                    sharedPreferences.setString('mbti', widget.E_I + widget.N_S + widget.T_F + widget.J_P);
+
+                    final byteData = await rootBundle.load('assets/mbti/'+widget.E_I + widget.N_S + widget.T_F + widget.J_P+'.png');
+                    Directory tempDir = await getTemporaryDirectory();
+                    File(tempDir.path + '/profile.jpg').writeAsBytesSync(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
                     Map<String, dynamic> response = await apiService.mbti_set(id , widget.E_I + widget.N_S + widget.T_F + widget.J_P);
 
                     Fluttertoast.showToast(

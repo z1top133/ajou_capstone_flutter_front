@@ -1,11 +1,27 @@
 import 'dart:io';
-
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_ui_kit/providers/app_provider.dart';
 import 'package:restaurant_ui_kit/screens/splash.dart';
+import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:restaurant_ui_kit/util/const.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+ApiService apiService = new ApiService();
+SharedPreferences sharedPreferences;
+Directory tempDir;
+
+Future<Map<String, dynamic>> call() async{
+  tempDir = await getTemporaryDirectory();
+  sharedPreferences = await SharedPreferences.getInstance();
+  String id = sharedPreferences.getString('id');
+
+  return apiService.show_profile(id);
+}
 
 class Profile extends StatefulWidget {
   @override
@@ -13,11 +29,24 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  File mPhoto;
+  
+
+  Future<Map<String, dynamic>> response;
+  @override
+  void initState(){
+    super.initState();
+    response = call();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget photo = (mPhoto != null) ? Image.file(mPhoto): Text('Empty');
-    return Scaffold(
+    
+    return FutureBuilder<Map<String, dynamic>>(
+      future: response,
+      builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot){
+          if(snapshot.hasData){
+            Widget photo = Image.memory(File(tempDir.path + '/profile.jpg').readAsBytesSync());
+            return Scaffold(
       body: Padding(
         padding: EdgeInsets.fromLTRB(10.0,0,10.0,0),
 
@@ -26,8 +55,10 @@ class _ProfileState extends State<Profile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                Container(
+                  width: 100,
+                  height: 100,
+                  padding: EdgeInsets.only(left: 1.0, right: 1.0),
                   child: FlatButton(
                     child: photo,
                     onPressed: () => onPhoto(ImageSource.gallery),
@@ -39,7 +70,7 @@ class _ProfileState extends State<Profile> {
 //                    height: 100.0,
 //                  ),
                 ),
-
+                
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +79,7 @@ class _ProfileState extends State<Profile> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            "Jane Doe",
+                            snapshot.data['username'],
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -63,7 +94,7 @@ class _ProfileState extends State<Profile> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            "jane@doefamily.com",
+                            snapshot.data['email'],
                             style: TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
@@ -153,7 +184,7 @@ class _ProfileState extends State<Profile> {
               ),
 
               subtitle: Text(
-                "jane@doefamily.com",
+                snapshot.data['email'],
               ),
             ),
 
@@ -244,10 +275,25 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
+          }
+          else{
+            return Text('Calculating answer...');
+          }
+      },
+    );
+    
+    
   }
 
   void onPhoto(ImageSource source) async {
-    File f = await ImagePicker.pickImage(source: source, maxWidth: 100, maxHeight: 100);
-    setState(() => mPhoto = f);
+    File f = await ImagePicker.pickImage(source: source, maxWidth: 320, maxHeight: 240, imageQuality: 100);
+    setState(() => {
+      File(tempDir.path + '/profile.jpg').writeAsBytes(f.readAsBytesSync())
+    });
+    Map<String, dynamic> response = await apiService.upload(f, sharedPreferences.getString('id'));
+    Fluttertoast.showToast(
+      msg: response['message'],
+      toastLength: Toast.LENGTH_LONG,
+    );
   }
 }

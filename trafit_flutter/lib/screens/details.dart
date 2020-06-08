@@ -1,56 +1,55 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter_socket_io/flutter_socket_io.dart';
-import 'package:flutter_socket_io/socket_io_manager.dart';
 import 'package:restaurant_ui_kit/screens/ChatPage.dart';
-import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
 import 'package:restaurant_ui_kit/screens/post_screen.dart';
-import 'package:restaurant_ui_kit/util/ChatRoom.dart';
+import 'package:restaurant_ui_kit/util/MyIP.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
-import 'package:restaurant_ui_kit/util/comments.dart';
-import 'package:restaurant_ui_kit/util/const.dart';
-import 'package:restaurant_ui_kit/util/travel_spots.dart';
-import 'package:restaurant_ui_kit/widgets/badge.dart';
-import 'package:restaurant_ui_kit/widgets/chat.dart';
-import 'package:restaurant_ui_kit/widgets/smooth_star_rating.dart';
+
+ApiService apiService = new ApiService();
+Future<List> call(String category) async{
+  return apiService.show_room(category);
+}
 
 class ProductDetails extends StatefulWidget {
   final String _name;
   final String _img;
   final String _category;
-  final List<dynamic> rooms;
 
-  ProductDetails(this._name, this._img, this._category, this.rooms);
+
+  ProductDetails(this._name, this._img, this._category);
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails>{
-  SocketIO socketIO;
   bool isFav = false;
-  ApiService apiService = new ApiService();
-  List<dynamic> room;
+  Future<List> rooms;
 
   @override
   void initState(){
-    socketIO = SocketIOManager().createSocketIO(
-      'http://49.50.174.200:3001',
-      '/',
-    );
-    socketIO.init();
-    print('init');
-    socketIO.connect();
-
     super.initState();
+    rooms = call(widget._category);
   }
 
   @override
   Widget build(BuildContext context) {
-    //print(widget._name);
-    //print(widget._img);
-    //print(widget.rooms[0]['comment']);
+    return FutureBuilder<List>(
+      future: rooms,
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot){
+        if(snapshot.hasData){
+          return body(snapshot.data);
+        }
+        else{
+          return Text('Calculating answer...');
+        }
+      }
+    );
+  }
 
+
+  Widget body(List rooms){
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -166,17 +165,15 @@ class _ProductDetailsState extends State<ProductDetails>{
             Padding(
               padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
               child: ListView.builder(
-                
-
                 shrinkWrap: true,
                 primary: false,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: chatrooms == null ? 0 : widget.rooms.length,
+                itemCount: rooms == null ? 0 : rooms.length,
                 itemBuilder: (BuildContext context, int index) {     
                   //print(widget._category);
                   //print(widget.rooms[index]['category']);           
-                  if (widget.rooms.length != 0) {
-                    Map chatroom = widget.rooms[index];
+                  if (rooms.length != 0) {
+                    Map chatroom = rooms[index];
                     return Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
@@ -184,17 +181,15 @@ class _ProductDetailsState extends State<ProductDetails>{
                       child: ListTile(
                         leading: CircleAvatar(
                           radius: 25.0,
-                          backgroundImage: AssetImage(
-                            chatroom['user_photo'],
-                          ),
+                          backgroundImage: Image.network('http://$myIP:3001/${chatroom['img']}').image,
                         ),
-                        title: Text("${chatroom['user_name']}"),
+                        title: Text("${chatroom['bossname']}"),
                         subtitle: Column(
                           children: <Widget>[
                             Row(
                               children: <Widget>[
                                 Text(
-                                  "February 14, 2020",
+                                  chatroom['date'],
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w300,
@@ -260,7 +255,7 @@ class _ProductDetailsState extends State<ProductDetails>{
               MaterialPageRoute(
                 builder: (BuildContext context) {
                   return Postscreen(
-                      widget._img, widget._name, widget._category, widget.rooms);
+                      widget._img, widget._name, widget._category);
                 },
               ),
             );
