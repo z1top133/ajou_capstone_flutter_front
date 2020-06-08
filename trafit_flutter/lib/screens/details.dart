@@ -1,10 +1,10 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:restaurant_ui_kit/screens/ChatPage.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
 import 'package:restaurant_ui_kit/screens/post_screen.dart';
 import 'package:restaurant_ui_kit/util/MyIP.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 ApiService apiService = new ApiService();
 Future<List> call(String category) async{
@@ -144,7 +144,7 @@ class _ProductDetailsState extends State<ProductDetails>{
 //                  ),
 //                  SizedBox(width: 10.0),
                   Text(
-                    "(23개의 게시글)",
+                    "(${rooms.length}개의 게시글)",
                     style: TextStyle(
                       fontSize: 11.0,
                     ),
@@ -169,11 +169,16 @@ class _ProductDetailsState extends State<ProductDetails>{
                 primary: false,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: rooms == null ? 0 : rooms.length,
-                itemBuilder: (BuildContext context, int index) {     
-                  //print(widget._category);
-                  //print(widget.rooms[index]['category']);           
+                itemBuilder: (BuildContext context, int index) {            
                   if (rooms.length != 0) {
                     Map chatroom = rooms[index];
+                    ImageProvider c;
+                    if(chatroom['img'] == 'x'){
+                      c = Image.asset('assets/mbti/' + chatroom['bossmbti']+ '.png').image;
+                    }
+                    else{
+                      c = CachedNetworkImageProvider('http://$myIP:3001/${chatroom['img']}');
+                    }
                     return Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
@@ -181,7 +186,7 @@ class _ProductDetailsState extends State<ProductDetails>{
                       child: ListTile(
                         leading: CircleAvatar(
                           radius: 25.0,
-                          backgroundImage: Image.network('http://$myIP:3001/${chatroom['img']}').image,
+                          backgroundImage: c
                         ),
                         title: Text("${chatroom['bossname']}"),
                         subtitle: Column(

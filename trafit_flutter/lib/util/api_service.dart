@@ -109,18 +109,19 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  Future<Map<String, dynamic>> post_room(File file,_id, _username, _comment, _category, _date, _mbti) async{
-    final length = await file.length();
-    var request = new MultipartRequest('POST', Uri.parse(_hostname()+'/post_room'));
-    request.fields['id'] =  _id;
-    request.fields['username'] = _username;
-    request.fields['comment'] = _comment;
-    request.fields['category'] = _category;
-    request.fields['date'] = _date;
-    request.fields['mbti'] = _mbti;
+  Future<Map<String, dynamic>> post_room(_img ,_id, _username, _comment, _category, _date, _mbti) async{
+    
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id' : _id,
+      'username': _username,
+      'comment': _comment,
+      'category': _category,
+      'date': _date,
+      'mbti': _mbti,
+      'img': _img
+    };
 
-    request.files.add(new MultipartFile('image', file.readAsBytes().asStream(), length, filename: "profile.jpg"));
-    Response response = await Response.fromStream(await request.send());
+    Response response = await post(_hostname()+'/post_room', headers: headers1, body: jsonEncode(pass));
 
     return jsonDecode(response.body);
   }

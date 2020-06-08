@@ -6,7 +6,6 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_socket_io/socket_io_manager.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:restaurant_ui_kit/screens/Mbti_ei_screen.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
@@ -14,9 +13,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:restaurant_ui_kit/util/MySocket.dart';
 import 'package:restaurant_ui_kit/util/MyIP.dart';
-
-
-
 
 ApiService apiService = new ApiService();
 class LoginScreen extends StatefulWidget {
@@ -180,11 +176,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   sharedPreferences.setString('id', _useridControl.text);
                   sharedPreferences.setString('username', response['username']);
                   sharedPreferences.setString('mbti', response['mbti']);
+                  sharedPreferences.setString('img', response['img']);
+                  //Directory dir = await getTemporaryDirectory();
+                  //File file = File(dir.path + '/profile.jpg');
                   
-                  Directory dir = await getTemporaryDirectory();
-                  File file = File(dir.path + '/profile.jpg');
-                  
-                  if(response['img'] != null){//프로필 사진이 있는 경우
+                  /*if(response['img'] != null){//프로필 사진이 있는 경우
                     file.writeAsBytes(Uint8List.fromList(response['img']['data'].cast<int>()));
                   }
                   else{//없는 경우
@@ -192,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       final byteData = await rootBundle.load('assets/mbti/'+response['mbti']+'.png');
                       file.writeAsBytesSync(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
                     }
-                  }
+                  }*/
 
                   socketIO = SocketIOManager().createSocketIO(
                     'http://$myIP:3002',
@@ -238,10 +234,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
-  }
-
-  Future<void> writeToFile(Uint8List data) async{
-    Directory dir = await getExternalStorageDirectory();
-    return new File(dir.path + '/profile.jpg').writeAsBytes(data);
   }
 }

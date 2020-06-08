@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_ui_kit/providers/app_provider.dart';
 import 'package:restaurant_ui_kit/screens/splash.dart';
+import 'package:restaurant_ui_kit/util/MyIP.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:restaurant_ui_kit/util/const.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,10 +15,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
-Directory tempDir;
+//Directory tempDir;
 
 Future<Map<String, dynamic>> call() async{
-  tempDir = await getTemporaryDirectory();
+  //tempDir = await getTemporaryDirectory();
   sharedPreferences = await SharedPreferences.getInstance();
   String id = sharedPreferences.getString('id');
 
@@ -29,8 +31,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  
-
+  Widget photo;
+  bool x = false;
   Future<Map<String, dynamic>> response;
   @override
   void initState(){
@@ -45,7 +47,15 @@ class _ProfileState extends State<Profile> {
       future: response,
       builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot){
           if(snapshot.hasData){
-            Widget photo = Image.memory(File(tempDir.path + '/profile.jpg').readAsBytesSync());
+            if(!x){
+              if(sharedPreferences.getString('img') == 'x'){
+                photo = Image.asset('assets/mbti/' + sharedPreferences.getString('mbti') +'.png');
+              }
+              else{
+                photo = CachedNetworkImage(imageUrl: 'http://$myIP:3001/${sharedPreferences.getString('img')}');
+              }
+            }
+            
             return Scaffold(
       body: Padding(
         padding: EdgeInsets.fromLTRB(10.0,0,10.0,0),
@@ -281,19 +291,19 @@ class _ProfileState extends State<Profile> {
           }
       },
     );
-    
-    
   }
 
   void onPhoto(ImageSource source) async {
     File f = await ImagePicker.pickImage(source: source, maxWidth: 320, maxHeight: 240, imageQuality: 100);
     setState(() => {
-      File(tempDir.path + '/profile.jpg').writeAsBytes(f.readAsBytesSync())
+      x = true,
+      photo = Image.memory(f.readAsBytesSync())
     });
     Map<String, dynamic> response = await apiService.upload(f, sharedPreferences.getString('id'));
     Fluttertoast.showToast(
       msg: response['message'],
       toastLength: Toast.LENGTH_LONG,
     );
+    sharedPreferences.setString('img', response['img']);
   }
 }

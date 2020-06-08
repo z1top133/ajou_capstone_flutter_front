@@ -1,16 +1,19 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:restaurant_ui_kit/screens/details.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
+import 'package:restaurant_ui_kit/util/MyIP.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
-Directory dir;
+SharedPreferences shared;
+//Directory dir;
 Future<SharedPreferences> call() async{
-  dir = await getTemporaryDirectory();
+  //dir = await getTemporaryDirectory();
+  shared = await SharedPreferences.getInstance();
   return SharedPreferences.getInstance();
 }
 
@@ -51,6 +54,13 @@ class _PostscreenState extends State<Postscreen> {
   }
 
   Widget body(SharedPreferences shared){
+    ImageProvider c;
+    if(shared.getString('img') == 'x'){
+      c = Image.asset('assets/mbti/' + shared.getString('mbti') + '.png').image;
+    }
+    else{
+      c = CachedNetworkImageProvider('http://$myIP:3001/${shared.getString('img')}');
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -90,9 +100,7 @@ class _PostscreenState extends State<Postscreen> {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundImage: Image.memory(
-              File(dir.path + '/profile.jpg').readAsBytesSync() //로그인 사용자 프로필 사진
-            ).image,
+            backgroundImage: c,
           ),
           title: Text(shared.getString('username')), //로그인 사용자 이름
           subtitle: Column(
@@ -180,10 +188,11 @@ class _PostscreenState extends State<Postscreen> {
     String id = sharedPreferences.getString('id');
     String username = sharedPreferences.getString('username');
     String mbti = sharedPreferences.getString('mbti');
+    String img = sharedPreferences.getString('img');
     String _comment = _commentControl.text;
     String date = DateFormat('yy.MM.dd kk:mm').format(DateTime.now());
 
-    Map<String, dynamic> response = await apiService.post_room(File(dir.path + '/profile.jpg'), id, username, _comment, category, date, mbti);
+    Map<String, dynamic> response = await apiService.post_room(img, id, username, _comment, category, date, mbti);
     Fluttertoast.showToast(
       msg: response['message'],
         toastLength: Toast.LENGTH_LONG,

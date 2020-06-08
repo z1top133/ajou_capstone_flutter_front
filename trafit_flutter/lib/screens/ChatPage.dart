@@ -1,9 +1,11 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
+import 'package:restaurant_ui_kit/util/MyIP.dart';
 import 'dart:convert';
 import 'package:restaurant_ui_kit/util/MySocket.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
@@ -18,6 +20,7 @@ List<String> nameList;
 List<String> mbtiList;
 String bossname;
 String bossmbti;
+String img;
 
 Future<Map<String, dynamic>> call(int num) async{
   shared = await SharedPreferences.getInstance();
@@ -126,6 +129,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           mbtiList = snapshot.data['mbti'].split(',');
           bossname = snapshot.data['bossname'];
           bossmbti = snapshot.data['bossmbti'];
+          img = snapshot.data['img'];
           return body();
         }
         else{
@@ -136,6 +140,13 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   }
 
   Widget body(){
+    ImageProvider c;
+    if(img == 'x'){
+      c = Image.asset('assets/mbti/' + bossmbti + '.png').image;
+    }
+    else{
+      c = CachedNetworkImageProvider('http://$myIP:3001/$img');
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -147,7 +158,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             CircleAvatar(
-              backgroundImage: AssetImage('assets/mbti/'+bossmbti+'.png'),
+              backgroundImage: c,
             ),
             SizedBox(width: 15),
             Flexible(
