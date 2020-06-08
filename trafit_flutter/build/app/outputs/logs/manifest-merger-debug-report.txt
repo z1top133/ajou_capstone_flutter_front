@@ -55,7 +55,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\pc
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] C:\Users\pc\.gradle\caches\transforms-1\files-1.1\core-1.1.0.aar\7852ac33e75b86467ddd0ff0473d64c6\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:11:9-42
+		ADDED from C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:11:9-31
 	android:icon
 		ADDED from C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\AndroidManifest.xml:12:9-43
 	android:networkSecurityConfig
