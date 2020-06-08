@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/checkout.dart';
-import 'package:restaurant_ui_kit/util/travel_spots.dart';
-import 'package:restaurant_ui_kit/widgets/cart_item.dart';
+import 'package:trafit/screens/checkout.dart';
+import 'package:trafit/util/travel_spots.dart';
+import 'package:trafit/widgets/cart_item.dart';
 
 
 class CartScreen extends StatefulWidget {

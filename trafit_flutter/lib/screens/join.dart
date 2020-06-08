@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/login.dart';
-import 'package:restaurant_ui_kit/screens/register.dart';
+import 'package:trafit/screens/login.dart';
+import 'package:trafit/screens/register.dart';
 import 'package:flutter/services.dart';
 
 

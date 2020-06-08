@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/Mbti_tf_screen.dart';
-import 'package:restaurant_ui_kit/util/MBTI_NS.dart';
-import 'package:restaurant_ui_kit/util/mbti_result_percentage.dart';
-import 'package:restaurant_ui_kit/widgets/mbti_list_card.dart';
+import 'package:trafit/screens/Mbti_tf_screen.dart';
+import 'package:trafit/util/MBTI_NS.dart';
+import 'package:trafit/util/mbti_result_percentage.dart';
+import 'package:trafit/widgets/mbti_list_card.dart';
 
 class Mbti_ns extends StatefulWidget {
   String E_I;

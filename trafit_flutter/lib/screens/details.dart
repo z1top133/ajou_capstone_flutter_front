@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/ChatPage.dart';
-import 'package:restaurant_ui_kit/screens/notifications.dart';
-import 'package:restaurant_ui_kit/screens/post_screen.dart';
-import 'package:restaurant_ui_kit/util/MyIP.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:trafit/screens/ChatPage.dart';
+import 'package:trafit/screens/notifications.dart';
+import 'package:trafit/screens/post_screen.dart';
+import 'package:trafit/util/MyIP.dart';
+import 'package:trafit/util/api_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 ApiService apiService = new ApiService();

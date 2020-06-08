@@ -2,10 +2,10 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:restaurant_ui_kit/screens/details.dart';
-import 'package:restaurant_ui_kit/screens/notifications.dart';
-import 'package:restaurant_ui_kit/util/MyIP.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:trafit/screens/details.dart';
+import 'package:trafit/screens/notifications.dart';
+import 'package:trafit/util/MyIP.dart';
+import 'package:trafit/util/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 

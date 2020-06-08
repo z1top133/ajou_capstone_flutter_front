@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_ui_kit/providers/app_provider.dart';
-import 'package:restaurant_ui_kit/screens/splash.dart';
-import 'package:restaurant_ui_kit/util/const.dart';
+import 'package:trafit/providers/app_provider.dart';
+import 'package:trafit/screens/splash.dart';
+import 'package:trafit/util/const.dart';
 
 import 'util/const.dart';
 

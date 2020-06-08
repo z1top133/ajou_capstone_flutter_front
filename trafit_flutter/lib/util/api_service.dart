@@ -134,7 +134,25 @@ class ApiService{
     Response response = await post(_hostname()+'/show_room', headers: headers1, body: jsonEncode(pass));
     
     return jsonDecode(response.body);
-  }
+  }//카테고리 별 채팅방 불러오기
+  Future<List> user_in_room(_roomNumber) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'room_num':_roomNumber
+    };
+
+    Response response = await post(_hostname()+'/show_room', headers: headers1, body: jsonEncode(pass));
+
+    return jsonDecode(response.body);
+  }//user가 속한 채팅방만 불러오기
+  Future<List> search_room(_keyword) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'keyword': _keyword
+    };
+
+    Response response = await post(_hostname()+'/show_room', headers: headers1, body: jsonEncode(pass));
+
+    return jsonDecode(response.body);
+  }//채팅방 검색
 
   Future<Map<String, dynamic>> upload(File file, String id) async{
     final length = await file.length();

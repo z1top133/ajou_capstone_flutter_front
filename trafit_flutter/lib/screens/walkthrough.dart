@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:restaurant_ui_kit/screens/join.dart';
+import 'package:trafit/screens/join.dart';
 
 
 class Walkthrough extends StatefulWidget {

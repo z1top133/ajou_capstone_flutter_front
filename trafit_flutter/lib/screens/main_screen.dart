@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/cart.dart';
-import 'package:restaurant_ui_kit/screens/favorite_screen.dart';
-import 'package:restaurant_ui_kit/screens/home.dart';
-import 'package:restaurant_ui_kit/screens/notifications.dart';
-import 'package:restaurant_ui_kit/screens/profile.dart';
-import 'package:restaurant_ui_kit/screens/search.dart';
-import 'package:restaurant_ui_kit/util/const.dart';
-import 'package:restaurant_ui_kit/widgets/badge.dart';
+import 'package:trafit/screens/cart.dart';
+import 'package:trafit/screens/favorite_screen.dart';
+import 'package:trafit/screens/home.dart';
+import 'package:trafit/screens/notifications.dart';
+import 'package:trafit/screens/profile.dart';
+import 'package:trafit/screens/search.dart';
+import 'package:trafit/util/const.dart';
+import 'package:trafit/widgets/badge.dart';
 
 
 class MainScreen extends StatefulWidget {

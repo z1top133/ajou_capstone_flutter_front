@@ -5,11 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:restaurant_ui_kit/screens/main_screen.dart';
-import 'package:restaurant_ui_kit/util/User.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
-import 'package:restaurant_ui_kit/util/mbti_result.dart';
-import 'package:restaurant_ui_kit/util/mbti_result_percentage.dart';
+import 'package:trafit/screens/main_screen.dart';
+import 'package:trafit/util/User.dart';
+import 'package:trafit/util/api_service.dart';
+import 'package:trafit/util/mbti_result.dart';
+import 'package:trafit/util/mbti_result_percentage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

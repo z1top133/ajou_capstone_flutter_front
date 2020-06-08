@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/details.dart';
-import 'package:restaurant_ui_kit/screens/login.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
-import 'package:restaurant_ui_kit/util/const.dart';
-import 'package:restaurant_ui_kit/widgets/smooth_star_rating.dart';
+import 'package:trafit/screens/details.dart';
+import 'package:trafit/screens/login.dart';
+import 'package:trafit/util/api_service.dart';
+import 'package:trafit/util/const.dart';
+import 'package:trafit/widgets/smooth_star_rating.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SliderItem extends StatelessWidget {

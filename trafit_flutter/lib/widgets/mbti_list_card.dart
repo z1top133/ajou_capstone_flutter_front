@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/util/mbti_result_percentage.dart';
+import 'package:trafit/util/mbti_result_percentage.dart';
 
 
 class Mbti_list extends StatefulWidget {

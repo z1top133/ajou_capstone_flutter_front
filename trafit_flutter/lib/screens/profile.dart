@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_ui_kit/providers/app_provider.dart';
-import 'package:restaurant_ui_kit/screens/splash.dart';
-import 'package:restaurant_ui_kit/util/MyIP.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
-import 'package:restaurant_ui_kit/util/const.dart';
+import 'package:trafit/providers/app_provider.dart';
+import 'package:trafit/screens/splash.dart';
+import 'package:trafit/util/MyIP.dart';
+import 'package:trafit/util/api_service.dart';
+import 'package:trafit/util/const.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

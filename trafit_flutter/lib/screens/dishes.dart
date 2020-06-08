@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/notifications.dart';
-import 'package:restaurant_ui_kit/util/travel_spots.dart';
-import 'package:restaurant_ui_kit/widgets/badge.dart';
-import 'package:restaurant_ui_kit/widgets/grid_product.dart';
+import 'package:trafit/screens/notifications.dart';
+import 'package:trafit/util/travel_spots.dart';
+import 'package:trafit/widgets/badge.dart';
+import 'package:trafit/widgets/grid_product.dart';
 
 
 class DishesScreen extends StatefulWidget {

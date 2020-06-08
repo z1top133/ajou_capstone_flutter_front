@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/dishes.dart';
-import 'package:restaurant_ui_kit/widgets/grid_product.dart';
-import 'package:restaurant_ui_kit/widgets/home_category.dart';
-import 'package:restaurant_ui_kit/widgets/slider_item.dart';
-import 'package:restaurant_ui_kit/util/travel_spots.dart';
-import 'package:restaurant_ui_kit/util/categories.dart';
+import 'package:trafit/screens/dishes.dart';
+import 'package:trafit/widgets/grid_product.dart';
+import 'package:trafit/widgets/home_category.dart';
+import 'package:trafit/widgets/slider_item.dart';
+import 'package:trafit/util/travel_spots.dart';
+import 'package:trafit/util/categories.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:restaurant_ui_kit/screens/main_screen.dart';
-import 'package:restaurant_ui_kit/util/MyIP.dart';
+import 'package:trafit/screens/main_screen.dart';
+import 'package:trafit/util/MyIP.dart';
 import 'dart:convert';
-import 'package:restaurant_ui_kit/util/MySocket.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:trafit/util/MySocket.dart';
+import 'package:trafit/util/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:restaurant_ui_kit/util/travel_spots.dart';
+import 'package:trafit/util/travel_spots.dart';
 
 SharedPreferences shared;
 Directory dir;

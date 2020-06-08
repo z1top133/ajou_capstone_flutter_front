@@ -6,13 +6,13 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_socket_io/socket_io_manager.dart';
-import 'package:restaurant_ui_kit/screens/Mbti_ei_screen.dart';
-import 'package:restaurant_ui_kit/screens/main_screen.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:trafit/screens/Mbti_ei_screen.dart';
+import 'package:trafit/screens/main_screen.dart';
+import 'package:trafit/util/api_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:restaurant_ui_kit/util/MySocket.dart';
-import 'package:restaurant_ui_kit/util/MyIP.dart';
+import 'package:trafit/util/MySocket.dart';
+import 'package:trafit/util/MyIP.dart';
 
 ApiService apiService = new ApiService();
 class LoginScreen extends StatefulWidget {
