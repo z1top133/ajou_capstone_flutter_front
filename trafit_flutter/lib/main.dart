@@ -19,9 +19,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return Consumer<AppProvider>(
       builder: (BuildContext context, AppProvider appProvider, Widget child) {
+
         return MaterialApp(
           key: appProvider.key,
           debugShowCheckedModeBanner: false,

@@ -120,7 +120,9 @@ class _ProfileState extends State<Profile> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           InkWell(
-                            onTap: (){
+                            onTap: () async {
+                              SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                              sharedPreferences.clear();
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (BuildContext context){
