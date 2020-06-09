@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'MyIP.dart';
 
@@ -179,12 +177,13 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  Future<Map<String, dynamic>> enter_room(int num, String id, String username, String mbti) async{
+  Future<Map<String, dynamic>> enter_room(int num, String id, String username, String mbti, String img) async{
     Map<String, dynamic> pass = {//변수를 json으로
       'id': id,
       'username': username,
       'mbti': mbti,
-      'room': num
+      'room': num,
+      'img': img
     };
 
     Response response = await post(_hostname()+'/enter_room', headers: headers1, body: jsonEncode(pass));

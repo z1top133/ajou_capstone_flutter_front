@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:trafit/util/const.dart';
-import 'package:trafit/util/travel_spots.dart';
-import 'package:trafit/util/travel_spots.dart';
-import 'package:trafit/widgets/smooth_star_rating.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/screens/ChatPage.dart';
 import 'package:trafit/util/MyIP.dart';
@@ -332,7 +328,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (BuildContext context) {
-                                          return ChatPage(chatroom['room_num']);
+                                          return ChatPage(chatroom['room_num'], chatroom['category']);
                                         },
                                       ),
                                     );

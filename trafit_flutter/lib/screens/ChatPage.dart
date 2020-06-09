@@ -1,9 +1,6 @@
-import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:trafit/screens/main_screen.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'dart:convert';
@@ -13,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/util/travel_spots.dart';
 
 SharedPreferences shared;
-Directory dir;
 ApiService apiService = new ApiService();
 List<String> idList;
 List<String> nameList;
@@ -21,12 +17,12 @@ List<String> mbtiList;
 String bossname;
 String bossmbti;
 String img;
+List<String> imgList;
 
 Future<Map<String, dynamic>> call(int num) async{
   shared = await SharedPreferences.getInstance();
-  dir = await getTemporaryDirectory();
   socketIO.sendMessage('joinRoom', json.encode({'id': shared.getString('id'), 'room': num}));
-  return apiService.enter_room(num, shared.getString('id'), shared.getString('username'), shared.getString('mbti'));
+  return apiService.enter_room(num, shared.getString('id'), shared.getString('username'), shared.getString('mbti'), shared.getString('img'));
 }
 
 // IOS용 테마
@@ -42,33 +38,16 @@ final ThemeData kDefaultTheme = ThemeData(
   accentColor: Colors.orangeAccent[400],
 );
 
-class ChatPage extends StatelessWidget {
-  int num;
-  ChatPage(this.num);
-  
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'France',
-      home: ChatScreen(num),
-      // defaultTargetPlatform을 사용하기 위해서는 foundation.dart 패키지의 추가 필요
-      /*theme: defaultTargetPlatform == TargetPlatform.android
-          ? kIOSTheme
-          : kDefaultTheme,*/
-    );
-  }
-}
-
-class ChatScreen extends StatefulWidget {
+class ChatPage extends StatefulWidget {
   final int num;
-  ChatScreen(this.num);
+  final String category;
+  ChatPage(this.num, this.category);
   
   ChatScreenState createState() => ChatScreenState();
 }
 
 // 화면 구성용 상태 위젯. 애니메이션 효과를 위해 TickerProviderStateMixin를 가짐
-class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
+class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   // 입력한 메시지를 저장하는 리스트
   final List<ChatMessage> _message = <ChatMessage>[];
   Future<Map<String, dynamic>> userListF;
@@ -130,6 +109,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           bossname = snapshot.data['bossname'];
           bossmbti = snapshot.data['bossmbti'];
           img = snapshot.data['img'];
+          imgList = snapshot.data['user_img'].split(',');
           return body();
         }
         else{
@@ -148,11 +128,60 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       c = CachedNetworkImageProvider('http://$myIP:3001/$img');
     }
     return Scaffold(
+      endDrawer: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+        height: MediaQuery.of(context).size.height * .7,
+        width: MediaQuery.of(context).size.width * .5,
+        child: Drawer(
+          child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      ),
+        ],
+      ), 
+      
+      
+
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black54),
-        leading: BackButton(
-          color: Colors.black
+        leading: IconButton(
+          icon: Icon(
+            Icons.keyboard_backspace,
+          ),
+          onPressed: () => {
+            Navigator.of(context).pop()
+          }
         ),
         title: Row(
           mainAxisSize: MainAxisSize.min,
@@ -167,7 +196,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  bossname +'님의 '+ travel_spots[0]['name']+' 동행 채팅방',
+                  bossname +'님의 '+ travel_spots[int.parse(widget.category)-1]['name']+' 동행 채팅방',
                   style: Theme.of(context).textTheme.subhead,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -182,14 +211,16 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           ],
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.people),
-            onPressed: () {},
-          ),
+          Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Icons.people),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip
+            ),
+          )
         ],
-        // appBar 하단의 그림자 정도
-        //elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
       ),
+      
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -354,6 +385,13 @@ class ChatMessageR extends ChatMessage {
 
   Widget receiveMessage(BuildContext context){
     int index=idList.indexOf(data['id']);
+    ImageProvider c;
+    if(imgList[index] == 'x'){
+      c = AssetImage('assets/mbti/'+mbtiList[index]+'.png');
+    }
+    else{
+      c = CachedNetworkImageProvider('http://$myIP:3001/${imgList[index]}');
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: Row(
@@ -363,7 +401,7 @@ class ChatMessageR extends ChatMessage {
             children: <Widget>[
               SizedBox(height: 10,),
               CircleAvatar(
-                backgroundImage: new AssetImage('assets/mbti/'+mbtiList[index]+'.png'),
+                backgroundImage: c,
                 radius: 17,
               ),
               SizedBox(height: 3,),
@@ -426,6 +464,13 @@ class ChatMessageS extends ChatMessage {
   }
 
   Widget sendMessage(BuildContext context){
+    ImageProvider c;
+    if(shared.getString('img') == 'x'){
+      c = AssetImage('assets/mbti/'+shared.getString('mbti')+'.png');
+    }
+    else{
+      c = CachedNetworkImageProvider('http://$myIP:3001/${shared.getString('img')}');
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: Row(
@@ -465,7 +510,7 @@ class ChatMessageS extends ChatMessage {
             children: <Widget>[
               SizedBox(height: 10,),
               CircleAvatar(
-                backgroundImage: new AssetImage('assets/mbti/'+shared.getString('mbti')+'.png'),
+                backgroundImage: c,
                 radius: 17,
               ),
               SizedBox(height: 3,),

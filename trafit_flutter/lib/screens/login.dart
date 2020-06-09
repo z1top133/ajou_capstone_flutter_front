@@ -1,9 +1,3 @@
-import 'dart:io';
-import 'dart:async';
-import 'dart:typed_data';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/services.dart' show rootBundle;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_socket_io/socket_io_manager.dart';
 import 'package:trafit/screens/Mbti_ei_screen.dart';
@@ -178,18 +172,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   sharedPreferences.setString('mbti', response['mbti']);
                   sharedPreferences.setString('img', response['img']);
                   sharedPreferences.setString('room_num', response['room_num']);
-                  //Directory dir = await getTemporaryDirectory();
-                  //File file = File(dir.path + '/profile.jpg');
-                  
-                  /*if(response['img'] != null){//프로필 사진이 있는 경우
-                    file.writeAsBytes(Uint8List.fromList(response['img']['data'].cast<int>()));
-                  }
-                  else{//없는 경우
-                    if(response['mbti']!=null){
-                      final byteData = await rootBundle.load('assets/mbti/'+response['mbti']+'.png');
-                      file.writeAsBytesSync(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-                    }
-                  }*/
 
                   socketIO = SocketIOManager().createSocketIO(
                     'http://$myIP:3002',

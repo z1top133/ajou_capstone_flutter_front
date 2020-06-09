@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trafit/screens/details.dart';
-import 'package:trafit/screens/login.dart';
-import 'package:trafit/util/api_service.dart';
-import 'package:trafit/util/const.dart';
-import 'package:trafit/widgets/smooth_star_rating.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SliderItem extends StatelessWidget {
   final String name;
@@ -99,16 +94,9 @@ class SliderItem extends StatelessWidget {
         ],
       ),
       onTap: () async{
-        ApiService apiService = new ApiService();
-        List<dynamic> rooms = await apiService.show_room(category);
-        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              //print('$name');
-              print('$img');
-              //print(category+'dd');
               return ProductDetails('$name', '$img','$category');
             },
           ),
