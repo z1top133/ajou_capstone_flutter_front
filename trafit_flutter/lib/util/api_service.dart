@@ -109,7 +109,7 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  Future<Map<String, dynamic>> post_room(_img ,_id, _username, _comment, _category, _date, _mbti) async{
+  Future<Map<String, dynamic>> post_room(_img ,_id, _username, _comment, _category, _date, _mbti , _startDate, _endDate) async{
     
     Map<String, dynamic> pass = {//변수를 json으로
       'id' : _id,
@@ -118,7 +118,9 @@ class ApiService{
       'category': _category,
       'date': _date,
       'mbti': _mbti,
-      'img': _img
+      'img': _img,
+      'start_date':_startDate,
+      'end_date':_endDate
     };
 
     Response response = await post(_hostname()+'/post_room', headers: headers1, body: jsonEncode(pass));
@@ -140,16 +142,18 @@ class ApiService{
       'room_num':_roomNumber
     };
 
-    Response response = await post(_hostname()+'/show_room', headers: headers1, body: jsonEncode(pass));
+    Response response = await post(_hostname()+'/user_in_room', headers: headers1, body: jsonEncode(pass));
 
     return jsonDecode(response.body);
   }//user가 속한 채팅방만 불러오기
-  Future<List> search_room(_keyword) async{
+
+  Future<List> search_room(_keyword, _date) async{
     Map<String, dynamic> pass = {//변수를 json으로
-      'keyword': _keyword
+      'keyword': _keyword,
+      'date': _date
     };
 
-    Response response = await post(_hostname()+'/show_room', headers: headers1, body: jsonEncode(pass));
+    Response response = await post(_hostname()+'/search_room', headers: headers1, body: jsonEncode(pass));
 
     return jsonDecode(response.body);
   }//채팅방 검색

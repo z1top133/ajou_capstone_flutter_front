@@ -42,6 +42,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    String gender;
+
     
     return FutureBuilder<Map<String, dynamic>>(
       future: response,
@@ -55,6 +57,8 @@ class _ProfileState extends State<Profile> {
                 photo = CachedNetworkImage(imageUrl: 'http://$myIP:3001/${sharedPreferences.getString('img')}');
               }
             }
+            if(snapshot.data['gender']==0) gender = '남자';
+            else gender = '여자';
             
             return Scaffold(
       body: Padding(
@@ -170,7 +174,7 @@ class _ProfileState extends State<Profile> {
               ),
 
               subtitle: Text(
-                "Jane Mary Doe",
+                snapshot.data['username'],
               ),
 
               trailing: IconButton(
@@ -179,6 +183,7 @@ class _ProfileState extends State<Profile> {
                   size: 20.0,
                 ),
                 onPressed: (){
+                  print(snapshot.data['room_num']);
                 },
                 tooltip: "Edit",
               ),
@@ -198,33 +203,7 @@ class _ProfileState extends State<Profile> {
               ),
             ),
 
-            ListTile(
-              title: Text(
-                "Phone",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
 
-              subtitle: Text(
-                "+1 816-926-6241",
-              ),
-            ),
-
-            ListTile(
-              title: Text(
-                "Address",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-
-              subtitle: Text(
-                "1278 Loving Acres RoadKansas City, MO 64110",
-              ),
-            ),
 
             ListTile(
               title: Text(
@@ -236,13 +215,13 @@ class _ProfileState extends State<Profile> {
               ),
 
               subtitle: Text(
-                "Female",
+                "$gender",
               ),
             ),
 
             ListTile(
               title: Text(
-                "Date of Birth",
+                "나이",
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w700,
@@ -250,9 +229,23 @@ class _ProfileState extends State<Profile> {
               ),
 
               subtitle: Text(
-                "April 9, 1995",
+                snapshot.data['age'].toString(),
               ),
             ),
+            ListTile(
+              title: Text(
+                "MBTI 유형",
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+
+              subtitle: Text(
+                snapshot.data['mbti'].toString(),
+              ),
+            ),
+
 
              MediaQuery.of(context).platformBrightness == Brightness.dark
                  ? SizedBox()

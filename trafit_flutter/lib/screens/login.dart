@@ -177,6 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   sharedPreferences.setString('username', response['username']);
                   sharedPreferences.setString('mbti', response['mbti']);
                   sharedPreferences.setString('img', response['img']);
+                  sharedPreferences.setString('room_num', response['room_num']);
                   //Directory dir = await getTemporaryDirectory();
                   //File file = File(dir.path + '/profile.jpg');
                   

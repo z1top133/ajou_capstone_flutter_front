@@ -8,7 +8,8 @@ import 'package:trafit/screens/profile.dart';
 import 'package:trafit/screens/search.dart';
 import 'package:trafit/util/const.dart';
 import 'package:trafit/widgets/badge.dart';
-
+import 'package:trafit/screens/user_in_chat.dart';
+import 'package:trafit/screens/search_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -61,8 +62,8 @@ class _MainScreenState extends State<MainScreen> {
           onPageChanged: onPageChanged,
           children: <Widget>[
             Home(),
-            FavoriteScreen(),
-            SearchScreen(),
+            userInChatScreen(),
+            chatSearchScreen(""),
             CartScreen(),
             Profile(),
           ],

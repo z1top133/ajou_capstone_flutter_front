@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/screens/ChatPage.dart';
 import 'package:trafit/screens/notifications.dart';
 import 'package:trafit/screens/post_screen.dart';
@@ -202,9 +203,18 @@ class _ProductDetailsState extends State<ProductDetails>{
                                 ),
                               ],
                             ),
+                            Row(
+                              children: [
+                                Text('여행일:  '),
+                                Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
+                              ],
+                            ),
                             SizedBox(height: 7.0),
-                            Text(
-                              "${chatroom['comment']}"
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 70.0, 0.0),
+                              child: Text(
+                                "${chatroom['comment']}"
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
@@ -220,7 +230,11 @@ class _ProductDetailsState extends State<ProductDetails>{
                                     ),
                                     color: Theme.of(context).accentColor,
                                     textColor: Colors.white,
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                                      String roomNumber = sharedPreferences.getString('room_num');
+                                      roomNumber += ",${chatroom['room_num']}";
+                                      sharedPreferences.setString('room_num', roomNumber);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {
