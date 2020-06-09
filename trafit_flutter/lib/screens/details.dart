@@ -37,15 +37,15 @@ class _ProductDetailsState extends State<ProductDetails>{
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
-      future: rooms,
-      builder: (BuildContext context, AsyncSnapshot<List> snapshot){
-        if(snapshot.hasData){
-          return body(snapshot.data);
+        future: rooms,
+        builder: (BuildContext context, AsyncSnapshot<List> snapshot){
+          if(snapshot.hasData){
+            return body(snapshot.data);
+          }
+          else{
+            return Text('Calculating answer...');
+          }
         }
-        else{
-          return Text('Calculating answer...');
-        }
-      }
     );
   }
 
@@ -170,7 +170,7 @@ class _ProductDetailsState extends State<ProductDetails>{
                 primary: false,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: rooms == null ? 0 : rooms.length,
-                itemBuilder: (BuildContext context, int index) {            
+                itemBuilder: (BuildContext context, int index) {
                   if (rooms.length != 0) {
                     Map chatroom = rooms[index];
                     ImageProvider c;
@@ -186,8 +186,8 @@ class _ProductDetailsState extends State<ProductDetails>{
                       elevation: 4.0,
                       child: ListTile(
                         leading: CircleAvatar(
-                          radius: 25.0,
-                          backgroundImage: c
+                            radius: 25.0,
+                            backgroundImage: c
                         ),
                         title: Text("${chatroom['bossname']}"),
                         subtitle: Column(
@@ -213,7 +213,7 @@ class _ProductDetailsState extends State<ProductDetails>{
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 70.0, 0.0),
                               child: Text(
-                                "${chatroom['comment']}"
+                                  "${chatroom['comment']}"
                               ),
                             ),
                             Padding(
@@ -233,7 +233,9 @@ class _ProductDetailsState extends State<ProductDetails>{
                                     onPressed: () async {
                                       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                                       String roomNumber = sharedPreferences.getString('room_num');
-                                      roomNumber += ",${chatroom['room_num']}";
+                                      print(chatroom['room_num']);
+                                      if(roomNumber == null) roomNumber = "${chatroom['room_num']}";
+                                      else roomNumber = roomNumber + ",${chatroom['room_num']}";
                                       sharedPreferences.setString('room_num', roomNumber);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(

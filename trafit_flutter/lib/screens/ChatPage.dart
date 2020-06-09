@@ -42,7 +42,7 @@ class ChatPage extends StatefulWidget {
   final int num;
   final String category;
   ChatPage(this.num, this.category);
-  
+
   ChatScreenState createState() => ChatScreenState();
 }
 
@@ -51,7 +51,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   // 입력한 메시지를 저장하는 리스트
   final List<ChatMessage> _message = <ChatMessage>[];
   Future<Map<String, dynamic>> userListF;
-  
+
   // 텍스트필드 제어용 컨트롤러
   final TextEditingController _textController = TextEditingController();
 
@@ -93,7 +93,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
         ),
       );
     });
-    
+
     super.initState();
   }
 
@@ -132,56 +132,56 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-        height: MediaQuery.of(context).size.height * .7,
-        width: MediaQuery.of(context).size.width * .5,
-        child: Drawer(
-          child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
+            height: MediaQuery.of(context).size.height * .7,
+            width: MediaQuery.of(context).size.width * .5,
+            child: Drawer(
+              child: ListView(
+                // Important: Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  DrawerHeader(
+                    child: Text('Drawer Header'),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Item 1'),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Item 2'),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
               ),
             ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
-      ),
+          ),
         ],
-      ), 
-      
-      
+      ),
+
+
 
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black54),
         leading: IconButton(
-          icon: Icon(
-            Icons.keyboard_backspace,
-          ),
-          onPressed: () => {
-            Navigator.of(context).pop()
-          }
+            icon: Icon(
+              Icons.keyboard_backspace,
+            ),
+            onPressed: () => {
+              Navigator.of(context).pop()
+            }
         ),
         title: Row(
           mainAxisSize: MainAxisSize.min,
@@ -192,45 +192,45 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             SizedBox(width: 15),
             Flexible(
               child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  bossname +'님의 '+ travel_spots[int.parse(widget.category)-1]['name']+' 동행 채팅방',
-                  style: Theme.of(context).textTheme.subhead,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  bossmbti,
-                  style: TextStyle(fontSize: 10, color: Colors.green),
-                )
-              ],
-            ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    bossname +'님의 '+ travel_spots[int.parse(widget.category)-1]['name']+' 동행 채팅방',
+                    style: Theme.of(context).textTheme.subhead,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    bossmbti,
+                    style: TextStyle(fontSize: 10, color: Colors.green),
+                  )
+                ],
+              ),
             )
-            
+
           ],
         ),
         actions: <Widget>[
           Builder(
             builder: (context) => IconButton(
-              icon: Icon(Icons.people),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip
+                icon: Icon(Icons.people),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip
             ),
           )
         ],
       ),
-      
+
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.12), BlendMode.dstATop),
-            image: AssetImage('assets/paris.jpg')
-          )
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.12), BlendMode.dstATop),
+                image: AssetImage('assets/paris.jpg')
+            )
         ),
         child: Column(
-          children: <Widget>[          
+          children: <Widget>[
             // 리스트뷰를 Flexible로 추가.
             Flexible(
               // 리스트뷰 추가
@@ -253,66 +253,66 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
 
   Widget textWindow(){
     return Container(
-              margin: EdgeInsets.all(15.0),
-              height: 55,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(35.0),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(0, 3),
-                            blurRadius: 5,
-                            color: Colors.grey
-                          )]
-                      ),
-                      child: Row(
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.face), onPressed: () {}),
-                Expanded(
-                  child: TextField(
-                  controller: _textController,
-                  // 입력된 텍스트에 변화가 있을 때 마다
-                  onChanged: (text) {
-                    setState(() {
-                      _isComposing = text.length > 0;
-                    });
-                  },
-                // 키보드상에서 확인을 누를 경우. 입력값이 있을 때에만 _handleSubmitted 호출
-                  onSubmitted: _isComposing ? _handleSubmitted : null,
-                  decoration: InputDecoration(
-                  border: InputBorder.none),
-                  ),
+        margin: EdgeInsets.all(15.0),
+        height: 55,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(35.0),
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(0, 3),
+                          blurRadius: 5,
+                          color: Colors.grey
+                      )]
                 ),
-                SizedBox(width: 15),
-              ],
-            ),
+                child: Row(
+                  children: <Widget>[
+                    IconButton(
+                        icon: Icon(Icons.face), onPressed: () {}),
+                    Expanded(
+                      child: TextField(
+                        controller: _textController,
+                        // 입력된 텍스트에 변화가 있을 때 마다
+                        onChanged: (text) {
+                          setState(() {
+                            _isComposing = text.length > 0;
+                          });
+                        },
+                        // 키보드상에서 확인을 누를 경우. 입력값이 있을 때에만 _handleSubmitted 호출
+                        onSubmitted: _isComposing ? _handleSubmitted : null,
+                        decoration: InputDecoration(
+                            border: InputBorder.none),
+                      ),
                     ),
+                    SizedBox(width: 15),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(width: 15),
+            Container(
+              padding: const EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                  color: Colors.green, shape: BoxShape.circle),
+              child: InkWell(
+                child: IconButton(
+                  icon: Icon(
+                    Icons.send,
+                    color: Colors.white,
                   ),
-                  SizedBox(width: 15),
-                Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                            color: Colors.green, shape: BoxShape.circle),
-                        child: InkWell(
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.send,
-                              color: Colors.white,
-                            ),
-                            onPressed: _isComposing
-                    ? () => _handleSubmitted(_textController.text)
-                    : null,
-                          ),
-                        ),
-                      )
-                ],
-              )
-            );
+                  onPressed: _isComposing
+                      ? () => _handleSubmitted(_textController.text)
+                      : null,
+                ),
+              ),
+            )
+          ],
+        )
+    );
   }
 
   // 메시지 전송 버튼이 클릭될 때 호출
@@ -371,15 +371,15 @@ class ChatMessageR extends ChatMessage {
 
   @override
   Widget build(BuildContext context) {
-    
+
     // 위젯에 애니메이션을 발생하기 위해 SizeTransition을 추가
     return SizeTransition(
       // 사용할 애니메이션 효과 설정
-      sizeFactor:
-      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
-      axisAlignment: 0.0,
-      // 리스트뷰에 추가될 컨테이너 위젯
-      child: receiveMessage(context)
+        sizeFactor:
+        CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        axisAlignment: 0.0,
+        // 리스트뷰에 추가될 컨테이너 위젯
+        child: receiveMessage(context)
     );
   }
 
@@ -396,7 +396,7 @@ class ChatMessageR extends ChatMessage {
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[ 
+        children: <Widget>[
           Column(
             children: <Widget>[
               SizedBox(height: 10,),
@@ -406,7 +406,7 @@ class ChatMessageR extends ChatMessage {
               ),
               SizedBox(height: 3,),
               Text(nameList[index],
-              style: TextStyle(fontSize: 9),)
+                style: TextStyle(fontSize: 9),)
             ],
           ),
           SizedBox(width: 8),
@@ -418,26 +418,26 @@ class ChatMessageR extends ChatMessage {
                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
               ),
               Container(
-            constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * .6),
-            padding: const EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              color: Colors.cyan[300],
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(25),
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25)
-              ),
-            ),
-            child: Text(
-              data['message'],
-              style: Theme.of(context).textTheme.body2.apply(
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .6),
+                padding: const EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: Colors.cyan[300],
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(25),
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25)
+                  ),
+                ),
+                child: Text(
+                  data['message'],
+                  style: Theme.of(context).textTheme.body2.apply(
                     color: Colors.white,
                   ),
-            ),
-          ),
+                ),
+              ),
             ],
-          ),      
+          ),
         ],
       ),
     );
@@ -451,15 +451,15 @@ class ChatMessageS extends ChatMessage {
   ChatMessageS({this.data, this.animationController});
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     // 위젯에 애니메이션을 발생하기 위해 SizeTransition을 추가
     return SizeTransition(
       // 사용할 애니메이션 효과 설정
-      sizeFactor:
-      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
-      axisAlignment: 0.0,
-      // 리스트뷰에 추가될 컨테이너 위젯
-      child: sendMessage(context)
+        sizeFactor:
+        CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        axisAlignment: 0.0,
+        // 리스트뷰에 추가될 컨테이너 위젯
+        child: sendMessage(context)
     );
   }
 
@@ -475,7 +475,7 @@ class ChatMessageS extends ChatMessage {
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[ 
+        children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
@@ -484,27 +484,27 @@ class ChatMessageS extends ChatMessage {
                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
               ),
               Container(
-            constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * .6),
-            padding: const EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25),
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25)
-              ),
-            ),
-            child: Text(
-              data['message'],
-              style: Theme.of(context).textTheme.body2.apply(
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .6),
+                padding: const EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25)
+                  ),
+                ),
+                child: Text(
+                  data['message'],
+                  style: Theme.of(context).textTheme.body2.apply(
                     color: Colors.black,
                   ),
-            ),
-          ),
+                ),
+              ),
             ],
-          ),      
-          
+          ),
+
           SizedBox(width: 8),
           Column(
             children: <Widget>[
@@ -515,10 +515,10 @@ class ChatMessageS extends ChatMessage {
               ),
               SizedBox(height: 3,),
               Text(shared.getString('username'),
-              style: TextStyle(fontSize: 9),)
+                style: TextStyle(fontSize: 9),)
             ],
           )
-          
+
         ],
       ),
     );
