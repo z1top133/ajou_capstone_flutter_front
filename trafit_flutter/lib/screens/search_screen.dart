@@ -4,6 +4,7 @@ import 'package:trafit/screens/ChatPage.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:trafit/util/travel_spots.dart';
 
 ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
@@ -266,6 +267,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                 if(chatroom['end_date'] == null) chatroom['end_date'] = '0101';
                 if (rooms.length != 0 && chatroom['comment'].toString().contains(serchKeyword) && int.parse(chatroom['start_date'].toString()) <= int.parse(searchMonth+searchDay) && int.parse(chatroom['end_date'].toString()) >= int.parse(searchMonth+searchDay) ) {
                   ImageProvider c;
+                  String spot = travel_spots[int.parse(chatroom['category'])-1]['name'];
                   if (chatroom['img'] == 'x') {
                     c = Image.asset(
                             'assets/mbti/' + chatroom['bossmbti'] + '.png')
@@ -294,19 +296,21 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                               ),
                             ],
                           ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Text('여행지:  '),
+                              Text("$spot"),
+                            ],
+                          ),
+                          SizedBox(height: 10),
                           Row(
                             children: [
                               Text('여행일:  '),
                               Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
                             ],
                           ),
-                          Row(
-                            children: [
-                              Text('여행일:  '),
-                              Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
-                            ],
-                          ),
-                          SizedBox(height: 7.0),
+                          SizedBox(height: 10.0),
                           Padding(
                             padding:
                                 const EdgeInsets.fromLTRB(0.0, 0.0, 70.0, 0.0),

@@ -4,6 +4,7 @@ import 'package:trafit/screens/ChatPage.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:trafit/util/travel_spots.dart';
 
 ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
@@ -140,6 +141,7 @@ class _userInChatScreenState extends State<userInChatScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   if (rooms.length != 0) {
                     Map chatroom = rooms[index];
+                    String spot = travel_spots[int.parse(chatroom['category'])-1]['name'];
                     ImageProvider c;
                     if(chatroom['img'] == 'x'){
                       c = Image.asset('assets/mbti/' + chatroom['bossmbti']+ '.png').image;
@@ -170,13 +172,21 @@ class _userInChatScreenState extends State<userInChatScreen> {
                                 ),
                               ],
                             ),
+                            SizedBox(height: 10),
+                            Row(
+                              children: [
+                                Text('여행지:  '),
+                                Text("$spot"),
+                              ],
+                            ),
+                            SizedBox(height: 10),
                             Row(
                               children: [
                                 Text('여행일:  '),
                                 Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
                               ],
                             ),
-                            SizedBox(height: 7.0),
+                            SizedBox(height: 10.0),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 70.0, 0.0),
                               child: Text(
