@@ -300,6 +300,12 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                               Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
                             ],
                           ),
+                          Row(
+                            children: [
+                              Text('여행일:  '),
+                              Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
+                            ],
+                          ),
                           SizedBox(height: 7.0),
                           Padding(
                             padding:

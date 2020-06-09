@@ -92,12 +92,12 @@ class GridProduct extends StatelessWidget {
                   size: 10.0,
                 ),
 
-                Text(
-                  " $rating ($raters개의 게시글)",
-                  style: TextStyle(
-                    fontSize: 11.0,
-                  ),
-                ),
+//                Text(
+//                  " $rating ($raters개의 게시글)",
+//                  style: TextStyle(
+//                    fontSize: 11.0,
+//                  ),
+//                ),
 
               ],
             ),

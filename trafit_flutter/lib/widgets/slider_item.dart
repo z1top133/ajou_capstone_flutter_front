@@ -77,13 +77,7 @@ class SliderItem extends StatelessWidget {
 //                  rating: rating,
 //                  size: 10.0,
 //                ),
-                Text(
-                  "($raters개의 게시글)",
-//                  " $rating ($raters개의 게시글)",
-                  style: TextStyle(
-                    fontSize: 11.0,
-                  ),
-                ),
+
               ],
             ),
           ),

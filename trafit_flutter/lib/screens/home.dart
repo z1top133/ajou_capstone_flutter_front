@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trafit/screens/dishes.dart';
+import 'package:trafit/screens/all_spot.dart';
+import 'package:trafit/util/popular_spots.dart';
 import 'package:trafit/widgets/grid_product.dart';
 import 'package:trafit/widgets/home_category.dart';
 import 'package:trafit/widgets/slider_item.dart';
@@ -181,10 +182,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                         .size
                         .height / 1.25),
               ),
-              itemCount: travel_spots == null ? 0 : travel_spots.length,
+              itemCount: popular_spots == null ? 0 : popular_spots.length,
               itemBuilder: (BuildContext context, int index) {
 //                Food food = Food.fromJson(foods[index]);
-                Map travel_spot = travel_spots[index];
+                Map travel_spot = popular_spots[index];
 //                print(foods);
 //                print(foods.length);
                 return GridProduct(
