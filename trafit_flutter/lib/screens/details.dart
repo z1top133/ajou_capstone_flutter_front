@@ -238,7 +238,7 @@ class _ProductDetailsState extends State<ProductDetails>{
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {
-                                            return ChatPage(chatroom['room_num']);
+                                            return ChatPage(chatroom['room_num'], widget._category);
                                           },
                                         ),
                                       );
@@ -269,7 +269,6 @@ class _ProductDetailsState extends State<ProductDetails>{
           ),
           color: Theme.of(context).accentColor,
           onPressed: () {
-            Navigator.pop(context);
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {

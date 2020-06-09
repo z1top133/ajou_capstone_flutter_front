@@ -9,9 +9,7 @@ ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
 String userName ;
 Future<List> call() async{
-  //tempDir = await getTemporaryDirectory();
   sharedPreferences = await SharedPreferences.getInstance();
-  Future<Map<String, dynamic>> response = apiService.show_profile(sharedPreferences.getString('id'));
   String _roomNumber = sharedPreferences.getString('room_num');
   userName = sharedPreferences.getString('username');
   print(_roomNumber);
@@ -40,7 +38,6 @@ class _userInChatScreenState extends State<userInChatScreen> {
         future: rooms,
         builder: (BuildContext context, AsyncSnapshot<List> snapshot){
           if(snapshot.hasData){
-            rooms = call();
             return body(snapshot.data);
           }
           else{
@@ -204,7 +201,7 @@ class _userInChatScreenState extends State<userInChatScreen> {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {
-                                            return ChatPage(chatroom['room_num']);
+                                            return ChatPage(chatroom['room_num'], chatroom['category']);
                                           },
                                         ),
                                       );

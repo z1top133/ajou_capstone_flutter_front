@@ -3,7 +3,6 @@ import 'package:trafit/screens/checkout.dart';
 import 'package:trafit/util/travel_spots.dart';
 import 'package:trafit/widgets/cart_item.dart';
 
-
 class CartScreen extends StatefulWidget {
   @override
   _CartScreenState createState() => _CartScreenState();
