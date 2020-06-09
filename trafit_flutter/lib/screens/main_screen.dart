@@ -115,9 +115,21 @@ class _MainScreenState extends State<MainScreen> {
 //                onPressed: ()=>_pageController.jumpToPage(2),
 //              ),
 
+//              IconButton(
+//                icon: IconBadge(
+//                  icon: Icons.search,
+//                  size: 24.0,
+//                ),
+//                color: _page == 3
+//                    ? Theme.of(context).accentColor
+//                    : Theme
+//                    .of(context)
+//                    .textTheme.caption.color,
+//                onPressed: ()=>_pageController.jumpToPage(2),
+//              ),
               IconButton(
-                icon: IconBadge(
-                  icon: Icons.search,
+                icon: Icon(
+                  Icons.search,
                   size: 24.0,
                 ),
                 color: _page == 3
@@ -127,7 +139,6 @@ class _MainScreenState extends State<MainScreen> {
                     .textTheme.caption.color,
                 onPressed: ()=>_pageController.jumpToPage(2),
               ),
-
               IconButton(
                 icon: Icon(
                   Icons.person,

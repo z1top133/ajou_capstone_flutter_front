@@ -57,9 +57,9 @@
     },
     {
       "name": "crypto",
-      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/crypto-2.1.4",
+      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/crypto-2.1.5",
       "packageUri": "lib/",
-      "languageVersion": "2.1"
+      "languageVersion": "2.3"
     },
     {
       "name": "cupertino_icons",
@@ -446,7 +446,7 @@
       "languageVersion": "2.3"
     }
   ],
-  "generated": "2020-06-08T08:10:29.375155Z",
+  "generated": "2020-06-09T08:51:54.702018Z",
   "generator": "pub",
   "generatorVersion": "2.9.0-8.2.beta"
 }

@@ -59,4 +59,29 @@ List<Map> travel_spots = [
     "name": "기타 여행지",
     "category": "12"
   },
+  {
+    "img": "assets/germany.jpg",
+    "name": "패러글라이딩 패키지",
+    "category": "13"
+  },
+  {
+    "img": "assets/germany.jpg",
+    "name": "스카이다이빙 패키지",
+    "category": "14"
+  },
+  {
+    "img": "assets/germany.jpg",
+    "name": "스냅사진 패키지",
+    "category": "15"
+  },
+  {
+    "img": "assets/germany.jpg",
+    "name": "파리 박물관 패키지",
+    "category": "16"
+  },
+  {
+    "img": "assets/germany.jpg",
+    "name": "피사의 사탑 가이드 투어",
+    "category": "17"
+  },
 ];

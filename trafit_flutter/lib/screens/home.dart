@@ -128,6 +128,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                     icon: cat['icon'],
                     title: cat['name'],
                     items: cat['items'].toString(),
+                    category_num : cat['category_num'],
+                    img: cat['img'],
                     isHome: true,
                   );
                 },

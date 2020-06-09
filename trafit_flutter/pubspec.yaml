@@ -105,6 +105,11 @@ flutter:
     - assets/mbti/ISFP.png
     - assets/mbti/ISTJ.png
     - assets/mbti/ISTP.png
+    - assets/skydiving.jpg
+    - assets/pisa.jpg
+    - assets/snapphoto.jpg
+    - assets/paragliding.jpg
+    - assets/louvre.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
