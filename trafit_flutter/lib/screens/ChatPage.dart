@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trafit/screens/main_screen.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'dart:convert';
@@ -14,14 +15,18 @@ ApiService apiService = new ApiService();
 List<String> idList;
 List<String> nameList;
 List<String> mbtiList;
+List<String> imgList;
 String bossname;
 String bossmbti;
 String img;
-List<String> imgList;
+String kickID;
+bool hasData = false;
+
+
 
 Future<Map<String, dynamic>> call(int num) async{
   shared = await SharedPreferences.getInstance();
-  socketIO.sendMessage('joinRoom', json.encode({'id': shared.getString('id'), 'room': num}));
+  socketIO.sendMessage('joinRoom', json.encode({'id': shared.getString('id'), 'room': num, 'mbti': shared.getString('mbti'), 'img': shared.getString('img'), 'username': shared.getString('username')}));
   return apiService.enter_room(num, shared.getString('id'), shared.getString('username'), shared.getString('mbti'), shared.getString('img'));
 }
 
@@ -51,6 +56,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   // 입력한 메시지를 저장하는 리스트
   final List<ChatMessage> _message = <ChatMessage>[];
   Future<Map<String, dynamic>> userListF;
+
 
   // 텍스트필드 제어용 컨트롤러
   final TextEditingController _textController = TextEditingController();
@@ -84,7 +90,8 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     });
 
     socketIO.subscribe('kickip_message', (jsonData) {
-      socketIO.sendMessage('kicked', json.encode({'id' : 'hy2186', 'room' : 100000}));
+      socketIO.sendMessage('kicked', json.encode({'id' : shared.getString('id'), 'room' : 100000}));
+      Navigator.of(context).pop();
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) {
@@ -92,6 +99,22 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
           },
         ),
       );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => buildKickDialog(context)
+      );
+    });
+
+    socketIO.subscribe('receive_join', (jsonData) {
+      Map<String, dynamic> data = json.decode(jsonData);
+
+      if(!idList.contains(data['id'])){
+          idList.add(data['id']);
+          mbtiList.add(data['mbti']);
+          nameList.add(data['username']);
+          imgList.add(data['img']);
+          hasData = true;
+      }
     });
 
     super.initState();
@@ -103,13 +126,15 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
       future: userListF,
       builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot){
         if(snapshot.hasData){
-          idList = snapshot.data['user_id'].split(',');
-          nameList = snapshot.data['user_name'].split(',');
-          mbtiList = snapshot.data['mbti'].split(',');
-          bossname = snapshot.data['bossname'];
-          bossmbti = snapshot.data['bossmbti'];
-          img = snapshot.data['img'];
-          imgList = snapshot.data['user_img'].split(',');
+          if(!hasData){
+            idList = snapshot.data['user_id'].split(',');
+            nameList = snapshot.data['user_name'].split(',');
+            mbtiList = snapshot.data['mbti'].split(',');
+            imgList = snapshot.data['user_img'].split(',');
+            bossname = snapshot.data['bossname'];
+            bossmbti = snapshot.data['bossmbti'];
+            img = snapshot.data['img'];
+          }
           return body();
         }
         else{
@@ -120,6 +145,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   }
 
   Widget body(){
+    String reportType = '욕설';
+    TextEditingController reportController = new TextEditingController();
+    TextEditingController commentController = new TextEditingController();
     ImageProvider c;
     if(img == 'x'){
       c = Image.asset('assets/mbti/' + bossmbti + '.png').image;
@@ -130,46 +158,170 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     return Scaffold(
       endDrawer: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
+          //Container(height: 50,),
           Container(
-            height: MediaQuery.of(context).size.height * .7,
-            width: MediaQuery.of(context).size.width * .5,
+            height: MediaQuery.of(context).size.height * .3,
+            width: MediaQuery.of(context).size.width * .6,
             child: Drawer(
-              child: ListView(
-                // Important: Remove any padding from the ListView.
-                padding: EdgeInsets.zero,
+              child: Column(
                 children: <Widget>[
-                  DrawerHeader(
-                    child: Text('Drawer Header'),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
+                  /*SizedBox(
+                    height: 100,
+                    child: DrawerHeader(
+                      child: Text('cddd')
                     ),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                    onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                    onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
+                  ),*/
+                  Expanded(
+                child: 
+                ListView.builder(
+                  reverse: false,
+                itemCount: idList.length,
+                itemBuilder: (_, i) {
+                  ImageProvider c;
+                  if(imgList[i] == 'x'){
+                    c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
+                  }
+                  else{
+                    c = CachedNetworkImageProvider('http://$myIP:3001/${imgList[i]}');
+                  }
+                  return Container(
+                    padding: const EdgeInsets.fromLTRB(9.0, 9.0, 9.0, 0),
+                    child: Row(
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 17,
+                          backgroundImage: c,
+                        ),
+                        SizedBox(width: 7,),
+                        Expanded(
+                          child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(nameList[i], style: TextStyle(fontWeight: FontWeight.bold),),
+                            Text(mbtiList[i], style: TextStyle(color: Colors.green, fontSize: 7, fontWeight: FontWeight.bold),),
+                          ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(3.0),
+                          width: 42,
+                          child: RaisedButton(color: Colors.red[100], onPressed: () => {
+                            socketIO.sendMessage(
+                                'kickip', json.encode({'id': idList[i]}))
+                            },
+                          child: Text('강퇴', maxLines: 2, style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),),),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(3.0),
+                          width: 42,
+                          child: RaisedButton(color: Colors.red[300], onPressed: () => {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return StatefulBuilder(
+                                  builder: (context, setState){
+                                    return new AlertDialog(
+      title: Text('신고'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text('신고유형: '),
+              SizedBox(width: 30,),
+              DropdownButton<String>(
+                value: reportType,
+                autofocus: true,
+                onChanged: (String newType){
+                  setState(() {
+                    reportType = newType;
+                  });
+                },
+                items: <String>['욕설', '비방', '무리한 요구', '약속 파기']
+                .map<DropdownMenuItem<String>>((String value){
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              )
+            ],
+          ),
+          Container(
+            height: 100,
+            width: 200,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black)
+            ),
+            child: TextFormField(
+              
+              decoration: InputDecoration(
+                border: InputBorder.none
               ),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              controller: reportController,
             ),
           ),
         ],
       ),
-
+      
+      
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () async{
+            Map<String, dynamic> response = await apiService.report(shared.getString('id'), idList[i], reportType, reportController.text, DateTime.now().toString());
+            Fluttertoast.showToast(
+              msg: response['message'],
+              toastLength: Toast.LENGTH_LONG,
+            );
+            Navigator.of(context).pop();
+          },
+          child: Text('제출',)
+        ),
+        new FlatButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          child: Text('닫기', style: TextStyle(color: Colors.red),)
+        )
+      ],
+    );
+                                  },
+                                );
+                              }
+                            )
+                          }, 
+                          child: Text('신고', style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold), textAlign: TextAlign.center),),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(3.0),
+                          width: 42,
+                          child: RaisedButton(color: Colors.blue[300], onPressed: () => {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => buildCommentDialog(context,i),
+                            )
+                          }, child: Text('평가', style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),),),
+                        ),                        
+                      ],
+                    )
+                  );
+                }
+              ),
+              ),
+              
+                ],
+              )
+       
+            ),
+          ),
+        ],
+      ),
+      
 
 
       appBar: AppBar(
@@ -315,6 +467,64 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     );
   }
 
+  Widget buildKickDialog(BuildContext context){
+    return new AlertDialog(
+      title: Text('알림'),
+      content: Text('당신은 강퇴 당하였습니다!'),
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          child: Text('닫기')
+        )
+      ],
+    );
+  }
+
+
+
+  Widget buildCommentDialog(BuildContext context, int i){
+    return new AlertDialog(
+      title: Text(nameList[i] +'님 평가하기'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            height: 100,
+            width: 200,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black)
+            ),
+            child: TextFormField(
+              decoration: InputDecoration(
+                border: InputBorder.none
+              ),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+            ),
+          ),
+        ],
+      ),
+      
+
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          child: Text('제출',)
+        ),
+        new FlatButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          child: Text('닫기', style: TextStyle(color: Colors.red),)
+        )
+      ],
+    );
+  }
+
   // 메시지 전송 버튼이 클릭될 때 호출
   void _handleSubmitted(String text) {
     // 텍스트 필드의 내용 삭제
@@ -323,7 +533,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     setState(() {
       _isComposing = false;
     });
-    Map<String, dynamic> data = {'message': text, 'id': shared.getString('id'), 'room': widget.num};
+    Map<String, dynamic> data = {'message': text, 'id': shared.getString('id'), 'room': widget.num, 'username': shared.getString('username'), 'mbti': shared.getString('mbti'), 'img': shared.getString('img')};
     socketIO.sendMessage(
         'send_message', json.encode(data));
     // 입력받은 텍스트를 이용해서 리스트에 추가할 메시지 생성
@@ -384,13 +594,13 @@ class ChatMessageR extends ChatMessage {
   }
 
   Widget receiveMessage(BuildContext context){
-    int index=idList.indexOf(data['id']);
+
     ImageProvider c;
-    if(imgList[index] == 'x'){
-      c = AssetImage('assets/mbti/'+mbtiList[index]+'.png');
+    if (data['img'] == 'x') {
+      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
     }
-    else{
-      c = CachedNetworkImageProvider('http://$myIP:3001/${imgList[index]}');
+    else {
+      c = CachedNetworkImageProvider('http://$myIP:3001/${data['img']}');
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
@@ -405,7 +615,7 @@ class ChatMessageR extends ChatMessage {
                 radius: 17,
               ),
               SizedBox(height: 3,),
-              Text(nameList[index],
+              Text(data['username'],
                 style: TextStyle(fontSize: 9),)
             ],
           ),
@@ -414,12 +624,15 @@ class ChatMessageR extends ChatMessage {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                mbtiList[index],
+                data['mbti'],
                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
               ),
               Container(
                 constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * .6),
+                    maxWidth: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .6),
                 padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                   color: Colors.cyan[300],
@@ -431,7 +644,11 @@ class ChatMessageR extends ChatMessage {
                 ),
                 child: Text(
                   data['message'],
-                  style: Theme.of(context).textTheme.body2.apply(
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .body2
+                      .apply(
                     color: Colors.white,
                   ),
                 ),
@@ -441,6 +658,7 @@ class ChatMessageR extends ChatMessage {
         ],
       ),
     );
+
   }
 }
 

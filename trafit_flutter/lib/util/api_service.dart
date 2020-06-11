@@ -190,4 +190,18 @@ class ApiService{
     
     return jsonDecode(response.body);
   }
+
+  Future<Map<String, dynamic>> report(String id, String toid, String type, String comment, String date) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id': id,
+      'toid': toid,
+      'type': type,
+      'comment': comment,
+      'date': date
+    };
+
+    Response response = await post(_hostname()+'/report', headers: headers1, body: jsonEncode(pass));
+    
+    return jsonDecode(response.body);
+  }
 }

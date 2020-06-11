@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trafit/screens/main_screen.dart';
 import 'package:trafit/screens/walkthrough.dart';
+import 'package:trafit/util/const.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -16,26 +15,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   changeScreen() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.getString('id') == null) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            return Walkthrough();
-          },
-        ),
-      );
-    }
-    else{
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            return MainScreen();
-          },
-        ),
-      );
-    }
-
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return Walkthrough();
+        },
+      ),
+    );
   }
 
   @override
