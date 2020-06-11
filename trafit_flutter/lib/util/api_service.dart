@@ -8,7 +8,9 @@ const Map<String, String> headers1 = {"Content-type": "application/json"};
 String _hostname() {
   if (Platform.isAndroid)
     return 'http://$myIP:3001';
-  else
+  else if(Platform.isIOS) {
+    return 'http://$myIP:3001';
+  }
     return 'http://localhost:3000';
 }
 
