@@ -187,21 +187,6 @@ class _MainScreenState extends State<MainScreen> {
       // 앱이 실행중일 경우
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: ListTile(
-              title: Text(message["notification"]["title"]),
-              subtitle: Text(message["notification"]["body"]),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("OK"),
-                onPressed: () => Navigator.of(context).pop(),
-              )
-            ],
-          ),
-        );
       },
     );
   }

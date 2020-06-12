@@ -207,11 +207,13 @@ class _ProductDetailsState extends State<ProductDetails>{
                                 ),
                               ],
                             ),
-                            Row(
-                              children: [
-                                Text('여행일:  '),
-                                Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
-                              ],
+                            Card(
+                              child: Row(
+                                children: [
+                                  Text('여행일:  '),
+                                  Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
+                                ],
+                              ),
                             ),
                             SizedBox(height: 7.0),
                             Padding(
@@ -241,6 +243,9 @@ class _ProductDetailsState extends State<ProductDetails>{
                                       if(roomNumber == null) roomNumber = "${chatroom['room_num']}";
                                       else roomNumber = roomNumber + ",${chatroom['room_num']}";
                                       sharedPreferences.setString('room_num', roomNumber);
+                                      String _token = await _firebaseMessaging.getToken();
+                                      print(_token);
+                                      apiService.sendToken(_token, chatroom['room_num']);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {

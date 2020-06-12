@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,18 +17,32 @@ List<String> idList;
 List<String> nameList;
 List<String> mbtiList;
 List<String> imgList;
+List<String> tokenList;
 String bossname;
+String bossid;
 String bossmbti;
 String img;
 String kickID;
 bool hasData = false;
-
-
-
-Future<Map<String, dynamic>> call(int num) async{
+final FirebaseMessaging _firebaseMessagine  = FirebaseMessaging();
+Future<Map<String, dynamic>> call(int num) async {
   shared = await SharedPreferences.getInstance();
-  socketIO.sendMessage('joinRoom', json.encode({'id': shared.getString('id'), 'room': num, 'mbti': shared.getString('mbti'), 'img': shared.getString('img'), 'username': shared.getString('username')}));
-  return apiService.enter_room(num, shared.getString('id'), shared.getString('username'), shared.getString('mbti'), shared.getString('img'));
+  socketIO.sendMessage(
+      'joinRoom',
+      json.encode({
+        'id': shared.getString('id'),
+        'room': num,
+        'mbti': shared.getString('mbti'),
+        'img': shared.getString('img'),
+        'username': shared.getString('username'),
+        'token' : await _firebaseMessagine.getToken()
+      }));
+  return apiService.enter_room(
+      num,
+      shared.getString('id'),
+      shared.getString('username'),
+      shared.getString('mbti'),
+      shared.getString('img'));
 }
 
 // IOS용 테마
@@ -46,6 +61,7 @@ final ThemeData kDefaultTheme = ThemeData(
 class ChatPage extends StatefulWidget {
   final int num;
   final String category;
+
   ChatPage(this.num, this.category);
 
   ChatScreenState createState() => ChatScreenState();
@@ -56,7 +72,6 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   // 입력한 메시지를 저장하는 리스트
   final List<ChatMessage> _message = <ChatMessage>[];
   Future<Map<String, dynamic>> userListF;
-
 
   // 텍스트필드 제어용 컨트롤러
   final TextEditingController _textController = TextEditingController();
@@ -90,7 +105,8 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     });
 
     socketIO.subscribe('kickip_message', (jsonData) {
-      socketIO.sendMessage('kicked', json.encode({'id' : shared.getString('id'), 'room' : 100000}));
+      socketIO.sendMessage('kicked',
+          json.encode({'id': shared.getString('id'), 'room': 100000}));
       Navigator.of(context).pop();
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -100,20 +116,20 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
         ),
       );
       showDialog(
-        context: context,
-        builder: (BuildContext context) => buildKickDialog(context)
-      );
+          context: context,
+          builder: (BuildContext context) => buildKickDialog(context));
     });
 
     socketIO.subscribe('receive_join', (jsonData) {
       Map<String, dynamic> data = json.decode(jsonData);
 
-      if(!idList.contains(data['id'])){
-          idList.add(data['id']);
-          mbtiList.add(data['mbti']);
-          nameList.add(data['username']);
-          imgList.add(data['img']);
-          hasData = true;
+      if (!idList.contains(data['id'])) {
+        idList.add(data['id']);
+        mbtiList.add(data['mbti']);
+        nameList.add(data['username']);
+        imgList.add(data['img']);
+        tokenList.add(data['token']);
+        hasData = true;
       }
     });
 
@@ -124,35 +140,36 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: userListF,
-      builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot){
-        if(snapshot.hasData){
-          if(!hasData){
+      builder:
+          (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+        if (snapshot.hasData) {
+          if (!hasData) {
             idList = snapshot.data['user_id'].split(',');
             nameList = snapshot.data['user_name'].split(',');
             mbtiList = snapshot.data['mbti'].split(',');
             imgList = snapshot.data['user_img'].split(',');
             bossname = snapshot.data['bossname'];
+            bossid = snapshot.data['bossid'];
             bossmbti = snapshot.data['bossmbti'];
+            tokenList = snapshot.data['token'].split(',');
             img = snapshot.data['img'];
           }
           return body();
-        }
-        else{
+        } else {
           return Text('Calculating answer...');
         }
       },
     );
   }
 
-  Widget body(){
+  Widget body() {
     String reportType = '욕설';
     TextEditingController reportController = new TextEditingController();
     TextEditingController commentController = new TextEditingController();
     ImageProvider c;
-    if(img == 'x'){
+    if (img == 'x') {
       c = Image.asset('assets/mbti/' + bossmbti + '.png').image;
-    }
-    else{
+    } else {
       c = CachedNetworkImageProvider('http://$myIP:3001/$img');
     }
     return Scaffold(
@@ -165,165 +182,234 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             height: MediaQuery.of(context).size.height * .3,
             width: MediaQuery.of(context).size.width * .6,
             child: Drawer(
-              child: Column(
-                children: <Widget>[
-                  /*SizedBox(
+                child: Column(
+              children: <Widget>[
+                /*SizedBox(
                     height: 100,
                     child: DrawerHeader(
                       child: Text('cddd')
                     ),
                   ),*/
-                  Expanded(
-                child: 
-                ListView.builder(
-                  reverse: false,
-                itemCount: idList.length,
-                itemBuilder: (_, i) {
-                  ImageProvider c;
-                  if(imgList[i] == 'x'){
-                    c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
-                  }
-                  else{
-                    c = CachedNetworkImageProvider('http://$myIP:3001/${imgList[i]}');
-                  }
-                  return Container(
-                    padding: const EdgeInsets.fromLTRB(9.0, 9.0, 9.0, 0),
-                    child: Row(
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 17,
-                          backgroundImage: c,
-                        ),
-                        SizedBox(width: 7,),
-                        Expanded(
-                          child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(nameList[i], style: TextStyle(fontWeight: FontWeight.bold),),
-                            Text(mbtiList[i], style: TextStyle(color: Colors.green, fontSize: 7, fontWeight: FontWeight.bold),),
-                          ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(3.0),
-                          width: 42,
-                          child: RaisedButton(color: Colors.red[100], onPressed: () => {
-                            socketIO.sendMessage(
-                                'kickip', json.encode({'id': idList[i]}))
-                            },
-                          child: Text('강퇴', maxLines: 2, style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),),),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(3.0),
-                          width: 42,
-                          child: RaisedButton(color: Colors.red[300], onPressed: () => {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context){
-                                return StatefulBuilder(
-                                  builder: (context, setState){
-                                    return new AlertDialog(
-      title: Text('신고'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text('신고유형: '),
-              SizedBox(width: 30,),
-              DropdownButton<String>(
-                value: reportType,
-                autofocus: true,
-                onChanged: (String newType){
-                  setState(() {
-                    reportType = newType;
-                  });
-                },
-                items: <String>['욕설', '비방', '무리한 요구', '약속 파기']
-                .map<DropdownMenuItem<String>>((String value){
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              )
-            ],
-          ),
-          Container(
-            height: 100,
-            width: 200,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black)
-            ),
-            child: TextFormField(
-              
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              controller: reportController,
-            ),
+                Expanded(
+                  child: ListView.builder(
+                      reverse: false,
+                      itemCount: idList.length,
+                      itemBuilder: (_, i) {
+                        ImageProvider c;
+                        if (imgList[i] == 'x') {
+                          c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
+                        } else {
+                          c = CachedNetworkImageProvider(
+                              'http://$myIP:3001/${imgList[i]}');
+                        }
+                        return Container(
+                            padding:
+                                const EdgeInsets.fromLTRB(9.0, 9.0, 9.0, 0),
+                            child: Row(
+                              children: <Widget>[
+                                CircleAvatar(
+                                  radius: 17,
+                                  backgroundImage: c,
+                                ),
+                                SizedBox(
+                                  width: 7,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        nameList[i],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        mbtiList[i],
+                                        style: TextStyle(
+                                            color: Colors.green,
+                                            fontSize: 7,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(3.0),
+                                  width: 42,
+                                  child: RaisedButton(
+                                    color: Colors.red[100],
+                                    onPressed: () => {
+                                      socketIO.sendMessage('kickip',
+                                          json.encode({'id': idList[i]}))
+                                    },
+                                    child: Text(
+                                      '강퇴',
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                          fontSize: 8,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(3.0),
+                                  width: 42,
+                                  child: RaisedButton(
+                                    color: Colors.red[300],
+                                    onPressed: () => {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return StatefulBuilder(
+                                              builder: (context, setState) {
+                                                return new AlertDialog(
+                                                  title: Text('신고'),
+                                                  content: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: <Widget>[
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Text('신고유형: '),
+                                                          SizedBox(
+                                                            width: 30,
+                                                          ),
+                                                          DropdownButton<
+                                                              String>(
+                                                            value: reportType,
+                                                            autofocus: true,
+                                                            onChanged: (String
+                                                                newType) {
+                                                              setState(() {
+                                                                reportType =
+                                                                    newType;
+                                                              });
+                                                            },
+                                                            items: <String>[
+                                                              '욕설',
+                                                              '비방',
+                                                              '무리한 요구',
+                                                              '약속 파기'
+                                                            ].map<
+                                                                DropdownMenuItem<
+                                                                    String>>((String
+                                                                value) {
+                                                              return DropdownMenuItem<
+                                                                  String>(
+                                                                value: value,
+                                                                child:
+                                                                    Text(value),
+                                                              );
+                                                            }).toList(),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      Container(
+                                                        height: 100,
+                                                        width: 200,
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .black)),
+                                                        child: TextFormField(
+                                                          decoration:
+                                                              InputDecoration(
+                                                                  border:
+                                                                      InputBorder
+                                                                          .none),
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .multiline,
+                                                          maxLines: null,
+                                                          controller:
+                                                              reportController,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  actions: <Widget>[
+                                                    new FlatButton(
+                                                        onPressed: () async {
+                                                          Map<String, dynamic>
+                                                              response =
+                                                              await apiService.report(
+                                                                  shared
+                                                                      .getString(
+                                                                          'id'),
+                                                                  idList[i],
+                                                                  reportType,
+                                                                  reportController
+                                                                      .text,
+                                                                  DateTime.now()
+                                                                      .toString());
+                                                          Fluttertoast
+                                                              .showToast(
+                                                            msg: response[
+                                                                'message'],
+                                                            toastLength: Toast
+                                                                .LENGTH_LONG,
+                                                          );
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                          '제출',
+                                                        )),
+                                                    new FlatButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                          '닫기',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.red),
+                                                        ))
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          })
+                                    },
+                                    child: Text('신고',
+                                        style: TextStyle(
+                                            fontSize: 8,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center),
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(3.0),
+                                  width: 42,
+                                  child: RaisedButton(
+                                    color: Colors.blue[300],
+                                    onPressed: () => {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            buildCommentDialog(context, i),
+                                      )
+                                    },
+                                    child: Text(
+                                      '평가',
+                                      style: TextStyle(
+                                          fontSize: 8,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ));
+                      }),
+                ),
+              ],
+            )),
           ),
         ],
       ),
-      
-      
-      actions: <Widget>[
-        new FlatButton(
-          onPressed: () async{
-            Map<String, dynamic> response = await apiService.report(shared.getString('id'), idList[i], reportType, reportController.text, DateTime.now().toString());
-            Fluttertoast.showToast(
-              msg: response['message'],
-              toastLength: Toast.LENGTH_LONG,
-            );
-            Navigator.of(context).pop();
-          },
-          child: Text('제출',)
-        ),
-        new FlatButton(
-          onPressed: (){
-            Navigator.of(context).pop();
-          },
-          child: Text('닫기', style: TextStyle(color: Colors.red),)
-        )
-      ],
-    );
-                                  },
-                                );
-                              }
-                            )
-                          }, 
-                          child: Text('신고', style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold), textAlign: TextAlign.center),),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(3.0),
-                          width: 42,
-                          child: RaisedButton(color: Colors.blue[300], onPressed: () => {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) => buildCommentDialog(context,i),
-                            )
-                          }, child: Text('평가', style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),),),
-                        ),                        
-                      ],
-                    )
-                  );
-                }
-              ),
-              ),
-              
-                ],
-              )
-       
-            ),
-          ),
-        ],
-      ),
-      
-
-
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black54),
@@ -331,10 +417,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             icon: Icon(
               Icons.keyboard_backspace,
             ),
-            onPressed: () => {
-              Navigator.of(context).pop()
-            }
-        ),
+            onPressed: () => {Navigator.of(context).pop()}),
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -348,7 +431,10 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    bossname +'님의 '+ travel_spots[int.parse(widget.category)-1]['name']+' 동행 채팅방',
+                    bossname +
+                        '님의 ' +
+                        travel_spots[int.parse(widget.category) - 1]['name'] +
+                        ' 동행 채팅방',
                     style: Theme.of(context).textTheme.subhead,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -359,7 +445,6 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                 ],
               ),
             )
-
           ],
         ),
         actions: <Widget>[
@@ -367,20 +452,18 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             builder: (context) => IconButton(
                 icon: Icon(Icons.people),
                 onPressed: () => Scaffold.of(context).openEndDrawer(),
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip
-            ),
+                tooltip:
+                    MaterialLocalizations.of(context).openAppDrawerTooltip),
           )
         ],
       ),
-
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.cover,
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.12), BlendMode.dstATop),
-                image: AssetImage('assets/paris.jpg')
-            )
-        ),
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.12), BlendMode.dstATop),
+                image: AssetImage('assets/paris.jpg'))),
         child: Column(
           children: <Widget>[
             // 리스트뷰를 Flexible로 추가.
@@ -403,7 +486,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     );
   }
 
-  Widget textWindow(){
+  Widget textWindow() {
     return Container(
         margin: EdgeInsets.all(15.0),
         height: 55,
@@ -418,13 +501,11 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                       BoxShadow(
                           offset: Offset(0, 3),
                           blurRadius: 5,
-                          color: Colors.grey
-                      )]
-                ),
+                          color: Colors.grey)
+                    ]),
                 child: Row(
                   children: <Widget>[
-                    IconButton(
-                        icon: Icon(Icons.face), onPressed: () {}),
+                    IconButton(icon: Icon(Icons.face), onPressed: () {}),
                     Expanded(
                       child: TextField(
                         controller: _textController,
@@ -436,8 +517,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                         },
                         // 키보드상에서 확인을 누를 경우. 입력값이 있을 때에만 _handleSubmitted 호출
                         onSubmitted: _isComposing ? _handleSubmitted : null,
-                        decoration: InputDecoration(
-                            border: InputBorder.none),
+                        decoration: InputDecoration(border: InputBorder.none),
                       ),
                     ),
                     SizedBox(width: 15),
@@ -448,8 +528,8 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             SizedBox(width: 15),
             Container(
               padding: const EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                  color: Colors.green, shape: BoxShape.circle),
+              decoration:
+                  BoxDecoration(color: Colors.green, shape: BoxShape.circle),
               child: InkWell(
                 child: IconButton(
                   icon: Icon(
@@ -463,79 +543,85 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
               ),
             )
           ],
-        )
-    );
+        ));
   }
 
-  Widget buildKickDialog(BuildContext context){
+  Widget buildKickDialog(BuildContext context) {
     return new AlertDialog(
       title: Text('알림'),
       content: Text('당신은 강퇴 당하였습니다!'),
       actions: <Widget>[
         new FlatButton(
-          onPressed: (){
-            Navigator.of(context).pop();
-          },
-          child: Text('닫기')
-        )
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('닫기'))
       ],
     );
   }
 
-
-
-  Widget buildCommentDialog(BuildContext context, int i){
+  Widget buildCommentDialog(BuildContext context, int i) {
     return new AlertDialog(
-      title: Text(nameList[i] +'님 평가하기'),
+      title: Text(nameList[i] + '님 평가하기'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
             height: 100,
             width: 200,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black)
-            ),
+            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
             child: TextFormField(
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
+              decoration: InputDecoration(border: InputBorder.none),
               keyboardType: TextInputType.multiline,
               maxLines: null,
             ),
           ),
         ],
       ),
-      
-
       actions: <Widget>[
         new FlatButton(
-          onPressed: (){
-            Navigator.of(context).pop();
-          },
-          child: Text('제출',)
-        ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              '제출',
+            )),
         new FlatButton(
-          onPressed: (){
-            Navigator.of(context).pop();
-          },
-          child: Text('닫기', style: TextStyle(color: Colors.red),)
-        )
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              '닫기',
+              style: TextStyle(color: Colors.red),
+            ))
       ],
     );
   }
 
   // 메시지 전송 버튼이 클릭될 때 호출
   void _handleSubmitted(String text) {
+
     // 텍스트 필드의 내용 삭제
     _textController.clear();
     // _isComposing을 false로 설정
     setState(() {
       _isComposing = false;
     });
-    Map<String, dynamic> data = {'message': text, 'id': shared.getString('id'), 'room': widget.num, 'username': shared.getString('username'), 'mbti': shared.getString('mbti'), 'img': shared.getString('img')};
-    socketIO.sendMessage(
-        'send_message', json.encode(data));
+    Map<String, dynamic> data = {
+      'message': text,
+      'id': shared.getString('id'),
+      'room': widget.num,
+      'username': shared.getString('username'),
+      'mbti': shared.getString('mbti'),
+      'img': shared.getString('img')
+    };
+    for(int i=0; i< tokenList.length; i++){
+        apiService.sendMessage(tokenList[i], text, data['username']);
+    }
+
+
+
+    socketIO.sendMessage('send_message', json.encode(data));
     // 입력받은 텍스트를 이용해서 리스트에 추가할 메시지 생성
     ChatMessageS message = ChatMessageS(
       data: data,
@@ -565,7 +651,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   }
 }
 
-abstract class ChatMessage extends StatelessWidget{
+abstract class ChatMessage extends StatelessWidget {
   final Map<String, dynamic> data;
   final AnimationController animationController;
 
@@ -581,25 +667,21 @@ class ChatMessageR extends ChatMessage {
 
   @override
   Widget build(BuildContext context) {
-
     // 위젯에 애니메이션을 발생하기 위해 SizeTransition을 추가
     return SizeTransition(
-      // 사용할 애니메이션 효과 설정
+        // 사용할 애니메이션 효과 설정
         sizeFactor:
-        CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+            CurvedAnimation(parent: animationController, curve: Curves.easeOut),
         axisAlignment: 0.0,
         // 리스트뷰에 추가될 컨테이너 위젯
-        child: receiveMessage(context)
-    );
+        child: receiveMessage(context));
   }
 
-  Widget receiveMessage(BuildContext context){
-
+  Widget receiveMessage(BuildContext context) {
     ImageProvider c;
     if (data['img'] == 'x') {
       c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
-    }
-    else {
+    } else {
       c = CachedNetworkImageProvider('http://$myIP:3001/${data['img']}');
     }
     return Padding(
@@ -609,14 +691,20 @@ class ChatMessageR extends ChatMessage {
         children: <Widget>[
           Column(
             children: <Widget>[
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               CircleAvatar(
                 backgroundImage: c,
                 radius: 17,
               ),
-              SizedBox(height: 3,),
-              Text(data['username'],
-                style: TextStyle(fontSize: 9),)
+              SizedBox(
+                height: 3,
+              ),
+              Text(
+                data['username'],
+                style: TextStyle(fontSize: 9),
+              )
             ],
           ),
           SizedBox(width: 8),
@@ -629,28 +717,20 @@ class ChatMessageR extends ChatMessage {
               ),
               Container(
                 constraints: BoxConstraints(
-                    maxWidth: MediaQuery
-                        .of(context)
-                        .size
-                        .width * .6),
+                    maxWidth: MediaQuery.of(context).size.width * .6),
                 padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                   color: Colors.cyan[300],
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(25),
                       bottomLeft: Radius.circular(25),
-                      bottomRight: Radius.circular(25)
-                  ),
+                      bottomRight: Radius.circular(25)),
                 ),
                 child: Text(
                   data['message'],
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .body2
-                      .apply(
-                    color: Colors.white,
-                  ),
+                  style: Theme.of(context).textTheme.body2.apply(
+                        color: Colors.white,
+                      ),
                 ),
               ),
             ],
@@ -658,7 +738,6 @@ class ChatMessageR extends ChatMessage {
         ],
       ),
     );
-
   }
 }
 
@@ -672,22 +751,21 @@ class ChatMessageS extends ChatMessage {
   Widget build(BuildContext context) {
     // 위젯에 애니메이션을 발생하기 위해 SizeTransition을 추가
     return SizeTransition(
-      // 사용할 애니메이션 효과 설정
+        // 사용할 애니메이션 효과 설정
         sizeFactor:
-        CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+            CurvedAnimation(parent: animationController, curve: Curves.easeOut),
         axisAlignment: 0.0,
         // 리스트뷰에 추가될 컨테이너 위젯
-        child: sendMessage(context)
-    );
+        child: sendMessage(context));
   }
 
-  Widget sendMessage(BuildContext context){
+  Widget sendMessage(BuildContext context) {
     ImageProvider c;
-    if(shared.getString('img') == 'x'){
-      c = AssetImage('assets/mbti/'+shared.getString('mbti')+'.png');
-    }
-    else{
-      c = CachedNetworkImageProvider('http://$myIP:3001/${shared.getString('img')}');
+    if (shared.getString('img') == 'x') {
+      c = AssetImage('assets/mbti/' + shared.getString('mbti') + '.png');
+    } else {
+      c = CachedNetworkImageProvider(
+          'http://$myIP:3001/${shared.getString('img')}');
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
@@ -710,33 +788,36 @@ class ChatMessageS extends ChatMessage {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25),
                       bottomLeft: Radius.circular(25),
-                      bottomRight: Radius.circular(25)
-                  ),
+                      bottomRight: Radius.circular(25)),
                 ),
                 child: Text(
                   data['message'],
                   style: Theme.of(context).textTheme.body2.apply(
-                    color: Colors.black,
-                  ),
+                        color: Colors.black,
+                      ),
                 ),
               ),
             ],
           ),
-
           SizedBox(width: 8),
           Column(
             children: <Widget>[
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               CircleAvatar(
                 backgroundImage: c,
                 radius: 17,
               ),
-              SizedBox(height: 3,),
-              Text(shared.getString('username'),
-                style: TextStyle(fontSize: 9),)
+              SizedBox(
+                height: 3,
+              ),
+              Text(
+                shared.getString('username'),
+                style: TextStyle(fontSize: 9),
+              )
             ],
           )
-
         ],
       ),
     );

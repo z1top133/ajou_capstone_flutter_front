@@ -206,4 +206,23 @@ class ApiService{
     
     return jsonDecode(response.body);
   }
+
+  sendToken(_token, _room_num)async{
+    Map<String, dynamic> pass = {
+      'token': _token,
+      'room_num': _room_num
+    };
+
+    Response response = await post(_hostname()+'/send_token', headers: headers1, body: jsonEncode(pass));
+  }
+
+  sendMessage(_token, _message, _name) async{
+    Map<String, dynamic> pass = {
+      'token': _token,
+      'message' : _message,
+      'name' : _name
+    };
+
+    Response response = await post(_hostname()+'/send_message', headers: headers1, body: jsonEncode(pass));
+  }
 }
