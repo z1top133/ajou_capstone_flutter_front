@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/screens/ChatPage.dart';
@@ -6,6 +7,9 @@ import 'package:trafit/screens/post_screen.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 ApiService apiService = new ApiService();
 Future<List> call(String category) async{

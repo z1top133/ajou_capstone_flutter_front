@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ import 'package:trafit/util/api_service.dart';
 import 'package:trafit/util/const.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
@@ -182,7 +184,9 @@ class _ProfileState extends State<Profile> {
                   Icons.edit,
                   size: 20.0,
                 ),
-                onPressed: (){
+                onPressed: () async{
+                  String abcd = await _firebaseMessaging.getToken();
+                  print(abcd);
                   print(snapshot.data['room_num']);
                 },
                 tooltip: "Edit",

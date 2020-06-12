@@ -33,10 +33,17 @@ dependencies:
   flutter_socket_io: ^0.6.0
   fluttertoast: ^4.0.1
   cached_network_image: ^2.2.0+1
+  firebase_messaging: ^5.1.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.7.3"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/travel.png"
 
 
 # For information on the generic Dart part of this file, see the
