@@ -169,16 +169,6 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  Future<Map<String, dynamic>> show_profile(String id) async{
-    Map<String, dynamic> pass = {//변수를 json으로
-      'id': id
-    };
-
-    Response response = await post(_hostname()+'/show_profile', headers: headers1, body: jsonEncode(pass));
-    
-    return jsonDecode(response.body);
-  }
-
   Future<Map<String, dynamic>> enter_room(int num, String id, String username, String mbti, String img) async{
     Map<String, dynamic> pass = {//변수를 json으로
       'id': id,
@@ -224,5 +214,30 @@ class ApiService{
     };
 
     Response response = await post(_hostname()+'/send_message', headers: headers1, body: jsonEncode(pass));
+  }
+
+  Future<Map<String, dynamic>> comments(String id, String username, String mbti, String img, String toid, String comment) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id': id,
+      'toid': toid,
+      'username': username,
+      'comment': comment,
+      'mbti': mbti,
+      'img': img
+    };
+
+    Response response = await post(_hostname()+'/comments', headers: headers1, body: jsonEncode(pass));
+    
+    return jsonDecode(response.body);
+  }
+
+  Future<List> show_comment(String id) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id': id
+    };
+
+    Response response = await post(_hostname()+'/show_comment', headers: headers1, body: jsonEncode(pass));
+
+    return jsonDecode(response.body);
   }
 }

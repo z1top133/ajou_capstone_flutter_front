@@ -10,6 +10,7 @@ import 'package:trafit/util/MySocket.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/util/travel_spots.dart';
+import 'package:trafit/util/CommentPage.dart';
 
 SharedPreferences shared;
 ApiService apiService = new ApiService();
@@ -149,7 +150,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             mbtiList = snapshot.data['mbti'].split(',');
             imgList = snapshot.data['user_img'].split(',');
             bossname = snapshot.data['bossname'];
-            bossid = snapshot.data['bossid'];
+            bossid = snapshot.data['boss'];
             bossmbti = snapshot.data['bossmbti'];
             tokenList = snapshot.data['token'].split(',');
             img = snapshot.data['img'];
@@ -165,7 +166,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   Widget body() {
     String reportType = '욕설';
     TextEditingController reportController = new TextEditingController();
-    TextEditingController commentController = new TextEditingController();
+    
     ImageProvider c;
     if (img == 'x') {
       c = Image.asset('assets/mbti/' + bossmbti + '.png').image;
@@ -179,7 +180,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
         children: <Widget>[
           //Container(height: 50,),
           Container(
-            height: MediaQuery.of(context).size.height * .3,
+            height: MediaQuery.of(context).size.height * .7,
             width: MediaQuery.of(context).size.width * .6,
             child: Drawer(
                 child: Column(
@@ -192,9 +193,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                   ),*/
                 Expanded(
                   child: ListView.builder(
-                      reverse: false,
                       itemCount: idList.length,
                       itemBuilder: (_, i) {
+                        bool isBoss = false;
+                        if(shared.getString('id') == bossid){
+                          isBoss = true;
+                        }
                         ImageProvider c;
                         if (imgList[i] == 'x') {
                           c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
@@ -235,7 +239,8 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                Visibility(
+                                  child: Container(
                                   padding: const EdgeInsets.all(3.0),
                                   width: 42,
                                   child: RaisedButton(
@@ -253,6 +258,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
+                                visible: isBoss,
+                                ),
+                                
                                 Container(
                                   padding: const EdgeInsets.all(3.0),
                                   width: 42,
@@ -463,7 +471,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                 fit: BoxFit.cover,
                 colorFilter: new ColorFilter.mode(
                     Colors.black.withOpacity(0.12), BlendMode.dstATop),
-                image: AssetImage('assets/paris.jpg'))),
+                image: AssetImage(travel_spots[int.parse(widget.category) - 1]['img']))),
         child: Column(
           children: <Widget>[
             // 리스트뷰를 Flexible로 추가.
@@ -560,40 +568,82 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     );
   }
 
-  Widget buildCommentDialog(BuildContext context, int i) {
+  Widget buildCommentDialog(BuildContext context, int i){
     return new AlertDialog(
-      title: Text(nameList[i] + '님 평가하기'),
+      title: Text(nameList[i] +'님 평가내용'),
+      content: Flex(
+        direction: Axis.horizontal,
+        children: <Widget>[
+          CommentPage(idList[i]),
+        ],
+      ),
+      
+      
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () async{
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => buildEvaluateDialog(context,i),
+            );
+          },
+          child: Text('평가하기',)
+        ),
+        new FlatButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          child: Text('닫기', style: TextStyle(color: Colors.red),)
+        )
+      ],
+    );
+  }
+
+  Widget buildEvaluateDialog(BuildContext context, int i){
+    TextEditingController commentController = new TextEditingController();
+    return new AlertDialog(
+      title: Text(nameList[i] +'님 평가하기'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
             height: 100,
             width: 200,
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black)
+            ),
             child: TextFormField(
-              decoration: InputDecoration(border: InputBorder.none),
+              
+              decoration: InputDecoration(
+                border: InputBorder.none
+              ),
               keyboardType: TextInputType.multiline,
               maxLines: null,
+              controller: commentController,
             ),
           ),
         ],
       ),
+      
+      
       actions: <Widget>[
         new FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              '제출',
-            )),
+          onPressed: () async{
+            Map<String, dynamic> response = await apiService.comments(shared.getString('id'), shared.getString('username'), shared.getString('mbti'), shared.getString('img'), idList[i], commentController.text);
+            Fluttertoast.showToast(
+              msg: response['message'],
+              toastLength: Toast.LENGTH_LONG,
+            );
+            Navigator.of(context).pop(context);
+          },
+          child: Text('평가하기',)
+        ),
         new FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              '닫기',
-              style: TextStyle(color: Colors.red),
-            ))
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          child: Text('닫기', style: TextStyle(color: Colors.red),)
+        )
       ],
     );
   }

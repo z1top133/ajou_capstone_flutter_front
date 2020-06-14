@@ -1,28 +1,24 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:trafit/providers/app_provider.dart';
 import 'package:trafit/screens/splash.dart';
+import 'package:trafit/util/CommentPage.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:trafit/util/const.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+import 'package:trafit/util/mbti_result.dart';
 
 ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
-//Directory tempDir;
+List<String> hits;
 
-Future<Map<String, dynamic>> call() async{
-  //tempDir = await getTemporaryDirectory();
-  sharedPreferences = await SharedPreferences.getInstance();
-  String id = sharedPreferences.getString('id');
-
-  return apiService.show_profile(id);
+Future<SharedPreferences> call() async{
+  return SharedPreferences.getInstance();
 }
 
 class Profile extends StatefulWidget {
@@ -33,94 +29,67 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   Widget photo;
   bool x = false;
-  Future<Map<String, dynamic>> response;
+  Future<SharedPreferences> sharedPreference;
+
   @override
   void initState(){
     super.initState();
-    response = call();
+    sharedPreference = call();
   }
 
   @override
   Widget build(BuildContext context) {
-    String gender;
-
+    int index;
     
-    return FutureBuilder<Map<String, dynamic>>(
-      future: response,
-      builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot){
-          if(snapshot.hasData){
-            if(!x){
-              if(sharedPreferences.getString('img') == 'x'){
-                photo = Image.asset('assets/mbti/' + sharedPreferences.getString('mbti') +'.png');
-              }
-              else{
-                photo = CachedNetworkImage(imageUrl: 'http://$myIP:3001/${sharedPreferences.getString('img')}');
+    return FutureBuilder<SharedPreferences>(
+      future: sharedPreference,
+      builder: (BuildContext context, AsyncSnapshot<SharedPreferences> shared){        
+          if(shared.hasData){
+            sharedPreferences = shared.data;
+            for(int i = 0; i < mbti_result.length; i++){
+              if(mbti_result[i]['mbti'] == shared.data.getString('mbti')){
+                index = i;
+                hits = mbti_result[i]['hit_it_off'].split(',');
+                break;
               }
             }
-            if(snapshot.data['gender']==0) gender = '남자';
-            else gender = '여자';
+            if(!x){
+              if(shared.data.getString('img') == 'x'){
+                photo = Image.asset('assets/mbti/' + shared.data.getString('mbti') +'.png');
+              }
+              else{
+                photo = CachedNetworkImage(imageUrl: 'http://$myIP:3001/${shared.data.getString('img')}');
+              }
+            }
             
             return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(10.0,0,10.0,0),
-
+        padding: EdgeInsets.fromLTRB(10.0,0,10.0,0),        
         child: ListView(
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Container(
+                Column(
+                  children: <Widget>[
+                    Container(
                   width: 100,
                   height: 100,
-                  padding: EdgeInsets.only(left: 1.0, right: 1.0),
+                  //padding: EdgeInsets.only(left: 1.0, right: 1.0),
                   child: FlatButton(
                     child: photo,
                     onPressed: () => onPhoto(ImageSource.gallery),
-                  )
-//                  Image.asset(
-//                    "assets/cm4.jpeg",
-//                    fit: BoxFit.cover,
-//                    width: 100.0,
-//                    height: 100.0,
-//                  ),
+                  ),
                 ),
-                
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            snapshot.data['username'],
+                SizedBox(height: 3,),
+                Text(
+                            shared.data.getString('username'),
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      ),
-
-                      SizedBox(height: 5.0),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            snapshot.data['email'],
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      SizedBox(height: 20.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
+                          SizedBox(height: 3,),
                           InkWell(
                             onTap: () async {
                               SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -133,7 +102,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                               );
                             },
-                            child: Text("Logout",
+                            child: Text("로그아웃",
                               style: TextStyle(
                                 fontSize: 13.0,
                                 fontWeight: FontWeight.w400,
@@ -142,116 +111,120 @@ class _ProfileState extends State<Profile> {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
+                  ],
+                ),
+                SizedBox(width: 33,),
+
+                Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              
+                              child: Text('당신의 MBTI는 '),
+                            ),
+                            Container(
+                              
+                              child: Text(shared.data.getString('mbti'), style: TextStyle(color: Colors.green, fontSize: 30),),
+                            ),
+                            Text(' 입니다.'),
+                            
+
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      Row(
+                        children: <Widget>[
+                          Text('유형:     '),
+                          Text(mbti_result[index]['keyword'], style: TextStyle(fontSize: 20),),
                         ],
                       ),
-
+                      Divider(),
+                      ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .6),
+                        child: Text(mbti_result[index]['comment']),
+                      )
                     ],
                   ),
-                  flex: 3,
-                ),
+                )
               ],
             ),
 
             Divider(),
-            Container(height: 15.0),
+            Container(height: 3.0),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                    "나와 잘 맞는 MBTI 유형",
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                shrinkWrap: true,
+                itemCount: hits.length,
+                itemBuilder: (context, i){
+                  int index;
+                  for(int x=0;x<mbti_result.length;x++){
+                    if(mbti_result[x]['mbti'] == hits[i]){
+                      index = x;
+                      break;
+                    }
+                  }
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(width: 5,),
+                      Container(width: 50, height: 50, decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/mbti/' + hits[i] + '.png'), fit: BoxFit.fill)),),
+                      SizedBox(width: 10,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(hits[i], style: TextStyle(fontSize: 20, color: Colors.green),),
+                          Text('(${mbti_result[index]['keyword']})', style: TextStyle(fontSize: 11)),
+                        ],
+                      ),
+                      Text('  :  '),
+                      Expanded(
+                        child: Text(mbti_result[index]['comment'],
+                      )
+                      )
+                      
+                    ],
+                  
+                  );
+                  
+                },
+              ),
+              
+            ),
+            Divider(),
+            Container(height: 3.0),
 
             Padding(
               padding: EdgeInsets.all(5.0),
               child: Text(
-                "Account Information".toUpperCase(),
+                "나의 평가",
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-
-            ListTile(
-              title: Text(
-                "Full Name",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-
-              subtitle: Text(
-                snapshot.data['username'],
-              ),
-
-              trailing: IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  size: 20.0,
-                ),
-                onPressed: () async{
-                  String abcd = await _firebaseMessaging.getToken();
-                  print(abcd);
-                  print(snapshot.data['room_num']);
-                },
-                tooltip: "Edit",
-              ),
+            Flex(
+              direction: Axis.horizontal,
+              children: <Widget>[CommentPage(shared.data.getString('id')),],
             ),
 
-            ListTile(
-              title: Text(
-                "Email",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-
-              subtitle: Text(
-                snapshot.data['email'],
-              ),
-            ),
-
-
-
-            ListTile(
-              title: Text(
-                "Gender",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-
-              subtitle: Text(
-                "$gender",
-              ),
-            ),
-
-            ListTile(
-              title: Text(
-                "나이",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-
-              subtitle: Text(
-                snapshot.data['age'].toString(),
-              ),
-            ),
-            ListTile(
-              title: Text(
-                "MBTI 유형",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-
-              subtitle: Text(
-                snapshot.data['mbti'].toString(),
-              ),
-            ),
-
-
-             MediaQuery.of(context).platformBrightness == Brightness.dark
+            MediaQuery.of(context).platformBrightness == Brightness.dark
                  ? SizedBox()
                  : ListTile(
               title: Text(
@@ -277,7 +250,9 @@ class _ProfileState extends State<Profile> {
                 },
                 activeColor: Theme.of(context).accentColor,
               ),
+              
             ),
+            
           ],
         ),
       ),
