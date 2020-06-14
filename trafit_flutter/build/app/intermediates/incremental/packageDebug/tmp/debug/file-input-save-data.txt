@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Jun 13 03:02:27 KST 2020
+#Mon Jun 15 02:26:07 KST 2020
 20.base=C\:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 143.base=C\:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 237.path=flutter_assets/assets/food9.jpeg

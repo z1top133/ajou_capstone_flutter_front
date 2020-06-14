@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,7 @@ String bossmbti;
 String img;
 String kickID;
 bool hasData = false;
+List comments;
 final FirebaseMessaging _firebaseMessagine  = FirebaseMessaging();
 Future<Map<String, dynamic>> call(int num) async {
   shared = await SharedPreferences.getInstance();
@@ -394,12 +397,13 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                   width: 42,
                                   child: RaisedButton(
                                     color: Colors.blue[300],
-                                    onPressed: () => {
+                                    onPressed: () async{
+                                      comments = await apiService.show_comment(idList[i]);
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext context) =>
                                             buildCommentDialog(context, i),
-                                      )
+                                      );
                                     },
                                     child: Text(
                                       '평가',
@@ -568,16 +572,68 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     );
   }
 
-  Widget buildCommentDialog(BuildContext context, int i){
+  Widget buildCommentDialog(BuildContext context, int i,){
     return new AlertDialog(
       title: Text(nameList[i] +'님 평가내용'),
       content: Flex(
         direction: Axis.horizontal,
         children: <Widget>[
-          CommentPage(idList[i]),
+          Expanded(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height*.4,
+        width: MediaQuery.of(context).size.width*.7,
+        child: ListView.builder(
+        padding: const EdgeInsets.all(7.0),
+        itemCount: comments.length,
+        itemBuilder: (_, i) {
+          ImageProvider c;
+          if(comments[i]['img'] == 'x'){
+            c = AssetImage('assets/mbti/' + comments[i]['mbti'] + '.png');
+          }
+          else{
+            c = CachedNetworkImageProvider('http://$myIP:3001/${comments[i]['img']}');
+          }
+          return Container(
+            padding: const EdgeInsets.fromLTRB(3, 7, 3, 7),
+            child: Row(
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 17,
+                      backgroundImage: c,
+                    ),
+                    Text(comments[i]['username'], style: TextStyle(fontSize: 9),),
+                    Text(comments[i]['mbti'], style: TextStyle(fontSize: 7),)
+                  ],
+                ),
+                SizedBox(width: 15,),
+                Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width*.5
+                  ),
+                  padding: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                  color: Colors.cyan[300],
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      topRight: Radius.circular(25),
+                      topLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25)
+                    ),
+                  ),
+                  child: Text(comments[i]['comment']),
+                )
+              ],
+            ),
+          );
+        },
+      ),
+      )
+    ),
         ],
       ),
-      
       
       actions: <Widget>[
         new FlatButton(
@@ -634,13 +690,25 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
               msg: response['message'],
               toastLength: Toast.LENGTH_LONG,
             );
+            setState(() {
+              
+              comments.add({
+                'id': shared.getString('id'),
+                'username': shared.getString('username'),
+                'mbti': shared.getString('mbti'),
+                'img': shared.getString('img'),
+                'comment': commentController.text
+              });
+              
+            });
+            
             Navigator.of(context).pop(context);
           },
           child: Text('평가하기',)
         ),
         new FlatButton(
           onPressed: (){
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(context);
           },
           child: Text('닫기', style: TextStyle(color: Colors.red),)
         )

@@ -7,6 +7,7 @@ import 'package:trafit/screens/post_screen.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:intl/intl.dart';
 
 
 final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
@@ -177,6 +178,10 @@ class _ProductDetailsState extends State<ProductDetails>{
                 itemBuilder: (BuildContext context, int index) {
                   if (rooms.length != 0) {
                     Map chatroom = rooms[index];
+                    DateTime startTime = DateTime(0, int.parse(chatroom['start_date'].substring(0,2)), int.parse(chatroom['start_date'].substring(2,4)));
+                    String start = DateFormat('M월d일').format(startTime).toString();
+                    DateTime endTime = DateTime(0, int.parse(chatroom['end_date'].substring(0,2)), int.parse(chatroom['end_date'].substring(2,4)));
+                    String end = DateFormat('M월d일').format(endTime).toString();
                     ImageProvider c;
                     if(chatroom['img'] == 'x'){
                       c = Image.asset('assets/mbti/' + chatroom['bossmbti']+ '.png').image;
@@ -189,11 +194,17 @@ class _ProductDetailsState extends State<ProductDetails>{
                           borderRadius: BorderRadius.circular(10.0)),
                       elevation: 4.0,
                       child: ListTile(
-                        leading: CircleAvatar(
+                        leading: Column(
+                          children: <Widget>[
+                            CircleAvatar(
                             radius: 25.0,
                             backgroundImage: c
+                          ),
+                            Text(chatroom['bossmbti'], style: TextStyle(fontSize: 5),)
+                          ],
                         ),
-                        title: Text("${chatroom['bossname']}"),
+                        
+                        title: Text("${chatroom['bossname']}님의 게시글"),
                         subtitle: Column(
                           children: <Widget>[
                             Row(
@@ -208,19 +219,36 @@ class _ProductDetailsState extends State<ProductDetails>{
                               ],
                             ),
                             Card(
-                              child: Row(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                              elevation: 2.5,      
+                              margin: EdgeInsets.all(3),  
+                              child: Padding(
+                                padding: EdgeInsets.all(4),
+                                child: Row(
                                 children: [
                                   Text('여행일:  '),
-                                  Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
+                                  Text("$start 부터 $end 까지"),
+                                ],                    
+                              ),
+                              )                             
+                            ),
+                            
+                            SizedBox(height: 3.0),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                              elevation: 2.5, 
+                              margin: EdgeInsets.all(3),
+                              child: Padding(
+                                padding: EdgeInsets.all(4),
+                                child: Row(
+                                children: [
+                                  Text('소개:  '),
+                                  Text(chatroom['comment']),
                                 ],
                               ),
-                            ),
-                            SizedBox(height: 7.0),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 70.0, 0.0),
-                              child: Text(
-                                  "${chatroom['comment']}"
-                              ),
+                              )                            
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
@@ -234,17 +262,15 @@ class _ProductDetailsState extends State<ProductDetails>{
                                         color: Colors.white,
                                       ),
                                     ),
-                                    color: Theme.of(context).accentColor,
-                                    textColor: Colors.white,
+                                    color: Colors.indigo[300],
+                                    
                                     onPressed: () async {
                                       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                                       String roomNumber = sharedPreferences.getString('room_num');
-                                      print(chatroom['room_num']);
                                       if(roomNumber == null) roomNumber = "${chatroom['room_num']}";
                                       else roomNumber = roomNumber + ",${chatroom['room_num']}";
                                       sharedPreferences.setString('room_num', roomNumber);
                                       String _token = await _firebaseMessaging.getToken();
-                                      print(_token);
                                       apiService.sendToken(_token, chatroom['room_num']);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -278,7 +304,7 @@ class _ProductDetailsState extends State<ProductDetails>{
               color: Colors.white,
             ),
           ),
-          color: Theme.of(context).accentColor,
+          color: Colors.indigo[300],
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(

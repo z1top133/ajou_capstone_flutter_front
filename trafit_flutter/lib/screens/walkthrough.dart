@@ -13,9 +13,7 @@ class _WalkthroughState extends State<Walkthrough> {
   List pageInfos = [
     {
       "title": "안전한 동행",
-      "body": "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus."
-          " Vestibulum ac diam sit amet quam vehicula elementum sed sit amet "
-          "dui. Nulla porttitor accumsan tincidunt.",
+      "body": "사회에서 보장된 신분을 통해 최소한의 신원을 보장합니다. 개인 정보를 가장 최소한으로 사용하며 그 사람의 보안을 확인하도록 합니다.",
       "img": "assets/on1.png",
     },
     {

@@ -17,8 +17,9 @@ ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
 List<String> hits;
 
-Future<SharedPreferences> call() async{
-  return SharedPreferences.getInstance();
+Future<List> call() async{
+  sharedPreferences = await SharedPreferences.getInstance();
+  return apiService.show_comment(sharedPreferences.getString('id'));
 }
 
 class Profile extends StatefulWidget {
@@ -29,36 +30,35 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   Widget photo;
   bool x = false;
-  Future<SharedPreferences> sharedPreference;
+  Future<List> comments;
 
   @override
   void initState(){
     super.initState();
-    sharedPreference = call();
+    comments = call();
   }
 
   @override
   Widget build(BuildContext context) {
     int index;
     
-    return FutureBuilder<SharedPreferences>(
-      future: sharedPreference,
-      builder: (BuildContext context, AsyncSnapshot<SharedPreferences> shared){        
-          if(shared.hasData){
-            sharedPreferences = shared.data;
+    return FutureBuilder<List>(
+      future: comments,
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot){        
+          if(snapshot.hasData){
             for(int i = 0; i < mbti_result.length; i++){
-              if(mbti_result[i]['mbti'] == shared.data.getString('mbti')){
+              if(mbti_result[i]['mbti'] == sharedPreferences.getString('mbti')){
                 index = i;
                 hits = mbti_result[i]['hit_it_off'].split(',');
                 break;
               }
             }
             if(!x){
-              if(shared.data.getString('img') == 'x'){
-                photo = Image.asset('assets/mbti/' + shared.data.getString('mbti') +'.png');
+              if(sharedPreferences.getString('img') == 'x'){
+                photo = Image.asset('assets/mbti/' + sharedPreferences.getString('mbti') +'.png');
               }
               else{
-                photo = CachedNetworkImage(imageUrl: 'http://$myIP:3001/${shared.data.getString('img')}');
+                photo = CachedNetworkImage(imageUrl: 'http://$myIP:3001/${sharedPreferences.getString('img')}');
               }
             }
             
@@ -83,7 +83,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 SizedBox(height: 3,),
                 Text(
-                            shared.data.getString('username'),
+                            sharedPreferences.getString('username'),
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -128,7 +128,7 @@ class _ProfileState extends State<Profile> {
                             ),
                             Container(
                               
-                              child: Text(shared.data.getString('mbti'), style: TextStyle(color: Colors.green, fontSize: 30),),
+                              child: Text(sharedPreferences.getString('mbti'), style: TextStyle(color: Colors.green, fontSize: 30),),
                             ),
                             Text(' 입니다.'),
                             
@@ -194,10 +194,8 @@ class _ProfileState extends State<Profile> {
                       ),
                       Text('  :  '),
                       Expanded(
-                        child: Text(mbti_result[index]['comment'],
+                        child: Text(mbti_result[index]['comment'],)
                       )
-                      )
-                      
                     ],
                   
                   );
@@ -221,7 +219,7 @@ class _ProfileState extends State<Profile> {
             ),
             Flex(
               direction: Axis.horizontal,
-              children: <Widget>[CommentPage(shared.data.getString('id')),],
+              children: <Widget>[CommentPage(snapshot.data)],
             ),
 
             MediaQuery.of(context).platformBrightness == Brightness.dark

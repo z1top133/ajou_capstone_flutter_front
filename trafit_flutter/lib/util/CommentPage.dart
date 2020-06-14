@@ -1,45 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:trafit/util/MyIP.dart';
-import 'package:trafit/util/api_service.dart';
 
 class CommentPage extends StatefulWidget{
-  final String id;
-  
+  final List comments;
 
-  CommentPage(this.id);
+  CommentPage(this.comments);
 
   CommentScreen createState() => CommentScreen();
   
 }
 
 class CommentScreen extends State<CommentPage>{
-  Future<List> comment;
-  ApiService apiService = new ApiService();
+  List comments;
   @override
   void initState(){
-    comment = apiService.show_comment(widget.id);
     super.initState();
+    comments = widget.comments;
   }
   
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: comment,
-      builder: (BuildContext context, AsyncSnapshot<List> snapshot){
-        if(snapshot.hasData){
-          return body(snapshot.data);
-        }
-        else{
-          return Text("준비중");
-        }
-      },
-    );
-    
-  }
-
-  Widget body(List comments){
-    
     return Expanded(
       child: SizedBox(
         height: MediaQuery.of(context).size.height*.4,
@@ -66,7 +47,7 @@ class CommentScreen extends State<CommentPage>{
                       radius: 17,
                       backgroundImage: c,
                     ),
-                    Text(comments[i]['id'], style: TextStyle(fontSize: 9),),
+                    Text(comments[i]['username'], style: TextStyle(fontSize: 9),),
                     Text(comments[i]['mbti'], style: TextStyle(fontSize: 7),)
                   ],
                 ),
@@ -95,5 +76,7 @@ class CommentScreen extends State<CommentPage>{
       )
     );
   }
+
+  
 }
 
