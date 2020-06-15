@@ -39,20 +39,20 @@ class SliderItem extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                right: -10.0,
-                bottom: 3.0,
-                child: RawMaterialButton(
-                  onPressed: () {},
-
-                  shape: CircleBorder(),
-                  elevation: 10.0,
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-
-                  ),
-                ),
-              ),
+//              Positioned(
+//                right: -10.0,
+//                bottom: 3.0,
+//                child: RawMaterialButton(
+//                  onPressed: () {},
+//
+//                  shape: CircleBorder(),
+//                  elevation: 10.0,
+//                  child: Padding(
+//                    padding: EdgeInsets.all(5),
+//
+//                  ),
+//                ),
+//              ),
             ],
           ),
           Padding(
@@ -66,21 +66,21 @@ class SliderItem extends StatelessWidget {
               maxLines: 2,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 5.0, top: 2.0),
-            child: Row(
-              children: <Widget>[
-//                SmoothStarRating(
-//                  starCount: 5,
-//                  color: Constants.ratingBG,
-//                  allowHalfRating: true,
-//                  rating: rating,
-//                  size: 10.0,
-//                ),
-
-              ],
-            ),
-          ),
+//          Padding(
+//            padding: EdgeInsets.only(bottom: 5.0, top: 2.0),
+//            child: Row(
+//              children: <Widget>[
+////                SmoothStarRating(
+////                  starCount: 5,
+////                  color: Constants.ratingBG,
+////                  allowHalfRating: true,
+////                  rating: rating,
+////                  size: 10.0,
+////                ),
+//
+//              ],
+//            ),
+//          ),
         ],
       ),
       onTap: () async{

@@ -9,7 +9,7 @@ import 'package:trafit/util/travel_spots.dart';
 ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
 String userName;
-
+String searchKeyword = "" ;
 Future<List> call() async {
   //tempDir = await getTemporaryDirectory();
 
@@ -30,8 +30,9 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
   final TextEditingController _searchControl = new TextEditingController();
   String searchMonth = '01';
   String searchDay = '01';
-  String serchKeyword = "" ;
+
   List response;
+  bool _isComposing = false;
   @override
   void initState() {
     super.initState();
@@ -73,9 +74,11 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                     children: <Widget>[
                       Flexible(
                         child: TextField(
+
                           style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.black,
+
                           ),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(0.0),
@@ -98,9 +101,15 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                             ),
                           ),
                           maxLines: 1,
-                          controller: _searchControl, //이메일 컨트롤러
+                          controller: _searchControl,
+                          onSubmitted: (text){
+                            setState(() {
+                              searchKeyword = _searchControl.text;
+                            });
+
+                          },//이메일 컨트롤러
                           onChanged: (text) {
-                            serchKeyword = _searchControl.text;
+                            searchKeyword = _searchControl.text;
                           },
                         ),
                       ),
@@ -121,7 +130,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
 //              ),
                             onPressed: () {
                               setState(() {
-                                serchKeyword = _searchControl.text;
+                                searchKeyword = _searchControl.text;
                               });
 
 
@@ -265,7 +274,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                 Map chatroom = rooms[index];
                 if(chatroom['start_date'] == null) chatroom['start_date'] = '0101';
                 if(chatroom['end_date'] == null) chatroom['end_date'] = '0101';
-                if (rooms.length != 0 && chatroom['comment'].toString().contains(serchKeyword) && int.parse(chatroom['start_date'].toString()) <= int.parse(searchMonth+searchDay) && int.parse(chatroom['end_date'].toString()) >= int.parse(searchMonth+searchDay) ) {
+                if (rooms.length != 0 && chatroom['comment'].toString().contains(searchKeyword) && int.parse(chatroom['start_date'].toString()) <= int.parse(searchMonth+searchDay) && int.parse(chatroom['end_date'].toString()) >= int.parse(searchMonth+searchDay) ) {
                   ImageProvider c;
                   String spot = travel_spots[int.parse(chatroom['category'])-1]['name'];
                   if (chatroom['img'] == 'x') {
@@ -380,7 +389,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                     ),
                   );
                 } else
-                  return SizedBox(height: 0);
+                  return SizedBox(height: 0.0);
               },
             ),
             SizedBox(height: 30),
@@ -389,4 +398,8 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
       ),
     );
   }
+}
+
+void _handleSubmitted(String text){
+  searchKeyword = text;
 }

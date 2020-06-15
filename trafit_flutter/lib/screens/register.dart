@@ -370,20 +370,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white,
                             ),
                           ),
-                          onPressed: () {
-                            Fluttertoast.showToast(
-                              msg: "인증 성공!!",
-                              toastLength: Toast.LENGTH_LONG,
-                            );
-//                            String message = await apiService.emailauthCheck(_emailcodeControl.text);
-//                            if(message=='인증성공'){
-//                              emailauthCheck = 1;
-//                              Fluttertoast.showToast(
-//                                msg: "인증 성공!!",
-//                                toastLength: Toast.LENGTH_LONG,
-//                              );
+                          onPressed: () async{
+                            String message = await apiService.emailauthCheck(_emailcodeControl.text);
+                            if(message=='인증성공'){
+                              emailauthCheck = 1;
+                              Fluttertoast.showToast(
+                                msg: "인증 성공!!",
+                                toastLength: Toast.LENGTH_LONG,
+                              );
 
-//                            }
+                            }
 
                           },
                           color: Theme.of(context).accentColor,
@@ -556,21 +552,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               onPressed: () async{//중복체크 했고, 인증 완료 되었을 때 가입 가능한 조건문
-                Map<String, dynamic> response = await apiService.register(
-                    _useridControl.text,
-                    _usernameControl.text,
-                    _emailControl.text,
-                    _passwordControl.text,
-                    genderCheck,
-                    int.parse(dropdownValue_age),
-                    _introduceControl.text,
-                    null,
-                    null,
-                    null);
-                Fluttertoast.showToast(
-                  msg: response['message'],
-                  toastLength: Toast.LENGTH_LONG,
-                );
+                if(emailauthCheck==1) {
+                  Map<String, dynamic> response = await apiService.register(
+                      _useridControl.text,
+                      _usernameControl.text,
+                      _emailControl.text,
+                      _passwordControl.text,
+                      genderCheck,
+                      int.parse(dropdownValue_age),
+                      _introduceControl.text,
+                      null,
+                      null,
+                      null);
+                  Fluttertoast.showToast(
+                    msg: response['message'],
+                    toastLength: Toast.LENGTH_LONG,
+                  );
+                }
                 
 //                user.add(
 //                  {
