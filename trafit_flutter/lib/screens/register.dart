@@ -24,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String dropdownValue_age = '20';
   String dropdownValue_gender = '남';
   int emailauthCheck =0;
+  bool emailCheck = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -287,14 +288,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onPressed: () async {
                             String ajouEmail = _emailControl.text;
                             if(ajouEmail.split('@')[1] != 'ajou.ac.kr'){
+                              emailCheck = true;
                               Fluttertoast.showToast(
                                 msg: "학교 이메일을 입력하세요!",
                                 toastLength: Toast.LENGTH_LONG,
                               );
 
                             }
-                            String abc = await apiService.emailAuth(_emailControl.text);
-                            print(abc);
+                            if(emailCheck) {
+                              String abc = await apiService.emailAuth(_emailControl.text);
+                              print(abc);
+                            }
                           },
                           color: Theme.of(context).accentColor,
                         ),

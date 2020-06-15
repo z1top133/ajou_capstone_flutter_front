@@ -43,26 +43,26 @@ class GridProduct extends StatelessWidget {
                 ),
               ),
 
-              Positioned(
-                right: -10.0,
-                bottom: 3.0,
-                child: RawMaterialButton(
-                  onPressed: (){},
-                  fillColor: Colors.white,
-                  shape: CircleBorder(),
-                  elevation: 4.0,
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Icon(
-                      isFav
-                          ?Icons.favorite
-                          :Icons.favorite_border,
-                      color: Colors.red,
-                      size: 17,
-                    ),
-                  ),
-                ),
-              ),
+//              Positioned(
+//                right: -10.0,
+//                bottom: 3.0,
+//                child: RawMaterialButton(
+//                  onPressed: (){},
+//                  fillColor: Colors.white,
+//                  shape: CircleBorder(),
+//                  elevation: 4.0,
+//                  child: Padding(
+//                    padding: EdgeInsets.all(5),
+//                    child: Icon(
+//                      isFav
+//                          ?Icons.favorite
+//                          :Icons.favorite_border,
+//                      color: Colors.red,
+//                      size: 17,
+//                    ),
+//                  ),
+//                ),
+//              ),
             ],
 
 
@@ -80,33 +80,33 @@ class GridProduct extends StatelessWidget {
             ),
           ),
 
-          Padding(
-            padding: EdgeInsets.only(bottom: 5.0, top: 2.0),
-            child: Row(
-              children: <Widget>[
-                SmoothStarRating(
-                  starCount: 5,
-                  color: Constants.ratingBG,
-                  allowHalfRating: true,
-                  rating: rating,
-                  size: 10.0,
-                ),
-
-//                Text(
-//                  " $rating ($raters개의 게시글)",
-//                  style: TextStyle(
-//                    fontSize: 11.0,
-//                  ),
+//          Padding(
+//            padding: EdgeInsets.only(bottom: 5.0, top: 2.0),
+//            child: Row(
+//              children: <Widget>[
+//                SmoothStarRating(
+//                  starCount: 5,
+//                  color: Constants.ratingBG,
+//                  allowHalfRating: true,
+//                  rating: rating,
+//                  size: 10.0,
 //                ),
-
-              ],
-            ),
-          ),
+//
+////                Text(
+////                  " $rating ($raters개의 게시글)",
+////                  style: TextStyle(
+////                    fontSize: 11.0,
+////                  ),
+////                ),
+//
+//              ],
+//            ),
+//          ),
 
 
         ],
       ),
-      onTap: (){
+      onTap: () async{
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context){

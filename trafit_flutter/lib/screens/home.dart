@@ -80,7 +80,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height / 2.4,
+                  .height / 2.6,
               items: map<Widget>(
                 travel_spots,
                     (index, i) {
@@ -106,7 +106,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 });
               },
             ),
-            SizedBox(height: 20.0),
+
 
             Text(
               "패키지 여행",
@@ -150,19 +150,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                   ),
                 ),
 
-                FlatButton(
-                  child: Text(
-                    "View More",
-                    style: TextStyle(
-//                      fontSize: 22,
-//                      fontWeight: FontWeight.w800,
-                      color: Theme
-                          .of(context)
-                          .accentColor,
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
+//                FlatButton(
+//                  child: Text(
+//                    "View More",
+//                    style: TextStyle(
+////                      fontSize: 22,
+////                      fontWeight: FontWeight.w800,
+//                      color: Theme
+//                          .of(context)
+//                          .accentColor,
+//                    ),
+//                  ),
+//                  onPressed: () {},
+//                ),
               ],
             ),
             SizedBox(height: 10.0),
@@ -180,18 +180,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                     (MediaQuery
                         .of(context)
                         .size
-                        .height / 1.25),
+                        .height / 1.4),
               ),
               itemCount: popular_spots == null ? 0 : popular_spots.length,
               itemBuilder: (BuildContext context, int index) {
 //                Food food = Food.fromJson(foods[index]);
-                Map travel_spot = popular_spots[index];
+                Map travel_spot = travel_spots[index];
 //                print(foods);
 //                print(foods.length);
                 return GridProduct(
                   img: travel_spot['img'],
                   isFav: false,
                   name: travel_spot['name'],
+                  category: travel_spot['category'],
                   rating: 5.0,
                   raters: 23,
                 );

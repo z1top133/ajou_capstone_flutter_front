@@ -61,7 +61,7 @@ class _DishesScreenState extends State<DishesScreen> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 1.25),
+                    (MediaQuery.of(context).size.height / 1.4),
               ),
               itemCount: travel_spots == null ? 0 : travel_spots.length,
               itemBuilder: (BuildContext context, int index) {
@@ -70,6 +70,7 @@ class _DishesScreenState extends State<DishesScreen> {
                   img: food['img'],
                   isFav: false,
                   name: food['name'],
+                  category: food['category'],
                   rating: 5.0,
                   raters: 23,
                 );

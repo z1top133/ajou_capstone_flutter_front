@@ -297,24 +297,58 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                             ],
                           ),
                           SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text('여행지:  '),
-                              Text("$spot"),
-                            ],
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            elevation: 2.5,
+                            margin: EdgeInsets.all(3),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Row(
+                                children: [
+                                  Text('여행지:  '),
+                                  Text("$spot"),
+                                ],
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text('여행일:  '),
-                              Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
-                            ],
+                          Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              elevation: 2.5,
+                              margin: EdgeInsets.all(3),
+                              child: Padding(
+                                padding: EdgeInsets.all(4),
+                                child: Row(
+                                  children: [
+                                    Text('여행일:  '),
+                                    Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
+                                  ],
+                                ),
+                              )
                           ),
-                          SizedBox(height: 10.0),
-                          Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(0.0, 0.0, 70.0, 0.0),
-                            child: Text("${chatroom['comment']}"),
+//                          Card(
+//                            child: Row(
+//                              children: [
+//                                Text('여행일:  '),
+//                                Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
+//                              ],
+//                            ),
+//                          ),
+                          Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              elevation: 2.5,
+                              margin: EdgeInsets.all(3),
+                              child: Padding(
+                                padding: EdgeInsets.all(4),
+                                child: Row(
+                                  children: [
+                                    Text('내용:  '),
+                                    Text(chatroom['comment']),
+                                  ],
+                                ),
+                              )
                           ),
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
@@ -328,7 +362,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  color: Theme.of(context).accentColor,
+                                  color: Colors.indigo[300],
                                   textColor: Colors.white,
                                   onPressed: () {
                                     Navigator.of(context).push(
