@@ -263,15 +263,16 @@ class _userInChatScreenState extends State<userInChatScreen> {
                                         onPressed: () async{
                                           sharedPreferences = await SharedPreferences.getInstance();
                                           String room_num = sharedPreferences.getString('room_num');
-                                          String name = sharedPreferences.getString('username');
+                                          String id = sharedPreferences.getString('id');
                                           String leave = chatroom['room_num'].toString();
                                           String update_room;
                                           print(room_num);
+                                          print(id);
                                           if(room_num.length == 1) room_num.replaceAll(leave, '');
                                           else if(index == 0)update_room = room_num.replaceAll(leave+',', '');
                                           else update_room = room_num.replaceAll(','+leave,'');
                                           sharedPreferences.setString('room_num', update_room);
-                                          apiService.leaveRoom(name, update_room);
+                                          apiService.leaveRoom(id, update_room);
 
                                           setState(()  {
 //                                            apiService.leaveRoom(name, chatroom['room_num']);

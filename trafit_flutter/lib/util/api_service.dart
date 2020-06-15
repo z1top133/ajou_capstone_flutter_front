@@ -216,9 +216,9 @@ class ApiService{
     Response response = await post(_hostname()+'/send_message', headers: headers1, body: jsonEncode(pass));
   }
 
-  leaveRoom(_username, _room_num) async{
+  leaveRoom(_id, _room_num) async{
     Map<String, dynamic> pass = {
-      'username': _username,
+      'id': _id,
       'room_num': _room_num
     };
 
