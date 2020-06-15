@@ -224,30 +224,65 @@ class _userInChatScreenState extends State<userInChatScreen> {
                                 )
                             ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
+                              padding: EdgeInsets.fromLTRB(0, 0, 50.0, 0),
                               child: Container(
-                                child: FlatButton(
-                                    child: Text(
-                                      "채팅방 입장",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    color: Colors.indigo[300],
-                                    textColor: Colors.white,
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) {
-                                            return ChatPage(chatroom['room_num'], chatroom['category']);
-                                          },
+                                child: Row(
+                                  children: [
+                                    FlatButton(
+                                        child: Text(
+                                          "채팅방 입장",
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300,
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                      );
-                                    }),
+                                        color: Colors.indigo[300],
+                                        textColor: Colors.white,
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (BuildContext context) {
+                                                return ChatPage(chatroom['room_num'], chatroom['category']);
+                                              },
+                                            ),
+                                          );
+                                        }),
+                                    SizedBox(width : 10.0),
+                                    FlatButton(
+                                        child: Text(
+                                          "채팅방 나가기",
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        color: Colors.indigo[300],
+                                        textColor: Colors.white,
+                                        onPressed: () async{
+                                          sharedPreferences = await SharedPreferences.getInstance();
+                                          String room_num = sharedPreferences.getString('room_num');
+                                          String name = sharedPreferences.getString('username');
+                                          String leave = chatroom['room_num'].toString();
+                                          String update_room;
+                                          print(room_num);
+                                          if(room_num.length == 1) room_num.replaceAll(leave, '');
+                                          else if(index == 0)update_room = room_num.replaceAll(leave+',', '');
+                                          else update_room = room_num.replaceAll(','+leave,'');
+                                          sharedPreferences.setString('room_num', update_room);
+                                          apiService.leaveRoom(name, update_room);
+
+                                          setState(()  {
+//                                            apiService.leaveRoom(name, chatroom['room_num']);
+                                            rooms.removeAt(index);
+                                          });
+                                        }),
+                                  ],
+                                ),
                               ),
                             ),
+
                           ],
                         ),
                       ),

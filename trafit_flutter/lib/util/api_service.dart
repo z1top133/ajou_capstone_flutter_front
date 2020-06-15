@@ -216,6 +216,16 @@ class ApiService{
     Response response = await post(_hostname()+'/send_message', headers: headers1, body: jsonEncode(pass));
   }
 
+  leaveRoom(_username, _room_num) async{
+    Map<String, dynamic> pass = {
+      'username': _username,
+      'room_num': _room_num
+    };
+
+    Response response = await post(_hostname() + '/leave_room', headers: headers1, body: jsonEncode(pass));
+  }
+
+
   Future<Map<String, dynamic>> comments(String id, String username, String mbti, String img, String toid, String comment) async{
     Map<String, dynamic> pass = {//변수를 json으로
       'id': id,
