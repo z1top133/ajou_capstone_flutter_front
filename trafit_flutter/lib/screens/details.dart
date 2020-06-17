@@ -264,11 +264,35 @@ class _ProductDetailsState extends State<ProductDetails>{
                                     color: Colors.indigo[300],
                                     
                                     onPressed: () async {
+                                      
                                       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-                                      String roomNumber = sharedPreferences.getString('room_num');
+                                      Map<String, dynamic> isDeny = await apiService.deny_check(chatroom['room_num'], sharedPreferences.getString('id'));
+                                      if(isDeny['message']){
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context){
+                                            return AlertDialog(
+                                              title: Text('알림'),
+                                              content: Text('강퇴된 채팅방입니다.'),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  onPressed: (){
+                                                    Navigator.of(context).pop();
+                                
+                                                  },
+                                                  child: Text('닫기'),
+                                                )
+                                              ],
+                                            );
+                                          }
+                                        );
+                                      }
+                                      else{
+                                        String roomNumber = sharedPreferences.getString('room_num');
                                       if(roomNumber == null) roomNumber = "${chatroom['room_num']}";
                                       else roomNumber = roomNumber + ",${chatroom['room_num']}";
                                       sharedPreferences.setString('room_num', roomNumber);
+
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {
@@ -276,6 +300,8 @@ class _ProductDetailsState extends State<ProductDetails>{
                                           },
                                         ),
                                       );
+                                      }
+                                      
                                     }),
                               ),
                             ),

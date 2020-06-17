@@ -208,10 +208,12 @@ class ApiService{
     Response response = await post(_hostname()+'/send_message', headers: headers1, body: jsonEncode(pass));
   }
 
-  leaveRoom(_id, _room_num) async{
+  leaveRoom(_id, _room_num, int room, bool isBoss) async{
     Map<String, dynamic> pass = {
       'id': _id,
-      'room_num': _room_num
+      'room_num': _room_num,
+      'room': room,
+      'isboss': isBoss
     };
 
     Response response = await post(_hostname() + '/leave_room', headers: headers1, body: jsonEncode(pass));
@@ -252,4 +254,16 @@ class ApiService{
 
     return jsonDecode(response.body);
   }
+
+  Future<Map<String, dynamic>> deny_check(int room, String id) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'room': room,
+      'id': id
+    };
+
+    Response response = await post(_hostname()+'/deny_check', headers: headers1, body: jsonEncode(pass));
+
+    return jsonDecode(response.body);
+  }
+
 }

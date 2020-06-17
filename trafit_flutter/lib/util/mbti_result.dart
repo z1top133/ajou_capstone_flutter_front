@@ -114,3 +114,22 @@ List mbti_result = [
     "color": Colors.purple,
   },
 ];
+
+Map<String, dynamic> mbti_color = {
+  'ENTJ': Colors.purple,
+  'ENFJ': Colors.green,
+  'ESFJ': Colors.blue,
+  'ESTJ': Colors.blue,
+  'ENTP': Colors.purple, 
+  'ENFP': Colors.green,
+  'ESFP': Colors.yellow,
+  'ESTP': Colors.yellow,
+  'INTP': Colors.purple,
+  'INFP': Colors.green,
+  'ISFP': Colors.yellow,
+  'ISTP': Colors.yellow,
+  'INTJ': Colors.purple,
+  'INFJ': Colors.green,
+  'ISFJ': Colors.blue,
+  'ISTJ': Colors.blue,
+};

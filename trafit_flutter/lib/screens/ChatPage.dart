@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:trafit/util/my_flutter_app_icons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -223,6 +223,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                   ),*/
                 Expanded(
                   child: ListView.builder(
+                    
                       itemCount: idList.length,
                       itemBuilder: (_, i) {
                         bool isBoss = false;
@@ -258,11 +259,21 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(
+                                      Row(
+                                        children: <Widget>[
+                                          Text(
                                         nameList[i],
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(width: 5,),
+                                        Visibility(
+                                          child: Icon(MyFlutterApp.queen_crown, size: 11, color: Colors.yellow[700],),
+                                          visible: bossid == idList[i],
+                                        ),
+                                        ],
                                       ),
+                                      
                                       Text(
                                         mbtiList[i],
                                         style: TextStyle(
@@ -273,23 +284,19 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     ],
                                   ),
                                 ),
+                                
                                 Visibility(
                                   child: Container(
                                   padding: const EdgeInsets.all(3.0),
                                   width: 42,
-                                  child: RaisedButton(
-                                    color: Colors.red[100],
+                                  child: IconButton(
+                                    color: Colors.red[300],
+                                    icon: Icon(MyFlutterApp.ban),
                                     onPressed: () => {
                                       socketIO.sendMessage('kickip',
                                           json.encode({'id': idList[i], 'room': widget.num}))
                                     },
-                                    child: Text(
-                                      '강퇴',
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                    
                                   ),
                                 ),
                                 visible: isBoss & !isMy,
@@ -299,8 +306,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                   child: Container(
                                   padding: const EdgeInsets.all(3.0),
                                   width: 42,
-                                  child: RaisedButton(
+                                  child: IconButton(
                                     color: Colors.red[300],
+                                    icon: Icon(Icons.report),
                                     onPressed: () => {
                                       showDialog(
                                           context: context,
@@ -417,11 +425,6 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                             );
                                           })
                                     },
-                                    child: Text('신고',
-                                        style: TextStyle(
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.center),
                                   ),
                                 ),
                                 visible: !isMy,
@@ -430,8 +433,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                 Container(
                                   padding: const EdgeInsets.all(3.0),
                                   width: 42,
-                                  child: RaisedButton(
+                                  child: IconButton(
                                     color: Colors.blue[300],
+                                    icon: Icon(MyFlutterApp.comment),
                                     onPressed: () async{
                                       comments = await apiService.show_comment(idList[i]);
                                       showDialog(
@@ -440,18 +444,30 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                             buildCommentDialog(context, i),
                                       );
                                     },
-                                    child: Text(
-                                      '평가',
-                                      style: TextStyle(
-                                          fontSize: 8,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                    
                                   ),
                                 ),
                               ],
                             ));
                       }),
                 ),
+                FlatButton(
+                  onPressed: (){
+                    String room_num = shared.getString('room_num');
+                    String leave = widget.num.toString();
+                    String update_room;
+
+                    if(room_num.length == 1) room_num.replaceAll(leave, '');
+                    else {
+                      update_room = room_num.replaceAll(','+leave,'');
+                    }             
+                    
+                    shared.setString('room_num', update_room);
+                                          
+                    apiService.leaveRoom(shared.getString('id'), update_room, widget.num, bossid == shared.getString('id'));
+                  },
+                  child: Icon(Icons.exit_to_app),
+                )
               ],
             )),
           ),

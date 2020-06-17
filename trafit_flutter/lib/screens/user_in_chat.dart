@@ -269,10 +269,19 @@ class _userInChatScreenState extends State<userInChatScreen> {
                                           print(room_num);
                                           print(id);
                                           if(room_num.length == 1) room_num.replaceAll(leave, '');
-                                          else if(index == 0)update_room = room_num.replaceAll(leave+',', '');
+                                          else if(index == 0){
+                                            if(room_num[0] == ','){
+                                              update_room = room_num.replaceAll(','+leave, '');
+                                            }
+                                            else{
+                                              update_room = room_num.replaceAll(leave+',', '');
+                                            }
+                                            
+                                          }
                                           else update_room = room_num.replaceAll(','+leave,'');
                                           sharedPreferences.setString('room_num', update_room);
-                                          apiService.leaveRoom(id, update_room);
+                                          
+                                          apiService.leaveRoom(id, update_room, chatroom['room_num'], chatroom['boss'] == id);
 
                                           setState(()  {
 //                                            apiService.leaveRoom(name, chatroom['room_num']);
