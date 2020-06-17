@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/screens/ChatPage.dart';
@@ -10,7 +9,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 
 
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
 
 ApiService apiService = new ApiService();
 Future<List> call(String category) async{
@@ -270,8 +269,6 @@ class _ProductDetailsState extends State<ProductDetails>{
                                       if(roomNumber == null) roomNumber = "${chatroom['room_num']}";
                                       else roomNumber = roomNumber + ",${chatroom['room_num']}";
                                       sharedPreferences.setString('room_num', roomNumber);
-                                      String _token = await _firebaseMessaging.getToken();
-                                      apiService.sendToken(_token, chatroom['room_num']);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {

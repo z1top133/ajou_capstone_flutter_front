@@ -12,10 +12,10 @@ import 'package:trafit/util/MySocket.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/util/travel_spots.dart';
-import 'package:trafit/util/CommentPage.dart';
 
 SharedPreferences shared;
 ApiService apiService = new ApiService();
+Map<String, dynamic> chatInfo;
 List<String> idList;
 List<String> nameList;
 List<String> mbtiList;
@@ -28,8 +28,10 @@ String img;
 String kickID;
 bool hasData = false;
 List comments;
-final FirebaseMessaging _firebaseMessagine  = FirebaseMessaging();
-Future<Map<String, dynamic>> call(int num) async {
+final FirebaseMessaging _firebaseMessaging  = FirebaseMessaging();
+
+Future<List> call(int num) async {
+  String _token = await _firebaseMessaging.getToken();
   shared = await SharedPreferences.getInstance();
   socketIO.sendMessage(
       'joinRoom',
@@ -39,14 +41,16 @@ Future<Map<String, dynamic>> call(int num) async {
         'mbti': shared.getString('mbti'),
         'img': shared.getString('img'),
         'username': shared.getString('username'),
-        'token' : await _firebaseMessagine.getToken()
+        'token' : await _firebaseMessaging.getToken()
       }));
+  chatInfo = await apiService.room_info(num);
   return apiService.enter_room(
       num,
       shared.getString('id'),
       shared.getString('username'),
       shared.getString('mbti'),
-      shared.getString('img'));
+      shared.getString('img'),
+      _token);
 }
 
 // IOS용 테마
@@ -75,7 +79,7 @@ class ChatPage extends StatefulWidget {
 class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   // 입력한 메시지를 저장하는 리스트
   final List<ChatMessage> _message = <ChatMessage>[];
-  Future<Map<String, dynamic>> userListF;
+  Future<List> userListF;
 
   // 텍스트필드 제어용 컨트롤러
   final TextEditingController _textController = TextEditingController();
@@ -109,6 +113,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     });
 
     socketIO.subscribe('kickip_message', (jsonData) {
+      print('kicked');
       socketIO.sendMessage('kicked',
           json.encode({'id': shared.getString('id'), 'room': 100000}));
       Navigator.of(context).pop();
@@ -126,7 +131,17 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
 
     socketIO.subscribe('receive_join', (jsonData) {
       Map<String, dynamic> data = json.decode(jsonData);
+      print(data);
+      EnterMessage message = EnterMessage(data: data, animationController: AnimationController(
+          duration: Duration(milliseconds: 700),
+          vsync: this,
+      ),);
 
+      setState(() {
+        _message.insert(0, message);
+      });
+      message.animationController.forward();
+    
       if (!idList.contains(data['id'])) {
         idList.add(data['id']);
         mbtiList.add(data['mbti']);
@@ -145,18 +160,30 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     return FutureBuilder(
       future: userListF,
       builder:
-          (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+          (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.hasData) {
           if (!hasData) {
-            idList = snapshot.data['user_id'].split(',');
-            nameList = snapshot.data['user_name'].split(',');
-            mbtiList = snapshot.data['mbti'].split(',');
-            imgList = snapshot.data['user_img'].split(',');
-            bossname = snapshot.data['bossname'];
-            bossid = snapshot.data['boss'];
-            bossmbti = snapshot.data['bossmbti'];
-            tokenList = snapshot.data['token'].split(',');
-            img = snapshot.data['img'];
+            List<String> idListt = new List<String>();
+            List<String> nameListt = new List<String>();
+            List<String> mbtiListt = new List<String>();
+            List<String> imgListt = new List<String>();
+            List<String> tokenListt = new List<String>();
+            for(int i=0; i<snapshot.data.length; i++){
+              idListt.add(snapshot.data[i]['id']);
+              nameListt.add(snapshot.data[i]['username']);
+              mbtiListt.add(snapshot.data[i]['mbti']);
+              imgListt.add(snapshot.data[i]['img']);
+              tokenListt.add(snapshot.data[i]['token']);
+            }
+            idList = idListt;
+            nameList = nameListt;
+            mbtiList = mbtiListt;
+            imgList = imgListt;
+            tokenList = tokenListt;
+            bossname = chatInfo['bossname'];
+            bossid = chatInfo['boss'];
+            bossmbti = chatInfo['bossmbti'];
+            img = chatInfo['img'];
           }
           return body();
         } else {
@@ -199,8 +226,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                       itemCount: idList.length,
                       itemBuilder: (_, i) {
                         bool isBoss = false;
+                        bool isMy = false;
                         if(shared.getString('id') == bossid){
                           isBoss = true;
+                        }
+                        if(shared.getString('id') == idList[i]){
+                          isMy = true;
                         }
                         ImageProvider c;
                         if (imgList[i] == 'x') {
@@ -250,7 +281,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     color: Colors.red[100],
                                     onPressed: () => {
                                       socketIO.sendMessage('kickip',
-                                          json.encode({'id': idList[i]}))
+                                          json.encode({'id': idList[i], 'room': widget.num}))
                                     },
                                     child: Text(
                                       '강퇴',
@@ -261,10 +292,11 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
-                                visible: isBoss,
+                                visible: isBoss & !isMy,
                                 ),
                                 
-                                Container(
+                                Visibility(
+                                  child: Container(
                                   padding: const EdgeInsets.all(3.0),
                                   width: 42,
                                   child: RaisedButton(
@@ -392,6 +424,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                         textAlign: TextAlign.center),
                                   ),
                                 ),
+                                visible: !isMy,
+                                ),
+                                
                                 Container(
                                   padding: const EdgeInsets.all(3.0),
                                   width: 42,
@@ -936,6 +971,87 @@ class ChatMessageS extends ChatMessage {
               )
             ],
           )
+        ],
+      ),
+    );
+  }
+}
+
+class EnterMessage extends ChatMessage{
+  final Map<String, dynamic> data; // 출력할 메시지
+  final AnimationController animationController; // 리스트뷰에 등록될 때 보여질 효과
+
+  EnterMessage({this.data, this.animationController});
+
+  @override
+  Widget build(BuildContext context) {
+    // 위젯에 애니메이션을 발생하기 위해 SizeTransition을 추가
+    return SizeTransition(
+        // 사용할 애니메이션 효과 설정
+        sizeFactor:
+            CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        axisAlignment: 0.0,
+        // 리스트뷰에 추가될 컨테이너 위젯
+        child: enterMessage(context));
+  }
+
+  Widget enterMessage(BuildContext context) {
+    ImageProvider c;
+    if (data['img'] == 'x') {
+      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+    } else {
+      c = CachedNetworkImageProvider(
+          'http://$myIP:3001/${data['img']}');
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(width: 5,),//center에 안 맞아서
+          CircleAvatar(
+                backgroundImage: c,
+                radius: 17,
+              ),
+          Container(
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .6),
+                padding: const EdgeInsets.all(12.0),
+                
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(data['username']),
+                        Text('${data['mbti']}', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          ' 님이 ',
+                          style: Theme.of(context).textTheme.body2.apply(color: Colors.black,),
+                        ),
+                        Text(
+                          '입장',
+                          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '했습니다.',
+                          style: Theme.of(context).textTheme.body2.apply(color: Colors.black,),
+                        ),
+                      ],
+                    )
+                    
+                  ],
+                )
+                
+              ),
+          
+          
         ],
       ),
     );
