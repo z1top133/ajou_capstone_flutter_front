@@ -62,8 +62,11 @@ class _PostscreenState extends State<Postscreen> {
 
   Widget body(SharedPreferences shared) {
     ImageProvider c;
+
     if (shared.getString('img') == 'x') {
-      c = Image.asset('assets/mbti/' + shared.getString('mbti') + '.png').image;
+      if (shared.getString('mbti') != null)
+        c = Image.asset('assets/mbti/' + shared.getString('mbti') + '.png').image;
+      else c = Image.asset('assets/person.png').image;
     } else {
       c = CachedNetworkImageProvider(
           'http://$myIP:3001/${shared.getString('img')}');

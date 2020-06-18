@@ -8,11 +8,9 @@ import 'package:trafit/util/api_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 
-
-
-
 ApiService apiService = new ApiService();
-Future<List> call(String category) async{
+
+Future<List> call(String category) async {
   return apiService.show_room(category);
 }
 
@@ -21,19 +19,18 @@ class ProductDetails extends StatefulWidget {
   final String _img;
   final String _category;
 
-
   ProductDetails(this._name, this._img, this._category);
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
-class _ProductDetailsState extends State<ProductDetails>{
+class _ProductDetailsState extends State<ProductDetails> {
   bool isFav = false;
   Future<List> rooms;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     rooms = call(widget._category);
   }
@@ -42,19 +39,16 @@ class _ProductDetailsState extends State<ProductDetails>{
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
         future: rooms,
-        builder: (BuildContext context, AsyncSnapshot<List> snapshot){
-          if(snapshot.hasData){
+        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+          if (snapshot.hasData) {
             return body(snapshot.data);
-          }
-          else{
+          } else {
             return Text('Calculating answer...');
           }
-        }
-    );
+        });
   }
 
-
-  Widget body(List rooms){
+  Widget body(List rooms) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -177,16 +171,28 @@ class _ProductDetailsState extends State<ProductDetails>{
                 itemBuilder: (BuildContext context, int index) {
                   if (rooms.length != 0) {
                     Map chatroom = rooms[index];
-                    DateTime startTime = DateTime(0, int.parse(chatroom['start_date'].substring(0,2)), int.parse(chatroom['start_date'].substring(2,4)));
-                    String start = DateFormat('M월d일').format(startTime).toString();
-                    DateTime endTime = DateTime(0, int.parse(chatroom['end_date'].substring(0,2)), int.parse(chatroom['end_date'].substring(2,4)));
+                    DateTime startTime = DateTime(
+                        0,
+                        int.parse(chatroom['start_date'].substring(0, 2)),
+                        int.parse(chatroom['start_date'].substring(2, 4)));
+                    String start =
+                        DateFormat('M월d일').format(startTime).toString();
+                    DateTime endTime = DateTime(
+                        0,
+                        int.parse(chatroom['end_date'].substring(0, 2)),
+                        int.parse(chatroom['end_date'].substring(2, 4)));
                     String end = DateFormat('M월d일').format(endTime).toString();
                     ImageProvider c;
-                    if(chatroom['img'] == 'x'){
-                      c = Image.asset('assets/mbti/' + chatroom['bossmbti']+ '.png').image;
-                    }
-                    else{
-                      c = CachedNetworkImageProvider('http://$myIP:3001/${chatroom['img']}');
+                    if (chatroom['img'] == 'x') {
+                      if (chatroom['bossmbti'] != null)
+                        c = Image.asset(
+                                'assets/mbti/' + chatroom['bossmbti'] + '.png')
+                            .image;
+                      else
+                        c = Image.asset('assets/person.png').image;
+                    } else {
+                      c = CachedNetworkImageProvider(
+                          'http://$myIP:3001/${chatroom['img']}');
                     }
                     return Card(
                       shape: RoundedRectangleBorder(
@@ -195,14 +201,13 @@ class _ProductDetailsState extends State<ProductDetails>{
                       child: ListTile(
                         leading: Column(
                           children: <Widget>[
-                            CircleAvatar(
-                            radius: 25.0,
-                            backgroundImage: c
-                          ),
-                            Text(chatroom['bossmbti'], style: TextStyle(fontSize: 5),)
+                            CircleAvatar(radius: 25.0, backgroundImage: c),
+                            Text(
+                              chatroom['bossmbti'],
+                              style: TextStyle(fontSize: 5),
+                            )
                           ],
                         ),
-                        
                         title: Text("${chatroom['bossname']}님의 게시글"),
                         subtitle: Column(
                           children: <Widget>[
@@ -217,37 +222,28 @@ class _ProductDetailsState extends State<ProductDetails>{
                                 ),
                               ],
                             ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                              elevation: 2.5,      
-                              margin: EdgeInsets.all(3),  
-                              child: Padding(
-                                padding: EdgeInsets.all(4),
-                                child: Row(
+                            Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Row(
                                 children: [
-                                  Text('여행일:  '),
-                                  Text("$start 부터 $end 까지"),
-                                ],                    
-                              ),
-                              )                             
-                            ),
-                            
-                            SizedBox(height: 3.0),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                              elevation: 2.5, 
-                              margin: EdgeInsets.all(3),
-                              child: Padding(
-                                padding: EdgeInsets.all(4),
-                                child: Row(
-                                children: [
-                                  Text('내용:  '),
-                                  Text(chatroom['comment']),
+                                  Text('여행일:  ',
+                                      style: TextStyle(color: Colors.black)),
+                                  Text("$start 부터 $end 까지",
+                                      style: TextStyle(color: Colors.black)),
                                 ],
                               ),
-                              )                            
+                            ),
+                            SizedBox(height: 3.0),
+                            Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Row(
+                                children: [
+                                  Text('내용:  ',
+                                      style: TextStyle(color: Colors.black)),
+                                  Text(chatroom['comment'],
+                                      style: TextStyle(color: Colors.black)),
+                                ],
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
@@ -262,46 +258,54 @@ class _ProductDetailsState extends State<ProductDetails>{
                                       ),
                                     ),
                                     color: Colors.indigo[300],
-                                    
                                     onPressed: () async {
-                                      
-                                      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-                                      Map<String, dynamic> isDeny = await apiService.deny_check(chatroom['room_num'], sharedPreferences.getString('id'));
-                                      if(isDeny['message']){
+                                      SharedPreferences sharedPreferences =
+                                          await SharedPreferences.getInstance();
+                                      Map<String, dynamic> isDeny =
+                                          await apiService.deny_check(
+                                              chatroom['room_num'],
+                                              sharedPreferences
+                                                  .getString('id'));
+                                      if (isDeny['message']) {
                                         showDialog(
-                                          context: context,
-                                          builder: (BuildContext context){
-                                            return AlertDialog(
-                                              title: Text('알림'),
-                                              content: Text('강퇴된 채팅방입니다.'),
-                                              actions: <Widget>[
-                                                FlatButton(
-                                                  onPressed: (){
-                                                    Navigator.of(context).pop();
-                                
-                                                  },
-                                                  child: Text('닫기'),
-                                                )
-                                              ],
-                                            );
-                                          }
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: Text('알림'),
+                                                content: Text('강퇴된 채팅방입니다.'),
+                                                actions: <Widget>[
+                                                  FlatButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: Text('닫기'),
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                      } else {
+                                        String roomNumber = sharedPreferences
+                                            .getString('room_num');
+                                        if (roomNumber == null)
+                                          roomNumber =
+                                              "${chatroom['room_num']}";
+                                        else
+                                          roomNumber = roomNumber +
+                                              ",${chatroom['room_num']}";
+                                        sharedPreferences.setString(
+                                            'room_num', roomNumber);
+
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (BuildContext context) {
+                                              return ChatPage(
+                                                  chatroom['room_num'],
+                                                  widget._category);
+                                            },
+                                          ),
                                         );
                                       }
-                                      else{
-                                        String roomNumber = sharedPreferences.getString('room_num');
-                                      if(roomNumber == null) roomNumber = "${chatroom['room_num']}";
-                                      else roomNumber = roomNumber + ",${chatroom['room_num']}";
-                                      sharedPreferences.setString('room_num', roomNumber);
-
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) {
-                                            return ChatPage(chatroom['room_num'], widget._category);
-                                          },
-                                        ),
-                                      );
-                                      }
-                                      
                                     }),
                               ),
                             ),

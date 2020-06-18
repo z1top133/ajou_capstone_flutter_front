@@ -183,9 +183,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context){
-                      if((response['mbti']==null) | (response['mbti']==''))
-                        return Mbti_ei("hello",0);
-                      else
                         return MainScreen();
                     },
                   ),

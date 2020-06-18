@@ -1,4 +1,8 @@
+import 'package:calendar_strip/calendar_strip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/screens/ChatPage.dart';
 import 'package:trafit/util/MyIP.dart';
@@ -9,16 +13,19 @@ import 'package:trafit/util/travel_spots.dart';
 ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
 String userName;
-String searchKeyword = "" ;
+String searchKeyword = "";
+
 Future<List> call() async {
   //tempDir = await getTemporaryDirectory();
 
-  return apiService.search_room("123","123");
+  return apiService.search_room("123", "123");
 }
 
 class chatSearchScreen extends StatefulWidget {
   final String _keyword;
+
   chatSearchScreen(this._keyword);
+
   @override
   _chatSearchScreenState createState() => _chatSearchScreenState();
 }
@@ -33,6 +40,30 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
 
   List response;
   bool _isComposing = false;
+
+  DateTime _currentDate = DateTime.now().subtract(Duration(days: 2));
+  DateTime _currentDate2 = DateTime.now().subtract(Duration(days: 2));
+  String _currentMonth = DateFormat.yM().format(DateTime.now());
+  DateTime _targetDateTime = DateTime(2020, 6, 3);
+
+//  List<DateTime> _markedDate = [DateTime(2018, 9, 20), DateTime(2018, 10, 11)];
+  static Widget _eventIcon = new Container(
+    decoration: new BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(1000)),
+        border: Border.all(color: Colors.blue, width: 2.0)),
+    child: new Icon(
+      Icons.person,
+      color: Colors.amber,
+    ),
+  );
+
+  EventList<Event> _markedDateMap = new EventList<Event>(
+    events: {},
+  );
+
+  CalendarCarousel _calendarCarousel, _calendarCarouselNoHeader;
+
   @override
   void initState() {
     super.initState();
@@ -41,6 +72,85 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    /// Example Calendar Carousel without header and custom prev & next button
+    _calendarCarouselNoHeader = CalendarCarousel<Event>(
+      todayBorderColor: Colors.indigo[300],
+      onDayPressed: (DateTime date, List<Event> events) {
+        this.setState(() {
+          _currentDate2 = date;
+          if (date.month < 10) {
+            searchMonth = '0' + date.month.toString();
+          } else
+            searchMonth = date.month.toString();
+          if (date.day < 10) {
+            searchDay = '0' + date.day.toString();
+          } else
+            searchDay = date.day.toString();
+          print("asvas" + searchMonth + searchDay);
+//          searchMonth = date.month.toString();
+//          searchDay = date.day.toString();
+//          print(int.parse(searchMonth + searchDay));
+        });
+        events.forEach((event) => print(event.title));
+      },
+      showOnlyCurrentMonthDate: false,
+      staticSixWeekFormat: true,
+      weekendTextStyle: TextStyle(
+        color: Colors.red,
+      ),
+      thisMonthDayBorderColor: Colors.indigo[300],
+      weekFormat: true,
+//      firstDayOfWeek: 4,
+      markedDatesMap: _markedDateMap,
+      height: 80.0,
+      selectedDayBorderColor: Colors.indigo[300],
+      selectedDayButtonColor: Colors.indigo[300],
+      selectedDateTime: _currentDate2,
+      targetDateTime: _targetDateTime,
+      customGridViewPhysics: NeverScrollableScrollPhysics(),
+      markedDateCustomShapeBorder:
+          CircleBorder(side: BorderSide(color: Colors.indigo[300])),
+      markedDateCustomTextStyle: TextStyle(
+        fontSize: 18,
+        color: Colors.indigo[300],
+      ),
+      showHeader: false,
+      todayTextStyle: TextStyle(
+        color: Colors.white,
+      ),
+      // markedDateShowIcon: true,
+      // markedDateIconMaxShown: 2,
+      // markedDateIconBuilder: (event) {
+      //   return event.icon;
+      // },
+      // markedDateMoreShowTotal:
+      //     true,
+      todayButtonColor: Colors.red,
+      selectedDayTextStyle: TextStyle(
+        color: Colors.black,
+      ),
+      minSelectedDate: _currentDate.subtract(Duration(days: 360)),
+      maxSelectedDate: _currentDate.add(Duration(days: 360)),
+      prevDaysTextStyle: TextStyle(
+        fontSize: 16,
+        color: Colors.pinkAccent,
+      ),
+      inactiveDaysTextStyle: TextStyle(
+        color: Colors.red,
+        fontSize: 16,
+      ),
+      onCalendarChanged: (DateTime date) {
+        this.setState(() {
+          _targetDateTime = date;
+          _currentMonth = DateFormat.yM().format(_targetDateTime);
+        });
+      },
+      onDayLongPressed: (DateTime date) {
+        print('${date.month}');
+//        print('long pressed date $date');
+      },
+    );
+
     return FutureBuilder<List>(
         future: rooms,
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
@@ -74,11 +184,9 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                     children: <Widget>[
                       Flexible(
                         child: TextField(
-
                           style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.black,
-
                           ),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(0.0),
@@ -102,12 +210,12 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                           ),
                           maxLines: 1,
                           controller: _searchControl,
-                          onSubmitted: (text){
+                          onSubmitted: (text) {
                             setState(() {
                               searchKeyword = _searchControl.text;
                             });
-
-                          },//이메일 컨트롤러
+                          },
+                          //이메일 컨트롤러
                           onChanged: (text) {
                             searchKeyword = _searchControl.text;
                           },
@@ -132,8 +240,6 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                               setState(() {
                                 searchKeyword = _searchControl.text;
                               });
-
-
                             },
                             tooltip: "Notifications",
                           ),
@@ -144,117 +250,159 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                 ),
               ),
             ),
-            Card(
-              elevation: 6.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5.0),
+//            Card(
+//              elevation: 6.0,
+//              child: Container(
+//                decoration: BoxDecoration(
+//                  color: Colors.white,
+//                  borderRadius: BorderRadius.all(
+//                    Radius.circular(5.0),
+//                  ),
+//                ),
+//                child: Padding(
+//                  padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+//                  child: Row(
+//                    children: [
+//                      Text("원하는 날짜"),
+//                      SizedBox(width: 20),
+//                      DropdownButton<String>(
+//                        value: searchMonth,
+//                        autofocus: false,
+//                        iconSize: 24,
+//                        elevation: 16,
+//                        style: TextStyle(color: Colors.grey),
+//                        underline: Container(
+//                          height: 2,
+//                          color: Colors.grey,
+//                        ),
+//                        onChanged: (String newValue) {
+//                          setState(() {
+//                            searchMonth = newValue;
+//                          });
+//                        },
+//                        items: <String>[
+//                          '01',
+//                          '02',
+//                          '03',
+//                          '04',
+//                          '05',
+//                          '06',
+//                          '07',
+//                          '08',
+//                          '09',
+//                          '10',
+//                          '11',
+//                          '12'
+//                        ].map<DropdownMenuItem<String>>((String value) {
+//                          return DropdownMenuItem<String>(
+//                            value: value,
+//                            child: Text(value),
+//                          );
+//                        }).toList(),
+//                      ),
+//                      SizedBox(width: 20),
+//                      DropdownButton<String>(
+//                        value: searchDay,
+//                        autofocus: false,
+//                        iconSize: 24,
+//                        elevation: 16,
+//                        style: TextStyle(color: Colors.grey),
+//                        underline: Container(
+//                          height: 2,
+//                          color: Colors.grey,
+//                        ),
+//                        onChanged: (String newValue) {
+//                          setState(() {
+//                            searchDay = newValue;
+//                          });
+//                        },
+//                        items: <String>[
+//                          '01',
+//                          '02',
+//                          '03',
+//                          '04',
+//                          '05',
+//                          '06',
+//                          '07',
+//                          '08',
+//                          '09',
+//                          '10',
+//                          '11',
+//                          '12',
+//                          '13',
+//                          '14',
+//                          '15',
+//                          '16',
+//                          '17',
+//                          '18',
+//                          '19',
+//                          '20',
+//                          '21',
+//                          '22',
+//                          '23',
+//                          '24',
+//                          '25',
+//                          '26',
+//                          '27',
+//                          '28',
+//                          '29',
+//                          '30',
+//                          '31'
+//                        ].map<DropdownMenuItem<String>>((String value) {
+//                          return DropdownMenuItem<String>(
+//                            value: value,
+//                            child: Text(value),
+//                          );
+//                        }).toList(),
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              ),
+//            ),
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: 10.0,
+                      bottom: 10.0,
+                      left: 16.0,
+                      right: 16.0,
+                    ),
+                    child: new Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: Row(
+                          children: [
+                            Text(
+                              _currentMonth,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 21.0,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "날짜를 선택하세요",
+                              style: TextStyle(color: Colors.grey),
+                            )
+                          ],
+                        )),
+                      ],
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                  child: Row(
-                    children: [
-                      Text("원하는 날짜"),
-                      SizedBox(width: 20),
-                      DropdownButton<String>(
-                        value: searchMonth,
-                        autofocus: false,
-                        iconSize: 24,
-                        elevation: 16,
-                        style: TextStyle(color: Colors.grey),
-                        underline: Container(
-                          height: 2,
-                          color: Colors.grey,
-                        ),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            searchMonth = newValue;
-                          });
-                        },
-                        items: <String>[
-                          '01',
-                          '02',
-                          '03',
-                          '04',
-                          '05',
-                          '06',
-                          '07',
-                          '08',
-                          '09',
-                          '10',
-                          '11',
-                          '12'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
-                      SizedBox(width: 20),
-                      DropdownButton<String>(
-                        value: searchDay,
-                        autofocus: false,
-                        iconSize: 24,
-                        elevation: 16,
-                        style: TextStyle(color: Colors.grey),
-                        underline: Container(
-                          height: 2,
-                          color: Colors.grey,
-                        ),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            searchDay = newValue;
-                          });
-                        },
-                        items: <String>[
-                          '01',
-                          '02',
-                          '03',
-                          '04',
-                          '05',
-                          '06',
-                          '07',
-                          '08',
-                          '09',
-                          '10',
-                          '11',
-                          '12',
-                          '13',
-                          '14',
-                          '15',
-                          '16',
-                          '17',
-                          '18',
-                          '19',
-                          '20',
-                          '21',
-                          '22',
-                          '23',
-                          '24',
-                          '25',
-                          '26',
-                          '27',
-                          '28',
-                          '29',
-                          '30',
-                          '31'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: _calendarCarouselNoHeader,
+                  ), //
+                ],
               ),
             ),
-            SizedBox(height: 5.0),
             Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
@@ -272,15 +420,30 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
               itemCount: rooms == null ? 0 : rooms.length,
               itemBuilder: (BuildContext context, int index) {
                 Map chatroom = rooms[index];
-                if(chatroom['start_date'] == null) chatroom['start_date'] = '0101';
-                if(chatroom['end_date'] == null) chatroom['end_date'] = '0101';
-                if (rooms.length != 0 && chatroom['comment'].toString().contains(searchKeyword) && int.parse(chatroom['start_date'].toString()) <= int.parse(searchMonth+searchDay) && int.parse(chatroom['end_date'].toString()) >= int.parse(searchMonth+searchDay) ) {
+                if (chatroom['start_date'] == null)
+                  chatroom['start_date'] = '0101';
+                if (chatroom['end_date'] == null) chatroom['end_date'] = '0101';
+                if (rooms.length != 0 &&
+                    chatroom['comment'].toString().contains(searchKeyword) &&
+                    int.parse(chatroom['start_date'].toString()) <=
+                        int.parse(searchMonth + searchDay) &&
+                    int.parse(chatroom['end_date'].toString()) >=
+                        int.parse(searchMonth + searchDay)) {
+                  DateTime startTime = DateTime(0, int.parse(chatroom['start_date'].substring(0,2)), int.parse(chatroom['start_date'].substring(2,4)));
+                  String start = DateFormat('M월d일').format(startTime).toString();
+                  DateTime endTime = DateTime(0, int.parse(chatroom['end_date'].substring(0,2)), int.parse(chatroom['end_date'].substring(2,4)));
+                  String end = DateFormat('M월d일').format(endTime).toString();
+                  print("asvas" + searchMonth + searchDay);
                   ImageProvider c;
-                  String spot = travel_spots[int.parse(chatroom['category'])-1]['name'];
+                  String spot =
+                      travel_spots[int.parse(chatroom['category']) - 1]['name'];
                   if (chatroom['img'] == 'x') {
-                    c = Image.asset(
-                            'assets/mbti/' + chatroom['bossmbti'] + '.png')
-                        .image;
+                    if (chatroom['bossmbti'] != null)
+                      c = Image.asset(
+                              'assets/mbti/' + chatroom['bossmbti'] + '.png')
+                          .image;
+                    else
+                      c = Image.asset('person.png').image;
                   } else {
                     c = CachedNetworkImageProvider(
                         'http://$myIP:3001/${chatroom['img']}');
@@ -306,35 +469,24 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                             ],
                           ),
                           SizedBox(height: 10),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            elevation: 2.5,
-                            margin: EdgeInsets.all(3),
-                            child: Padding(
+                         Padding(
                               padding: const EdgeInsets.all(4),
                               child: Row(
                                 children: [
-                                  Text('여행지:  '),
-                                  Text("$spot"),
+                                  Text('여행지:  ',style: TextStyle(color: Colors.black)),
+                                  Text("$spot",style: TextStyle(color: Colors.black)),
                                 ],
                               ),
-                            ),
+
                           ),
-                          Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              elevation: 2.5,
-                              margin: EdgeInsets.all(3),
-                              child: Padding(
-                                padding: EdgeInsets.all(4),
-                                child: Row(
-                                  children: [
-                                    Text('여행일:  '),
-                                    Text("${chatroom['start_date']} ~ ${chatroom['end_date']}"),
-                                  ],
-                                ),
-                              )
+                          Padding(
+                            padding: EdgeInsets.all(4),
+                            child: Row(
+                              children: [
+                                Text('여행일:  ',style: TextStyle(color: Colors.black)),
+                                Text("$start 부터 $end 까지",style: TextStyle(color: Colors.black)),
+                              ],
+                            ),
                           ),
 //                          Card(
 //                            child: Row(
@@ -344,21 +496,21 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
 //                              ],
 //                            ),
 //                          ),
-                          Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              elevation: 2.5,
-                              margin: EdgeInsets.all(3),
-                              child: Padding(
-                                padding: EdgeInsets.all(4),
-                                child: Row(
-                                  children: [
-                                    Text('내용:  '),
-                                    Text(chatroom['comment']),
-                                  ],
-                                ),
-                              )
-                          ),
+                         Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Row(
+                                children: [
+                                  Text('내용:  ',
+                                  style: TextStyle(color: Colors.black)),
+                                  Text(
+                                    chatroom['comment'],
+                                    style: TextStyle(
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
                             child: Container(
@@ -377,7 +529,8 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (BuildContext context) {
-                                          return ChatPage(chatroom['room_num'], chatroom['category']);
+                                          return ChatPage(chatroom['room_num'],
+                                              chatroom['category']);
                                         },
                                       ),
                                     );
@@ -400,6 +553,6 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
   }
 }
 
-void _handleSubmitted(String text){
+void _handleSubmitted(String text) {
   searchKeyword = text;
 }
