@@ -203,7 +203,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           children: <Widget>[
                             CircleAvatar(radius: 25.0, backgroundImage: c),
                             Text(
-                              chatroom['bossmbti'],
+                              chatroom['bossmbti'] != null ? chatroom['bossmbti'] : 'x',
                               style: TextStyle(fontSize: 5),
                             )
                           ],

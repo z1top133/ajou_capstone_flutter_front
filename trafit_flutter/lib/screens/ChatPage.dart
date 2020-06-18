@@ -250,8 +250,14 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     
     ImageProvider c;
     if (img == 'x') {
-      c = Image.asset('assets/mbti/' + bossmbti + '.png').image;
-    } else {
+      if(bossmbti != null){
+        c = Image.asset('assets/mbti/' + bossmbti + '.png').image;
+      }
+      else{
+        c = Image.asset('assets/person.png').image;
+      }
+    }
+    else {
       c = CachedNetworkImageProvider('http://$myIP:3001/$img');
     }
     return Scaffold(
@@ -287,8 +293,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                         }
                         ImageProvider c;
                         if (imgList[i] == 'x') {
-                          c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
-                        } else {
+                          if(mbtiList[i] != null){
+                            c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
+                          }
+                            c = AssetImage('assets/person.png');
+                        }
+                        else {
                           c = CachedNetworkImageProvider(
                               'http://$myIP:3001/${imgList[i]}');
                         }
@@ -326,7 +336,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                       ),
                                       
                                       Text(
-                                        mbtiList[i],
+                                        mbtiList[i] != null ? mbtiList[i] : 'x',
                                         style: TextStyle(
                                             color: Colors.green,
                                             fontSize: 7,
@@ -561,7 +571,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    bossmbti,
+                    bossmbti != null ? bossmbti : 'x',
                     style: TextStyle(fontSize: 10, color: Colors.green),
                   )
                 ],
@@ -698,7 +708,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
         itemBuilder: (_, i) {
           ImageProvider c;
           if(comments[i]['img'] == 'x'){
+            if(comments[i]['mbti'] != null){
             c = AssetImage('assets/mbti/' + comments[i]['mbti'] + '.png');
+            }
+            else{
+              c = AssetImage('assets/person.png');
+            }
           }
           else{
             c = CachedNetworkImageProvider('http://$myIP:3001/${comments[i]['img']}');
@@ -715,7 +730,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                       backgroundImage: c,
                     ),
                     Text(comments[i]['username'], style: TextStyle(fontSize: 9),),
-                    Text(comments[i]['mbti'], style: TextStyle(fontSize: 7),)
+                    Text(comments[i]['mbti'] != null ? comments[i]['mbti']:'x', style: TextStyle(fontSize: 7),)
                   ],
                 ),
                 SizedBox(width: 15,),
@@ -908,7 +923,12 @@ class ChatMessageR extends ChatMessage {
   Widget receiveMessage(BuildContext context) {
     ImageProvider c;
     if (data['img'] == 'x') {
-      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      if(data['mbti'] != null){
+        c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      }
+      else{
+        c = AssetImage('assets/person.png');
+      }
     } else {
       c = CachedNetworkImageProvider('http://$myIP:3001/${data['img']}');
     }
@@ -940,7 +960,7 @@ class ChatMessageR extends ChatMessage {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                data['mbti'],
+                data['mbti'] ? data['mbti'] : 'x',
                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
               ),
               Container(
@@ -990,7 +1010,13 @@ class ChatMessageS extends ChatMessage {
   Widget sendMessage(BuildContext context) {
     ImageProvider c;
     if (shared.getString('img') == 'x') {
-      c = AssetImage('assets/mbti/' + shared.getString('mbti') + '.png');
+      if(shared.getString('mbti') != null){
+        c = AssetImage('assets/mbti/' + shared.getString('mbti') + '.png');
+      }
+      else{
+        c = AssetImage('assets/person.png');
+      }
+
     } else {
       c = CachedNetworkImageProvider(
           'http://$myIP:3001/${shared.getString('img')}');
@@ -1004,7 +1030,7 @@ class ChatMessageS extends ChatMessage {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Text(
-                shared.getString('mbti'),
+                shared.getString('mbti') != null ? shared.getString('mbti'): 'x',
                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
               ),
               Container(
@@ -1073,10 +1099,14 @@ class EnterMessage extends ChatMessage{
   Widget enterMessage(BuildContext context) {
     ImageProvider c;
     if (data['img'] == 'x') {
-      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      if(data['mbti'] != null){
+        c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      }
+      else{
+        c = AssetImage('assets/person.png');
+      }
     } else {
-      c = CachedNetworkImageProvider(
-          'http://$myIP:3001/${data['img']}');
+      c = CachedNetworkImageProvider('http://$myIP:3001/${data['img']}');
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
@@ -1101,7 +1131,7 @@ class EnterMessage extends ChatMessage{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(data['username']),
-                        Text('${data['mbti']}', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
                       ],
                     ),
                     Row(
@@ -1154,10 +1184,14 @@ class KickMessage extends ChatMessage{
   Widget kickMessage(BuildContext context) {
     ImageProvider c;
     if (data['img'] == 'x') {
-      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      if(data['mbti'] != null){
+        c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      }
+      else{
+        c = AssetImage('assets/person.png');
+      }
     } else {
-      c = CachedNetworkImageProvider(
-          'http://$myIP:3001/${data['img']}');
+      c = CachedNetworkImageProvider('http://$myIP:3001/${data['img']}');
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
@@ -1182,7 +1216,7 @@ class KickMessage extends ChatMessage{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(data['username']),
-                        Text('${data['mbti']}', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
                       ],
                     ),
                     Row(
@@ -1235,10 +1269,14 @@ class LeaveMessage extends ChatMessage{
   Widget leaveMessage(BuildContext context) {
     ImageProvider c;
     if (data['img'] == 'x') {
-      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      if(data['mbti'] != null){
+        c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+      }
+      else{
+        c = AssetImage('assets/person.png');
+      }
     } else {
-      c = CachedNetworkImageProvider(
-          'http://$myIP:3001/${data['img']}');
+      c = CachedNetworkImageProvider('http://$myIP:3001/${data['img']}');
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
@@ -1263,7 +1301,7 @@ class LeaveMessage extends ChatMessage{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(data['username']),
-                        Text('${data['mbti']}', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
                       ],
                     ),
                     Row(
