@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:trafit/util/my_flutter_app_icons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,7 +22,7 @@ List<String> idList;
 List<String> nameList;
 List<String> mbtiList;
 List<String> imgList;
-List<String> tokenList;
+// List<String> tokenList;
 String bossname;
 String bossid;
 String bossmbti;
@@ -30,10 +30,10 @@ String img;
 String kickID;
 bool hasData = false;
 List comments;
-final FirebaseMessaging _firebaseMessaging  = FirebaseMessaging();
+// final FirebaseMessaging _firebaseMessaging  = FirebaseMessaging();
 
 Future<List> call(int num) async {
-  String _token = await _firebaseMessaging.getToken();
+  // String _token = await _firebaseMessaging.getToken();
   shared = await SharedPreferences.getInstance();
   load = await DBHelper().getMessage(num, shared.getString('id'));
   if(load != null){
@@ -47,7 +47,7 @@ Future<List> call(int num) async {
         'mbti': shared.getString('mbti'),
         'img': shared.getString('img'),
         'username': shared.getString('username'),
-        'token' : await _firebaseMessaging.getToken()
+        // 'token' : await _firebaseMessaging.getToken()
       }));
   chatInfo = await apiService.room_info(num);
   return apiService.enter_room(
@@ -56,7 +56,7 @@ Future<List> call(int num) async {
       shared.getString('username'),
       shared.getString('mbti'),
       shared.getString('img'),
-      _token);
+      );
 }
 
 // IOS용 테마
@@ -184,7 +184,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
         mbtiList.add(data['mbti']);
         nameList.add(data['username']);
         imgList.add(data['img']);
-        tokenList.add(data['token']);
+        // tokenList.add(data['token']);
         hasData = true;
       }
     });
@@ -204,19 +204,19 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             List<String> nameListt = new List<String>();
             List<String> mbtiListt = new List<String>();
             List<String> imgListt = new List<String>();
-            List<String> tokenListt = new List<String>();
+            // List<String> tokenListt = new List<String>();
             for(int i=0; i<snapshot.data.length; i++){
               idListt.add(snapshot.data[i]['id']);
               nameListt.add(snapshot.data[i]['username']);
               mbtiListt.add(snapshot.data[i]['mbti']);
               imgListt.add(snapshot.data[i]['img']);
-              tokenListt.add(snapshot.data[i]['token']);
+              // tokenListt.add(snapshot.data[i]['token']);
             }
             idList = idListt;
             nameList = nameListt;
             mbtiList = mbtiListt;
             imgList = imgListt;
-            tokenList = tokenListt;
+            // tokenList = tokenListt;
             bossname = chatInfo['bossname'];
             bossid = chatInfo['boss'];
             bossmbti = chatInfo['bossmbti'];
@@ -843,9 +843,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
       'mbti': shared.getString('mbti'),
       'img': shared.getString('img')
     };
-    for(int i=0; i< tokenList.length; i++){
-        apiService.sendMessage(tokenList[i], text, data['username']);
-    }
+    // for(int i=0; i< tokenList.length; i++){
+    //     apiService.sendMessage(tokenList[i], text, data['username']);
+    // }
 
 
 

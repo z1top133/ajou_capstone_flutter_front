@@ -169,14 +169,14 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  Future<List> enter_room(int num, String id, String username, String mbti, String img, String token) async{
+  Future<List> enter_room(int num, String id, String username, String mbti, String img) async{
     Map<String, dynamic> pass = {//변수를 json으로
       'id': id,
       'username': username,
       'mbti': mbti,
       'room': num,
       'img': img,
-      'token': token
+  
     };
 
     Response response = await post(_hostname()+'/enter_room', headers: headers1, body: jsonEncode(pass));
@@ -198,9 +198,8 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
-  sendMessage(_token, _message, _name) async{
+  sendMessage(_message, _name) async{
     Map<String, dynamic> pass = {
-      'token': _token,
       'message' : _message,
       'name' : _name
     };
