@@ -122,7 +122,6 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     });
 
     socketIO.subscribe('kickip_message', (jsonData) {
-      print('kicked');
       socketIO.sendMessage('kicked',
           json.encode({'id': shared.getString('id'), 'room': 100000}));
       Navigator.of(context).pop();
@@ -136,6 +135,35 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
       showDialog(
           context: context,
           builder: (BuildContext context) => buildKickDialog(context));
+    });
+    
+    socketIO.subscribe('kick_message1', (jsonData){
+      Map<String, dynamic> data = json.decode(jsonData);
+
+      KickMessage message = KickMessage(data: data, animationController: AnimationController(
+        duration: Duration(milliseconds: 700),
+        vsync: this
+      ));
+
+      setState(() {
+        _message.insert(0, message);
+      });
+      message.animationController.forward();
+
+    });
+
+    socketIO.subscribe('receive_leave', (jsonData){
+      Map<String, dynamic> data = json.decode(jsonData);
+
+      LeaveMessage message = LeaveMessage(data: data, animationController: AnimationController(
+        duration: Duration(milliseconds: 700),
+        vsync: this
+      ));
+
+      setState(() {
+        _message.insert(0, message);
+      });
+      message.animationController.forward();
     });
 
     socketIO.subscribe('receive_join', (jsonData) {
@@ -317,7 +345,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     icon: Icon(MyFlutterApp.ban),
                                     onPressed: () => {
                                       socketIO.sendMessage('kickip',
-                                          json.encode({'id': idList[i], 'room': widget.num}))
+                                          json.encode({'id': idList[i], 'room': widget.num, 'username': nameList[i], 'mbti': mbtiList[i], 'img': imgList[i]}))
                                     },
                                     
                                   ),
@@ -486,8 +514,10 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                     }             
                     
                     shared.setString('room_num', update_room);
-                                          
+                    socketIO.sendMessage('send_leave', jsonEncode({'room': widget.num, 'id': shared.getString('id'), 'username': shared.getString('username'), 'mbti': shared.getString('mbti'), 'img': shared.getString('img')}));                      
                     apiService.leaveRoom(shared.getString('id'), update_room, widget.num, bossid == shared.getString('id'));
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
                   },
                   child: Icon(Icons.exit_to_app),
                 )
@@ -504,9 +534,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
               Icons.keyboard_backspace,
             ),
             onPressed: () {
-              //DBHelper().deleteAllMessage();
+              
               DBHelper().createData(_message);
-              //print(_message);
+              
               Navigator.of(context).pop();
             }
           ),
@@ -1086,6 +1116,168 @@ class EnterMessage extends ChatMessage{
                         ),
                         Text(
                           '했습니다.',
+                          style: Theme.of(context).textTheme.body2.apply(color: Colors.black,),
+                        ),
+                      ],
+                    )
+                    
+                  ],
+                )
+                
+              ),
+          
+          
+        ],
+      ),
+    );
+  }
+}
+
+class KickMessage extends ChatMessage{
+  final Map<String, dynamic> data; // 출력할 메시지
+  final AnimationController animationController; // 리스트뷰에 등록될 때 보여질 효과
+
+  KickMessage({this.data, this.animationController});
+
+  @override
+  Widget build(BuildContext context) {
+    // 위젯에 애니메이션을 발생하기 위해 SizeTransition을 추가
+    return SizeTransition(
+        // 사용할 애니메이션 효과 설정
+        sizeFactor:
+            CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        axisAlignment: 0.0,
+        // 리스트뷰에 추가될 컨테이너 위젯
+        child: kickMessage(context));
+  }
+
+  Widget kickMessage(BuildContext context) {
+    ImageProvider c;
+    if (data['img'] == 'x') {
+      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+    } else {
+      c = CachedNetworkImageProvider(
+          'http://$myIP:3001/${data['img']}');
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(width: 5,),//center에 안 맞아서
+          CircleAvatar(
+                backgroundImage: c,
+                radius: 17,
+              ),
+          Container(
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .6),
+                padding: const EdgeInsets.all(12.0),
+                
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(data['username']),
+                        Text('${data['mbti']}', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          ' 님이 ',
+                          style: Theme.of(context).textTheme.body2.apply(color: Colors.black,),
+                        ),
+                        Text(
+                          '강퇴',
+                          style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '되었습니다.',
+                          style: Theme.of(context).textTheme.body2.apply(color: Colors.black,),
+                        ),
+                      ],
+                    )
+                    
+                  ],
+                )
+                
+              ),
+          
+          
+        ],
+      ),
+    );
+  }
+}
+
+class LeaveMessage extends ChatMessage{
+  final Map<String, dynamic> data; // 출력할 메시지
+  final AnimationController animationController; // 리스트뷰에 등록될 때 보여질 효과
+
+  LeaveMessage({this.data, this.animationController});
+
+  @override
+  Widget build(BuildContext context) {
+    // 위젯에 애니메이션을 발생하기 위해 SizeTransition을 추가
+    return SizeTransition(
+        // 사용할 애니메이션 효과 설정
+        sizeFactor:
+            CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        axisAlignment: 0.0,
+        // 리스트뷰에 추가될 컨테이너 위젯
+        child: leaveMessage(context));
+  }
+
+  Widget leaveMessage(BuildContext context) {
+    ImageProvider c;
+    if (data['img'] == 'x') {
+      c = AssetImage('assets/mbti/' + data['mbti'] + '.png');
+    } else {
+      c = CachedNetworkImageProvider(
+          'http://$myIP:3001/${data['img']}');
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(width: 5,),//center에 안 맞아서
+          CircleAvatar(
+                backgroundImage: c,
+                radius: 17,
+              ),
+          Container(
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .6),
+                padding: const EdgeInsets.all(12.0),
+                
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(data['username']),
+                        Text('${data['mbti']}', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          ' 님이 ',
+                          style: Theme.of(context).textTheme.body2.apply(color: Colors.black,),
+                        ),
+                        Text(
+                          '퇴장',
+                          style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '하셨습니다.',
                           style: Theme.of(context).textTheme.body2.apply(color: Colors.black,),
                         ),
                       ],
