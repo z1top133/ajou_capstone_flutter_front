@@ -12,7 +12,9 @@ import 'package:trafit/util/MySocket.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/util/travel_spots.dart';
+import 'package:trafit/util/db_helper.dart';
 
+List<Map<String, dynamic>> load;
 SharedPreferences shared;
 ApiService apiService = new ApiService();
 Map<String, dynamic> chatInfo;
@@ -33,6 +35,10 @@ final FirebaseMessaging _firebaseMessaging  = FirebaseMessaging();
 Future<List> call(int num) async {
   String _token = await _firebaseMessaging.getToken();
   shared = await SharedPreferences.getInstance();
+  load = await DBHelper().getMessage(num, shared.getString('id'));
+  if(load != null){
+    print(load);
+  }
   socketIO.sendMessage(
       'joinRoom',
       json.encode({
@@ -90,6 +96,9 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   @override
   void initState() {
     userListF = call(widget.num);
+    /*for(int i=0;i<_message.length;i++){
+      _message[i].animationController.forward();
+    }*/
     socketIO.subscribe('receive_message', (jsonData) {
       //Convert the JSON data received into a Map
       Map<String, dynamic> data = json.decode(jsonData);
@@ -131,7 +140,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
 
     socketIO.subscribe('receive_join', (jsonData) {
       Map<String, dynamic> data = json.decode(jsonData);
-      print(data);
+      
       EnterMessage message = EnterMessage(data: data, animationController: AnimationController(
           duration: Duration(milliseconds: 700),
           vsync: this,
@@ -196,6 +205,20 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
   Widget body() {
     String reportType = '욕설';
     TextEditingController reportController = new TextEditingController();
+    if(load != null){
+      for(int i=0; i<load.length; i++){
+      if(load[i]['message']== null){
+        _message.add(EnterMessage(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5)),));
+      }
+      else if(load[i]['id'] == shared.getString('id')){
+        _message.add(ChatMessageS(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5))));
+      }
+      else{
+        _message.add(ChatMessageR(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5))));
+      }
+      _message[i].animationController.forward();
+    }
+    }
     
     ImageProvider c;
     if (img == 'x') {
@@ -480,7 +503,13 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             icon: Icon(
               Icons.keyboard_backspace,
             ),
-            onPressed: () => {Navigator.of(context).pop()}),
+            onPressed: () {
+              //DBHelper().deleteAllMessage();
+              DBHelper().createData(_message);
+              //print(_message);
+              Navigator.of(context).pop();
+            }
+          ),
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
