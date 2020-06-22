@@ -293,7 +293,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 toastLength: Toast.LENGTH_LONG,
                               );
                             }
-                            else emailCheck = true;
+                            else {
+                              emailCheck = true;
+                              Fluttertoast.showToast(
+                                msg: "이메일을 확인하세요!",
+                                toastLength: Toast.LENGTH_LONG,
+                              );
+                            }
                             if(emailCheck) {
                               String abc = await apiService.emailAuth(_emailControl.text);
                               print(abc);
