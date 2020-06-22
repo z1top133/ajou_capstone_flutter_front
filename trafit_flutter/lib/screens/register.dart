@@ -288,13 +288,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onPressed: () async {
                             String ajouEmail = _emailControl.text;
                             if(ajouEmail.split('@')[1] != 'ajou.ac.kr'){
-                              emailCheck = true;
                               Fluttertoast.showToast(
                                 msg: "학교 이메일을 입력하세요!",
                                 toastLength: Toast.LENGTH_LONG,
                               );
-
                             }
+                            else emailCheck = true;
                             if(emailCheck) {
                               String abc = await apiService.emailAuth(_emailControl.text);
                               print(abc);
