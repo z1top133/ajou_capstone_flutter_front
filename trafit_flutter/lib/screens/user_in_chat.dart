@@ -155,9 +155,16 @@ class _userInChatScreenState extends State<userInChatScreen> {
                             ['name'];
                     ImageProvider c;
                     if (chatroom['img'] == 'x') {
-                      c = Image.asset(
-                              'assets/mbti/' + chatroom['bossmbti'] + '.png')
-                          .image;
+                      if(chatroom['bossmbti'] != null){
+                        c = Image.asset(
+                            'assets/mbti/' + chatroom['bossmbti'] + '.png')
+                            .image;
+                      }
+                      else{
+                        c = Image.asset(
+                            'assets/person.png')
+                            .image;
+                      }
                     } else {
                       c = CachedNetworkImageProvider(
                           'http://$myIP:3001/${chatroom['img']}');

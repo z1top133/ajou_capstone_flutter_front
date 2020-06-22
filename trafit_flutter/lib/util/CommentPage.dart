@@ -31,7 +31,12 @@ class CommentScreen extends State<CommentPage>{
         itemBuilder: (_, i) {
           ImageProvider c;
           if(comments[i]['img'] == 'x'){
-            c = AssetImage('assets/mbti/' + comments[i]['mbti'] + '.png');
+            if(comments[i]['mbti'] != null){
+              c = AssetImage('assets/mbti/' + comments[i]['mbti'] + '.png');
+            }
+            else{
+              c = AssetImage('assets/person.png');
+            }
           }
           else{
             c = CachedNetworkImageProvider('http://$myIP:3001/${comments[i]['img']}');
@@ -48,7 +53,7 @@ class CommentScreen extends State<CommentPage>{
                       backgroundImage: c,
                     ),
                     Text(comments[i]['username'], style: TextStyle(fontSize: 9),),
-                    Text(comments[i]['mbti'], style: TextStyle(fontSize: 7),)
+                    Text(comments[i]['mbti'] != null ? comments[i]['mbti']: 'x', style: TextStyle(fontSize: 7),)
                   ],
                 ),
                 SizedBox(width: 15,),

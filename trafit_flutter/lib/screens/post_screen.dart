@@ -194,7 +194,7 @@ class _PostscreenState extends State<Postscreen> {
                             children: [
                               DropdownButton<String>(
                                 value: startMonth,
-                                autofocus: true,
+                                autofocus: false,
                                 iconSize: 24,
                                 elevation: 16,
                                 style: TextStyle(color: Colors.grey),
@@ -230,7 +230,7 @@ class _PostscreenState extends State<Postscreen> {
                               SizedBox(width: 40),
                               DropdownButton<String>(
                                 value: startDay,
-                                autofocus: true,
+                                autofocus: false,
                                 iconSize: 24,
                                 elevation: 16,
                                 style: TextStyle(color: Colors.grey),
@@ -307,7 +307,7 @@ class _PostscreenState extends State<Postscreen> {
                             children: [
                               DropdownButton<String>(
                                 value: endMonth,
-                                autofocus: true,
+                                autofocus: false,
                                 iconSize: 24,
                                 elevation: 16,
                                 style: TextStyle(color: Colors.grey),
@@ -343,7 +343,7 @@ class _PostscreenState extends State<Postscreen> {
                               SizedBox(width: 40),
                               DropdownButton<String>(
                                 value: endDay,
-                                autofocus: true,
+                                autofocus: false,
                                 iconSize: 24,
                                 elevation: 16,
                                 style: TextStyle(color: Colors.grey),

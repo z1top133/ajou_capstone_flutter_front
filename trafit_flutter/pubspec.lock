@@ -91,7 +91,7 @@ packages:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "2.1.4"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -274,7 +274,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.13"
+    version: "2.1.12"
   image_picker:
     dependency: "direct main"
     description:
@@ -379,7 +379,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.4"
+    version: "2.4.0"
   phone_number:
     dependency: transitive
     description:
@@ -587,7 +587,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.7.0"
+    version: "3.6.1"
   yaml:
     dependency: transitive
     description:

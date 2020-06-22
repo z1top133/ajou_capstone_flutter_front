@@ -417,7 +417,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(width: 15.0),
                     DropdownButton<String>(
                       value: dropdownValue_gender,
-                      autofocus: true,
+                      autofocus: false,
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),
@@ -471,7 +471,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(width: 35.0),
                     DropdownButton<String>(
                       value: dropdownValue_age,
-                      autofocus: true,
+                      autofocus: false,
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),

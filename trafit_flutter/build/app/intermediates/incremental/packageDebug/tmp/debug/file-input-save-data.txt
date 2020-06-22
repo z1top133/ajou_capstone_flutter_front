@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Jun 18 20:46:23 KST 2020
+#Mon Jun 22 18:39:26 KST 2020
 20.base=C\:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 143.base=C\:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 237.path=flutter_assets/packages/country_pickers/assets/mm.png
@@ -145,7 +145,7 @@
 50.baseType=DIRECTORY
 120.baseType=DIRECTORY
 16.set=ASSET
-265.path=flutter_assets/packages/country_pickers/assets/gp.png
+265.path=flutter_assets/assets/person.png
 298.path=flutter_assets/packages/country_pickers/assets/gq.png
 295.set=ASSET
 81.base=C\:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
@@ -915,7 +915,7 @@
 174.set=ASSET
 233.path=flutter_assets/packages/country_pickers/assets/eu.png
 26.set=ASSET
-266.path=flutter_assets/assets/person.png
+266.path=flutter_assets/packages/country_pickers/assets/gp.png
 299.path=flutter_assets/packages/country_pickers/assets/mz.png
 82.base=C\:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 129.path=flutter_assets/packages/country_pickers/assets/fr.png
