@@ -14,7 +14,8 @@ ApiService apiService = new ApiService();
 SharedPreferences sharedPreferences;
 String userName;
 String searchKeyword = "";
-
+String searchMonth;
+String searchDay;
 Future<List> call() async {
   //tempDir = await getTemporaryDirectory();
 
@@ -35,8 +36,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
   Future<List> rooms;
   Future<List> rooms2;
   final TextEditingController _searchControl = new TextEditingController();
-  String searchMonth = '01';
-  String searchDay = '01';
+
 
   List response;
   bool _isComposing = false;
@@ -66,6 +66,14 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
 
   @override
   void initState() {
+    DateTime now = DateTime.now();
+    if(now.month<10)searchMonth =DateFormat('0M').format(now).toString();
+    else searchMonth =DateFormat('M').format(now).toString();
+
+    if(now.day<10)searchDay =DateFormat('0d').format(now).toString();
+    else searchDay =DateFormat('d').format(now).toString();
+
+    print(searchMonth + searchDay);
     super.initState();
     rooms = call();
   }
@@ -422,7 +430,9 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                 Map chatroom = rooms[index];
                 if (chatroom['start_date'] == null)
                   chatroom['start_date'] = '0101';
-                if (chatroom['end_date'] == null) chatroom['end_date'] = '0101';
+                if (chatroom['end_date'] == null){
+                  chatroom['end_date'] = '1231';
+                }
                 if (rooms.length != 0 &&
                     chatroom['comment'].toString().contains(searchKeyword) &&
                     int.parse(chatroom['start_date'].toString()) <=

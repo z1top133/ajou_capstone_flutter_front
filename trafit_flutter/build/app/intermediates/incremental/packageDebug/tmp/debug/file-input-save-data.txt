@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Jun 22 18:39:26 KST 2020
+#Mon Jun 22 19:29:20 KST 2020
 20.base=C\:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 143.base=C\:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 237.path=flutter_assets/packages/country_pickers/assets/mm.png
