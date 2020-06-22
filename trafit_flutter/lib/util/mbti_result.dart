@@ -40,7 +40,7 @@ List mbti_result = [
     "mbti": "ISFP",
     "keyword": "성인군자형",
     "comment": "따뜻한 감성을 가지고 있는 겸손한 사람들",
-    "hit_it_off":"RNFJ,ESFJ,ESTJ",
+    "hit_it_off":"ESFJ,ESTJ",
     "color": Colors.yellow
   },
   {

@@ -36,9 +36,7 @@ Future<List> call(int num) async {
   String _token = await _firebaseMessaging.getToken();
   shared = await SharedPreferences.getInstance();
   load = await DBHelper().getMessage(num, shared.getString('id'));
-  if(load != null){
-    print(load);
-  }
+
   socketIO.sendMessage(
       'joinRoom',
       json.encode({
@@ -50,6 +48,7 @@ Future<List> call(int num) async {
         'token' : await _firebaseMessaging.getToken()
       }));
   chatInfo = await apiService.room_info(num);
+  print(chatInfo);
   return apiService.enter_room(
       num,
       shared.getString('id'),
@@ -217,11 +216,11 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             mbtiList = mbtiListt;
             imgList = imgListt;
             tokenList = tokenListt;
-            bossname = chatInfo['bossname'];
-            bossid = chatInfo['boss'];
-            bossmbti = chatInfo['bossmbti'];
-            img = chatInfo['img'];
           }
+          bossname = chatInfo['bossname'];
+          bossid = chatInfo['boss'];
+          bossmbti = chatInfo['bossmbti'];
+          img = chatInfo['img'];
           return body();
         } else {
           return Text('Calculating answer...');
@@ -247,7 +246,6 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
       _message[i].animationController.forward();
     }
     }
-    
     ImageProvider c;
     if (img == 'x') {
       if(bossmbti != null){
@@ -292,11 +290,15 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                           isMy = true;
                         }
                         ImageProvider c;
+
                         if (imgList[i] == 'x') {
                           if(mbtiList[i] != null){
                             c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
                           }
+                          else{
                             c = AssetImage('assets/person.png');
+                          }
+
                         }
                         else {
                           c = CachedNetworkImageProvider(
@@ -960,7 +962,7 @@ class ChatMessageR extends ChatMessage {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                data['mbti'] ? data['mbti'] : 'x',
+                data['mbti']!= null ? data['mbti'] : 'x',
                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
               ),
               Container(

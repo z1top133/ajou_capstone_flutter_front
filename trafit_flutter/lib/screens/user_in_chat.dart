@@ -155,7 +155,7 @@ class _userInChatScreenState extends State<userInChatScreen> {
                             ['name'];
                     ImageProvider c;
                     if (chatroom['img'] == 'x') {
-                      if(chatroom['mbti'] != null){
+                      if(chatroom['bossmbti'] != null){
                         c = Image.asset(
                             'assets/mbti/' + chatroom['bossmbti'] + '.png')
                             .image;

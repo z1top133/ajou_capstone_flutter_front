@@ -1,4 +1,4 @@
-#Thu Jun 18 21:35:30 KST 2020
+#Fri Jun 19 13:17:26 KST 2020
 base.0=C\:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
