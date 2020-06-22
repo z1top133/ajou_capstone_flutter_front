@@ -47,10 +47,10 @@ class _JoinAppState extends State<JoinApp> with SingleTickerProviderStateMixin{
           ),
           tabs: <Widget>[
             Tab(
-              text: "로그인",
+              text: "회원가입",
             ),
             Tab(
-              text: "회원가입",
+              text: "로그인",
             ),
           ],
         ),
@@ -59,8 +59,9 @@ class _JoinAppState extends State<JoinApp> with SingleTickerProviderStateMixin{
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          LoginScreen(),
           RegisterScreen(),
+          LoginScreen(),
+
         ],
       ),
 
