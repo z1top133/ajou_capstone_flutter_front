@@ -651,10 +651,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                     ]),
                 child: Row(
                   children: <Widget>[
-                    IconButton(icon: Icon(Icons.face), onPressed: () {}),
+                    IconButton(icon: Icon(Icons.face), color: Colors.grey,onPressed: () {}),
                     Expanded(
                       child: TextField(
                         controller: _textController,
+                        cursorColor: Colors.grey,
+                        style: TextStyle(color: Colors.grey),
                         // 입력된 텍스트에 변화가 있을 때 마다
                         onChanged: (text) {
                           setState(() {
@@ -663,7 +665,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                         },
                         // 키보드상에서 확인을 누를 경우. 입력값이 있을 때에만 _handleSubmitted 호출
                         onSubmitted: _isComposing ? _handleSubmitted : null,
-                        decoration: InputDecoration(border: InputBorder.none),
+                        decoration: InputDecoration(border: InputBorder.none ,),
                       ),
                     ),
                     SizedBox(width: 15),
