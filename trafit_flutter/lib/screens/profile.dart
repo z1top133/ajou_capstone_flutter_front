@@ -291,7 +291,7 @@ class _ProfileState extends State<Profile> {
                           width: 33,
                         ),
                         Container(
-                          width: 250.0,
+                          width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio / 4.5,
                           child: Column(
                             children: <Widget>[
                               Container(
