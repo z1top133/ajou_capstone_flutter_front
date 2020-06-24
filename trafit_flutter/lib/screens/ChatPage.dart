@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:trafit/util/mbti_result.dart';
 import 'package:trafit/util/my_flutter_app_icons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -235,7 +236,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
           img = chatInfo['img'];
           return body();
         } else {
-          return Text('Calculating answer...');
+          return Text('');
         }
       },
     );
@@ -356,10 +357,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                       
                                       Text(
                                         mbtiList[i] != null ? mbtiList[i] : 'x',
-                                        style: TextStyle(
-                                            color: Colors.green,
-                                            fontSize: 7,
-                                            fontWeight: FontWeight.bold),
+                                        style: mbtiList[i] != null ? TextStyle(fontSize: 8, color: mbti_color[mbtiList[i]], fontWeight: FontWeight.bold) : TextStyle(fontSize: 8, color: Colors.black, fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
@@ -586,7 +584,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                   ),
                   Text(
                     bossmbti != null ? bossmbti : 'x',
-                    style: TextStyle(fontSize: 10, color: Colors.green),
+                    style: bossmbti != null ? TextStyle(fontSize: 10, color: mbti_color[bossmbti]) : TextStyle(fontSize: 10, color: Colors.black) ,
                   )
                 ],
               ),
@@ -655,8 +653,8 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                     Expanded(
                       child: TextField(
                         controller: _textController,
-                        cursorColor: Colors.grey,
-                        style: TextStyle(color: Colors.grey),
+                        cursorColor: Colors.black,
+                        style: TextStyle(color: Colors.black),
                         // 입력된 텍스트에 변화가 있을 때 마다
                         onChanged: (text) {
                           setState(() {
@@ -834,7 +832,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                       backgroundImage: c,
                     ),
                     Text(comments[i]['username'], style: TextStyle(fontSize: 9),),
-                    Text(comments[i]['mbti'] != null ? comments[i]['mbti']:'x', style: TextStyle(fontSize: 7),)
+                    Text(comments[i]['mbti'] != null ? comments[i]['mbti']:'x', style: comments[i]['mbti'] != null ? TextStyle(fontSize: 10, color: mbti_color[comments[i]['mbti']]) : TextStyle(fontSize: 10, color: Colors.black),)
                   ],
                 ),
                 SizedBox(width: 15,),
@@ -1065,7 +1063,7 @@ class ChatMessageR extends ChatMessage {
             children: <Widget>[
               Text(
                 data['mbti']!= null ? data['mbti'] : 'x',
-                style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                style: data['mbti'] != null ? TextStyle(fontSize: 10, color: mbti_color[data['mbti']], fontWeight: FontWeight.bold) : TextStyle(fontSize: 10, color: Colors.black, fontWeight: FontWeight.bold),
               ),
               Container(
                 constraints: BoxConstraints(
@@ -1135,7 +1133,8 @@ class ChatMessageS extends ChatMessage {
             children: <Widget>[
               Text(
                 shared.getString('mbti') != null ? shared.getString('mbti'): 'x',
-                style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                style: shared.getString('mbti') != null ? TextStyle(fontSize: 10, color: mbti_color[shared.getString('mbti')], fontWeight: FontWeight.bold) : TextStyle(fontSize: 10, color: Colors.black, fontWeight: FontWeight.bold)
+                
               ),
               Container(
                 constraints: BoxConstraints(
@@ -1235,7 +1234,7 @@ class EnterMessage extends ChatMessage{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(data['username']),
-                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: data['mbti'] != null ? TextStyle(fontSize: 10, color: mbti_color[data['mbti']]) : TextStyle(fontSize: 10, color: Colors.black),)
                       ],
                     ),
                     Row(
@@ -1320,7 +1319,7 @@ class KickMessage extends ChatMessage{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(data['username']),
-                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: data['mbti'] != null ? TextStyle(fontSize: 10, color: mbti_color[data['mbti']]) : TextStyle(fontSize: 10, color: Colors.black),)
                       ],
                     ),
                     Row(
@@ -1405,7 +1404,7 @@ class LeaveMessage extends ChatMessage{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(data['username']),
-                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.green),)
+                        Text(data['mbti'] != null ? data['mbti'] : 'x', style: data['mbti'] != null ? TextStyle(fontSize: 10, color: mbti_color[data['mbti']]) : TextStyle(fontSize: 10, color: Colors.black) ,)
                       ],
                     ),
                     Row(

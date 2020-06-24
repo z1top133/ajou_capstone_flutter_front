@@ -45,7 +45,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           if (snapshot.hasData) {
             return body(snapshot.data);
           } else {
-            return Text('Calculating answer...');
+            return Text('');
           }
         });
   }

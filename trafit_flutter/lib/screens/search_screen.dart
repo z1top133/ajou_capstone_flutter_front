@@ -165,7 +165,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
           if (snapshot.hasData) {
             return body(snapshot.data);
           } else {
-            return Text('Calculating answer...');
+            return Text('');
           }
         });
   }

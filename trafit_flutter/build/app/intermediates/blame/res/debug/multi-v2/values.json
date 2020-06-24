@@ -1,29 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "347"
-                    },
-                    "to": {
-                        "startLines": "272",
-                        "startColumns": "4",
-                        "startOffsets": "16895",
-                        "endLines": "276",
-                        "endColumns": "12",
-                        "endOffsets": "17187"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\1ff3216e16f14c31ed3f07f51b5aefd4\\res\\values\\values.xml",
+                    "source": "C:\\Users\\JKing\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\8ca4df2e35f1ab82c8f7230f53e35148\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,91,98,141,173,210,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,83,84,88,89,90",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -42,24 +23,45 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "source": "C:\\Users\\JKing\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-17.0.0.aar\\75b97303e0b609a16c753fb45bea7af8\\res\\values\\values.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,319,401,505,614,734,843",
-                        "endColumns": "143,119,81,103,108,119,108,85",
-                        "endOffsets": "194,314,396,500,609,729,838,924"
+                        "startLines": "4,5,6,7,8,9,10,11,33,46,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "215,301,377,463,549,625,702,778,3164,3475,951,1052,1233,1354,1457,1637,1756,1868,1967,2155,2256,2437,2558,2733,2877,2936,2994",
+                        "endLines": "4,5,6,7,8,9,10,11,45,64,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30",
+                        "endColumns": "85,75,85,85,75,76,75,75,20,20,100,180,120,102,179,118,111,98,187,100,180,120,174,143,58,57,74",
+                        "endOffsets": "300,376,462,548,624,701,777,853,3474,3887,1051,1232,1353,1456,1636,1755,1867,1966,2154,2255,2436,2557,2732,2876,2935,2993,3068"
                     },
                     "to": {
-                        "startLines": "262,264,265,266,267,268,269,270",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "15868,16094,16214,16296,16400,16509,16629,16738",
-                        "endColumns": "143,119,81,103,108,119,108,85",
-                        "endOffsets": "16007,16209,16291,16395,16504,16624,16733,16819"
+                        "startLines": "2,3,4,5,6,7,8,9,140,153,244,245,246,247,248,249,250,251,253,254,255,256,257,258,259,260,261",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,195,275,365,455,535,616,696,8446,8761,13535,13640,13821,13946,14053,14233,14356,14472,14742,14930,15035,15216,15341,15516,15664,15727,15789",
+                        "endLines": "2,3,4,5,6,7,8,9,152,171,244,245,246,247,248,249,250,251,253,254,255,256,257,258,259,260,261",
+                        "endColumns": "89,79,89,89,79,80,79,79,20,20,104,180,124,106,179,122,115,102,187,104,180,124,174,147,62,61,78",
+                        "endOffsets": "190,270,360,450,530,611,691,771,8756,9173,13635,13816,13941,14048,14228,14351,14467,14570,14925,15030,15211,15336,15511,15659,15722,15784,15863"
                     }
                 },
                 {
-                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\jetified-firebase-messaging-20.0.0.aar\\970734c9c41b480601ef83411a936ae7\\res\\values\\values.xml",
+                    "source": "C:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "353"
+                    },
+                    "to": {
+                        "startLines": "272",
+                        "startColumns": "4",
+                        "startOffsets": "16895",
+                        "endLines": "276",
+                        "endColumns": "12",
+                        "endOffsets": "17187"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\JKing\\.gradle\\caches\\transforms-1\\files-1.1\\jetified-firebase-messaging-20.0.0.aar\\d3e25f2b1d435b5dc9d4a511d85dcd08\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -76,7 +78,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\jetified-play-services-basement-17.0.0.aar\\a9fbabece4aced983b7f92acbc912bc1\\res\\values\\values.xml",
+                    "source": "C:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,319,401,505,614,734,843",
+                        "endColumns": "143,119,81,103,108,119,108,85",
+                        "endOffsets": "194,314,396,500,609,729,838,924"
+                    },
+                    "to": {
+                        "startLines": "262,264,265,266,267,268,269,270",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "15868,16094,16214,16296,16400,16509,16629,16738",
+                        "endColumns": "143,119,81,103,108,119,108,85",
+                        "endOffsets": "16007,16209,16291,16395,16504,16624,16733,16819"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\JKing\\.gradle\\caches\\transforms-1\\files-1.1\\jetified-play-services-basement-17.0.0.aar\\4a878b73dead9200fab9d97b61497538\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4,7",
                         "startColumns": "0,0",
@@ -90,25 +109,6 @@
                         "startOffsets": "13397,14575",
                         "endColumns": "67,166",
                         "endOffsets": "13460,14737"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-17.0.0.aar\\a563fe0dc28eba2510d2ea0cb3beaa10\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,33,46,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "215,301,377,463,549,625,702,778,3164,3475,951,1052,1233,1354,1457,1637,1756,1868,1967,2155,2256,2437,2558,2733,2877,2936,2994",
-                        "endLines": "4,5,6,7,8,9,10,11,45,64,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30",
-                        "endColumns": "85,75,85,85,75,76,75,75,20,20,100,180,120,102,179,118,111,98,187,100,180,120,174,143,58,57,74",
-                        "endOffsets": "300,376,462,548,624,701,777,853,3474,3887,1051,1232,1353,1456,1636,1755,1867,1966,2154,2255,2436,2557,2732,2876,2935,2993,3068"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,140,153,244,245,246,247,248,249,250,251,253,254,255,256,257,258,259,260,261",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,195,275,365,455,535,616,696,8446,8761,13535,13640,13821,13946,14053,14233,14356,14472,14742,14930,15035,15216,15341,15516,15664,15727,15789",
-                        "endLines": "2,3,4,5,6,7,8,9,152,171,244,245,246,247,248,249,250,251,253,254,255,256,257,258,259,260,261",
-                        "endColumns": "89,79,89,89,79,80,79,79,20,20,104,180,124,106,179,122,115,102,187,104,180,124,174,147,62,61,78",
-                        "endOffsets": "190,270,360,450,530,611,691,771,8756,9173,13635,13816,13941,14048,14228,14351,14467,14570,14925,15030,15211,15336,15511,15659,15722,15784,15863"
                     }
                 }
             ]

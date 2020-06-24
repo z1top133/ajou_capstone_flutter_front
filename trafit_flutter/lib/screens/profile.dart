@@ -143,7 +143,7 @@ class _ProfileState extends State<Profile> {
                           width: 33,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio / 5.0,
+                          width: MediaQuery.of(context).size.width * 0.6,
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
                             child: Column(
@@ -304,10 +304,9 @@ class _ProfileState extends State<Profile> {
                                       child: Text(
                                         sharedPreferences.getString('mbti'),
                                         style: TextStyle(
-                                            color: Colors.green, fontSize: 30),
+                                            color: mbti_color[sharedPreferences.getString('mbti')], fontSize: 30),
                                       ),
                                     ),
-                                    Text(' 입니다.'),
                                   ],
                                 ),
                               ),
@@ -361,7 +360,7 @@ class _ProfileState extends State<Profile> {
                                   Text(
                                     hits[0],
                                     style: TextStyle(
-                                        fontSize: 20, color: Colors.green),
+                                        fontSize: 20, color: mbti_color[hits[0]]),
                                   ),
                                   Text('(${mbti_result[index1]['keyword']})',
                                       style: TextStyle(fontSize: 11)),
@@ -385,7 +384,7 @@ class _ProfileState extends State<Profile> {
                                   Text(
                                     hits[1],
                                     style: TextStyle(
-                                        fontSize: 20, color: Colors.green),
+                                        fontSize: 20, color: mbti_color[hits[1]]),
                                   ),
                                   Text('(${mbti_result[index2]['keyword']})',
                                       style: TextStyle(fontSize: 11)),
@@ -505,7 +504,7 @@ class _ProfileState extends State<Profile> {
               ),
             );
         } else {
-          return Text('Calculating answer...');
+          return Text('');
         }
       },
     );

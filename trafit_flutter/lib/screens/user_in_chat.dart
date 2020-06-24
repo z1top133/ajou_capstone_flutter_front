@@ -42,7 +42,7 @@ class _userInChatScreenState extends State<userInChatScreen> {
           if (snapshot.hasData) {
             return body(snapshot.data);
           } else {
-            return Text('Calculating answer...');
+            return Text('');
           }
         });
   }

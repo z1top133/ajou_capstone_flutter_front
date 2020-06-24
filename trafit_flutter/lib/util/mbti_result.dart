@@ -132,4 +132,5 @@ Map<String, dynamic> mbti_color = {
   'INFJ': Colors.green,
   'ISFJ': Colors.blue,
   'ISTJ': Colors.blue,
+  'x': Colors.black
 };
