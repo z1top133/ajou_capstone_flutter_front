@@ -37,25 +37,10 @@ class _Mbti_eiState extends State<Mbti_ei> {
           ),
           elevation: 0.0,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.edit,
-                size: 24.0,
-              ),
-              onPressed: () {
-//                Navigator.of(context).push(
-//                  MaterialPageRoute(
-//                    builder: (BuildContext context) {
-//                      return Notifications();
-//                    },
-//                  ),
-//                );
-              },
-            ),
           ],
         ),
         body: Container(
-          width: 420.0,
+          width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio,
           child: Padding(
             padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
             child: ListView(

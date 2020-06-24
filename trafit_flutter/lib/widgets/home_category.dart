@@ -60,13 +60,6 @@ class _HomeCategoryState extends State<HomeCategory> {
                     ),
                   ),
 
-                  Text(
-                    "${widget.items} Items",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 10,
-                    ),
-                  ),
                   SizedBox(height: 5),
                 ],
               ),

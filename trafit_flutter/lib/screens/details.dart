@@ -37,6 +37,8 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
+    double phoneWidth = MediaQuery.of(context).size.width;;
+    double ratio = MediaQuery.of(context).devicePixelRatio;;
     return FutureBuilder<List>(
         future: rooms,
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
@@ -49,6 +51,8 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   Widget body(List rooms) {
+    double phoneWidth = MediaQuery.of(context).size.width;
+    double ratio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -64,21 +68,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         ),
         elevation: 0.0,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.notifications,
-              size: 24.0,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return Notifications();
-                  },
-                ),
-              );
-            },
-          ),
+
         ],
       ),
       body: Padding(
@@ -241,7 +231,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Text('내용:  ',
                                       style: TextStyle(color: Colors.black)),
                                   Container(
-                                    width: 200,
+                                    width: phoneWidth * ratio / 5.0,
                                     child: Text(chatroom['comment'],
                                         style: TextStyle(color: Colors.black),
                                     ),

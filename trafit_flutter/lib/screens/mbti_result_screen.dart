@@ -57,7 +57,7 @@ class _result_screenState extends State<result_screen> {
         ],
       ),
       body: Container(
-        width: 420.0,
+        width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio,
         child: Center(
           child: ListView(
             children: <Widget>[

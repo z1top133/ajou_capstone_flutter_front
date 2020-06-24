@@ -35,26 +35,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
           elevation: 0.0,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.notifications,
-                size: 24.0,
-              ),
-//              icon: IconBadge(
-//                icon: Icons.notifications,
-//                size: 22.0,
-//              ),
-              onPressed: (){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context){
-                      return Notifications();
-                    },
-                  ),
-                );
-              },
-              tooltip: "Notifications",
-            ),
           ],
         ),
 
@@ -134,7 +114,7 @@ class _MainScreenState extends State<MainScreen> {
                   Icons.search,
                   size: 24.0,
                 ),
-                color: _page == 3
+                color: _page == 2
                     ? Theme.of(context).accentColor
                     : Theme
                     .of(context)

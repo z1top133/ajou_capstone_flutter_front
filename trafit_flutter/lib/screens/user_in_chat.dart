@@ -227,7 +227,7 @@ class _userInChatScreenState extends State<userInChatScreen> {
                                   Text('내용:  ',
                                       style: TextStyle(color: Colors.black)),
                                   Container(
-                                    width: 200,
+                                    width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio / 5.0,
                                     child: Text(chatroom['comment'],
                                       style: TextStyle(color: Colors.black),
                                     ),
@@ -238,7 +238,7 @@ class _userInChatScreenState extends State<userInChatScreen> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 50.0, 0),
                               child: Container(
-                                width: 250.0,
+                                width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio / 5.0,
                                 child: Row(
                                   children: [
                                     FlatButton(

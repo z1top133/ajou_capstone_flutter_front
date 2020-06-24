@@ -513,7 +513,7 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                                   Text('내용:  ',
                                   style: TextStyle(color: Colors.black)),
                                   Container(
-                                    width: 200,
+                                    width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio / 5.0,
                                     child: Text(chatroom['comment'],
                                       style: TextStyle(color: Colors.black),
                                     ),
@@ -536,15 +536,54 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                                   ),
                                   color: Colors.indigo[300],
                                   textColor: Colors.white,
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return ChatPage(chatroom['room_num'],
-                                              chatroom['category']);
-                                        },
-                                      ),
-                                    );
+                                  onPressed: () async {
+                                    SharedPreferences sharedPreferences =
+                                        await SharedPreferences.getInstance();
+                                    Map<String, dynamic> isDeny =
+                                        await apiService.deny_check(
+                                        chatroom['room_num'],
+                                        sharedPreferences
+                                            .getString('id'));
+                                    if (isDeny['message']) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text('알림'),
+                                              content: Text('강퇴된 채팅방입니다.'),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pop();
+                                                  },
+                                                  child: Text('닫기'),
+                                                )
+                                              ],
+                                            );
+                                          });
+                                    } else {
+                                      String roomNumber = sharedPreferences
+                                          .getString('room_num');
+                                      if (roomNumber == null)
+                                        roomNumber =
+                                        "${chatroom['room_num']}";
+                                      else
+                                        roomNumber = roomNumber +
+                                            ",${chatroom['room_num']}";
+                                      sharedPreferences.setString(
+                                          'room_num', roomNumber);
+
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                            return ChatPage(
+                                                chatroom['room_num'],
+                                                chatroom['category']);
+                                          },
+                                        ),
+                                      );
+                                    }
                                   }),
                             ),
                           ),
