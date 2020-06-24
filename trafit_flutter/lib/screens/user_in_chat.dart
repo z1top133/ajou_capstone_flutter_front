@@ -226,14 +226,19 @@ class _userInChatScreenState extends State<userInChatScreen> {
                                 children: [
                                   Text('내용:  ',
                                       style: TextStyle(color: Colors.black)),
-                                  Text(chatroom['comment'],
-                                      style: TextStyle(color: Colors.black)),
+                                  Container(
+                                    width: 200,
+                                    child: Text(chatroom['comment'],
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 50.0, 0),
                               child: Container(
+                                width: 250.0,
                                 child: Row(
                                   children: [
                                     FlatButton(

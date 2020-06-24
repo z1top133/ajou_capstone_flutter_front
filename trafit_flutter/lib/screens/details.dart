@@ -240,14 +240,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 children: [
                                   Text('내용:  ',
                                       style: TextStyle(color: Colors.black)),
-                                  Text(chatroom['comment'],
-                                      style: TextStyle(color: Colors.black)),
+                                  Container(
+                                    width: 200,
+                                    child: Text(chatroom['comment'],
+                                        style: TextStyle(color: Colors.black),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
                               child: Container(
+                                width: 100,
                                 child: FlatButton(
                                     child: Text(
                                       "채팅방 입장",

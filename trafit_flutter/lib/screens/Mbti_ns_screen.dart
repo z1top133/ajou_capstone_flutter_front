@@ -53,54 +53,57 @@ class _Mbti_nsState extends State<Mbti_ns> {
             ),
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-          child: ListView(
-            children: <Widget>[
-              ListView.builder(
-                  shrinkWrap: true,
-                  primary: false,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: mbti_ns == null ? 0 : mbti_ns.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    Map comment_ = mbti_ns[index];
-                    return Mbti_list(
-                        comment: comment_['comment'],
-                        index: index
+        body: Container(
+          width: 420.0,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+            child: ListView(
+              children: <Widget>[
+                ListView.builder(
+                    shrinkWrap: true,
+                    primary: false,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: mbti_ns == null ? 0 : mbti_ns.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Map comment_ = mbti_ns[index];
+                      return Mbti_list(
+                          comment: comment_['comment'],
+                          index: index
+                      );
+                    }),
+                Center(
+                  child: Card(
+                    shape:
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                    elevation: 4.0,
+                    child: FlatButton(
+                      child: Text("다음 >"),
+                          onPressed: () {
+                    for(int i=0; i<sum_a.length; i++){
+                    sum_A += sum_a[i];
+                    sum_B += sum_b[i];
+                    }
+                    if(sum_A>sum_B)
+                    N_S= "N";
+                    else
+                    N_S ="S";
+                    print(sum_a);
+                    print(sum_b);
+                    print(N_S);
+                    result_percentage[1] = (sum_A / (sum_A+sum_B) *100).round();
+                    Navigator.of(context).push(
+                    MaterialPageRoute(
+                    builder: (BuildContext context) {
+                    return Mbti_tf(widget.E_I, N_S);
+                    },
+                    ),
                     );
-                  }),
-              Center(
-                child: Card(
-                  shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  elevation: 4.0,
-                  child: FlatButton(
-                    child: Text("다음 >"),
-                        onPressed: () {
-                  for(int i=0; i<sum_a.length; i++){
-                  sum_A += sum_a[i];
-                  sum_B += sum_b[i];
-                  }
-                  if(sum_A>sum_B)
-                  N_S= "N";
-                  else
-                  N_S ="S";
-                  print(sum_a);
-                  print(sum_b);
-                  print(N_S);
-                  result_percentage[1] = (sum_A / (sum_A+sum_B) *100).round();
-                  Navigator.of(context).push(
-                  MaterialPageRoute(
-                  builder: (BuildContext context) {
-                  return Mbti_tf(widget.E_I, N_S);
-                  },
-                  ),
-                  );
-                  },
+                    },
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }

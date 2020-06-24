@@ -142,38 +142,41 @@ class _ProfileState extends State<Profile> {
                         SizedBox(
                           width: 33,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                          child: Column(
-                            children: [
-                              Text(
-                                'mbti 검사를 하시면 동행을 찾기 더 쉬워요!!',
-                                style: TextStyle(
-                                  fontSize: 11.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.indigo
-                                ),
-                              ),
-                              FlatButton(
-                                  child: Text(
-                                    "MBTI 검사하기",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.white,
-                                    ),
+                        Container(
+                          width: 250.0,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'mbti 검사를 하시면 동행을 찾기 더 쉬워요!!',
+                                  style: TextStyle(
+                                    fontSize: 11.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.indigo
                                   ),
-                                  color: Colors.indigo[300],
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return Mbti_ei("hello", 0);
-                                        },
+                                ),
+                                FlatButton(
+                                    child: Text(
+                                      "MBTI 검사하기",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.white,
                                       ),
-                                    );
-                                  }),
-                            ],
+                                    ),
+                                    color: Colors.indigo[300],
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                            return Mbti_ei("hello", 0);
+                                          },
+                                        ),
+                                      );
+                                    }),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -288,6 +291,7 @@ class _ProfileState extends State<Profile> {
                           width: 33,
                         ),
                         Container(
+                          width: 250.0,
                           child: Column(
                             children: <Widget>[
                               Container(
@@ -372,7 +376,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         ListTile(
                           leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/mbti/' + hits[0] + '.png'),
+                            backgroundImage: AssetImage('assets/mbti/' + hits[1] + '.png'),
                           ),
                           title: Row(children: <Widget>[
                             Column(

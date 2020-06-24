@@ -512,10 +512,11 @@ class _chatSearchScreenState extends State<chatSearchScreen> {
                                 children: [
                                   Text('내용:  ',
                                   style: TextStyle(color: Colors.black)),
-                                  Text(
-                                    chatroom['comment'],
-                                    style: TextStyle(
-                                        color: Colors.black),
+                                  Container(
+                                    width: 200,
+                                    child: Text(chatroom['comment'],
+                                      style: TextStyle(color: Colors.black),
+                                    ),
                                   ),
                                 ],
                               ),
