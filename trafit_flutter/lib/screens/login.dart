@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_socket_io/socket_io_manager.dart';
-import 'package:trafit/screens/Mbti_ei_screen.dart';
 import 'package:trafit/screens/main_screen.dart';
 import 'package:trafit/util/api_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trafit/util/MySocket.dart';
-import 'package:trafit/util/MyIP.dart';
+
 
 ApiService apiService = new ApiService();
 class LoginScreen extends StatefulWidget {
@@ -173,12 +170,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   sharedPreferences.setString('img', response['img']);
                   sharedPreferences.setString('room_num', response['room_num']);
 
-                  socketIO = SocketIOManager().createSocketIO(
-                    'http://$myIP:3002',
-                    '/',
-                  );
-                  socketIO.init();
-                  socketIO.connect();
 
                   Navigator.of(context).push(
                   MaterialPageRoute(

@@ -45,10 +45,12 @@ Future<List> call(int num) async {
         'mbti': shared.getString('mbti'),
         'img': shared.getString('img'),
         'username': shared.getString('username'),
-        'token' : await _firebaseMessaging.getToken()
+        'token' : await _firebaseMessaging.getToken(),
+        'type' : 'enter'
       }));
   chatInfo = await apiService.room_info(num);
   print(chatInfo);
+  print(idList);
   return apiService.enter_room(
       num,
       shared.getString('id'),
@@ -138,7 +140,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     
     socketIO.subscribe('kick_message1', (jsonData){
       Map<String, dynamic> data = json.decode(jsonData);
-
+      idList.remove(data['id']);
+      nameList.remove(data['username']);
+      mbtiList.remove(data['mbti']);
+      imgList.remove(data['img']);
+      tokenList.remove(data['token']);
+      hasData = true;
       KickMessage message = KickMessage(data: data, animationController: AnimationController(
         duration: Duration(milliseconds: 700),
         vsync: this
@@ -153,7 +160,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
 
     socketIO.subscribe('receive_leave', (jsonData){
       Map<String, dynamic> data = json.decode(jsonData);
-
+      idList.remove(data['id']);
+      nameList.remove(data['username']);
+      mbtiList.remove(data['mbti']);
+      imgList.remove(data['img']);
+      tokenList.remove(data['token']); 
+      hasData=true;
       LeaveMessage message = LeaveMessage(data: data, animationController: AnimationController(
         duration: Duration(milliseconds: 700),
         vsync: this
@@ -235,7 +247,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
     if(load != null){
       for(int i=0; i<load.length; i++){
       if(load[i]['message']== null){
-        _message.add(EnterMessage(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5)),));
+        if(load[i]['type'] == 'enter')
+          _message.add(EnterMessage(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5)),));
+        else if(load[i]['type'] == 'kick')
+          _message.add(KickMessage(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5)),));
+        else
+          _message.add(LeaveMessage(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5)),));
       }
       else if(load[i]['id'] == shared.getString('id')){
         _message.add(ChatMessageS(data: load[i], animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 5))));
@@ -356,8 +373,12 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                                     color: Colors.red[300],
                                     icon: Icon(MyFlutterApp.ban),
                                     onPressed: () => {
-                                      socketIO.sendMessage('kickip',
-                                          json.encode({'id': idList[i], 'room': widget.num, 'username': nameList[i], 'mbti': mbtiList[i], 'img': imgList[i]}))
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            buildKickMessage(context, i),
+                                      )
+                                      
                                     },
                                     
                                   ),
@@ -516,20 +537,11 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
                 ),
                 FlatButton(
                   onPressed: (){
-                    String room_num = shared.getString('room_num');
-                    String leave = widget.num.toString();
-                    String update_room;
-
-                    if(room_num.length == 1) room_num.replaceAll(leave, '');
-                    else {
-                      update_room = room_num.replaceAll(','+leave,'');
-                    }             
-                    
-                    shared.setString('room_num', update_room);
-                    socketIO.sendMessage('send_leave', jsonEncode({'room': widget.num, 'id': shared.getString('id'), 'username': shared.getString('username'), 'mbti': shared.getString('mbti'), 'img': shared.getString('img')}));                      
-                    apiService.leaveRoom(shared.getString('id'), update_room, widget.num, bossid == shared.getString('id'));
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                      buildLeaveMessage(context),
+                    );                    
                   },
                   child: Icon(Icons.exit_to_app),
                 )
@@ -546,7 +558,7 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
               Icons.keyboard_backspace,
             ),
             onPressed: () {
-              
+              hasData= false;
               DBHelper().createData(_message);
               
               Navigator.of(context).pop();
@@ -692,6 +704,94 @@ class ChatScreenState extends State<ChatPage> with TickerProviderStateMixin {
             child: Text('닫기'))
       ],
     );
+  }
+
+  Widget buildLeaveMessage(BuildContext context){
+    return new AlertDialog(
+      title: Text('채팅방 나가기'),
+      content: Text('채팅방을 나가시겠습니까?'),
+      actions: <Widget>[
+        FlatButton(
+                  onPressed: (){
+                    String room_num = shared.getString('room_num');
+                    String leave = widget.num.toString();
+                    String update_room;
+
+                    if(room_num.length == 1) room_num.replaceAll(leave, '');
+                    else {
+                      update_room = room_num.replaceAll(','+leave,'');
+                    }             
+                    
+                    shared.setString('room_num', update_room);
+                    socketIO.sendMessage('send_leave', jsonEncode({'room': widget.num, 'id': shared.getString('id'), 'username': shared.getString('username'), 'mbti': shared.getString('mbti'), 'img': shared.getString('img'), 'type': 'leave'}));                      
+                    apiService.leaveRoom(shared.getString('id'), update_room, widget.num, bossid == shared.getString('id'));
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('나가기', style: TextStyle(color: Colors.red),),
+                ),
+        FlatButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          child: Text('닫기'),
+        )
+      ],
+    );
+  }
+
+  Widget buildKickMessage(BuildContext context, int i){
+    ImageProvider c;
+    if(imgList[i] == 'x'){
+      if(mbtiList[i] != null)
+        c = AssetImage('assets/mbti/' + mbtiList[i] + '.png');
+      else
+        c = AssetImage('assets/person.png');
+    }
+    else
+      c = CachedNetworkImageProvider('http://$myIP:3001/${imgList[i]}');
+          
+    return new AlertDialog(
+      title: Row(
+        children: <Widget>[
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+                          CircleAvatar(
+                      radius: 17,
+                      backgroundImage: c,
+                    ),
+                    Text(nameList[i], style: TextStyle(fontSize: 9),),
+            ],
+          ),
+          SizedBox(width: 15,),
+          Text('강퇴하기', style: TextStyle(color: Colors.red),)
+        ],
+      ),
+      content: 
+
+          
+            Text('${nameList[i]}님을 강퇴하시겠습니까?\n강퇴되면 해당 유저는 방을 다시 입장할 수 없습니다!'),
+          
+
+      actions: <Widget>[
+        FlatButton(
+            onPressed: () {
+              socketIO.sendMessage('kickip',
+                json.encode({'id': idList[i], 'room': widget.num, 'username': nameList[i], 'mbti': mbtiList[i], 'img': imgList[i], 'type': 'kick'}));
+              Navigator.of(context).pop();
+            },
+            child: Text('강퇴', style: TextStyle(color: Colors.red),)),
+        FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('닫기'))
+      ],
+
+    );
+    
   }
 
   Widget buildCommentDialog(BuildContext context, int i,){

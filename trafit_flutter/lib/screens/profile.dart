@@ -42,6 +42,8 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     int index;
+    int index1;
+    int index2;
 
     return FutureBuilder<List>(
       future: comments,
@@ -53,6 +55,15 @@ class _ProfileState extends State<Profile> {
                   sharedPreferences.getString('mbti')) {
                 index = i;
                 hits = mbti_result[i]['hit_it_off'].split(',');
+                for(int i=0; i<mbti_result.length; i++){
+                  if(mbti_result[i]['mbti'] == hits[0]){
+                    index1 = i;
+                  }
+                  if(mbti_result[i]['mbti'] == hits[1]){
+                    index2 = i;
+                  }
+                }
+                
                 break;
               }
             }
@@ -107,7 +118,7 @@ class _ProfileState extends State<Profile> {
                               onTap: () async {
                                 SharedPreferences sharedPreferences =
                                     await SharedPreferences.getInstance();
-                                sharedPreferences.clear();
+                                sharedPreferences.setString('id', null);
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) {
@@ -251,9 +262,8 @@ class _ProfileState extends State<Profile> {
                             ),
                             InkWell(
                               onTap: () async {
-                                SharedPreferences sharedPreferences =
-                                    await SharedPreferences.getInstance();
-                                sharedPreferences.clear();
+
+                                sharedPreferences.setString('id', null);
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) {
@@ -331,7 +341,64 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                     ),
-                    Expanded(
+                    ListView(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: AssetImage('assets/mbti/' + hits[0] + '.png'),
+                          ),
+                          title: Row(children: <Widget>[
+                            Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    hits[0],
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.green),
+                                  ),
+                                  Text('(${mbti_result[index1]['keyword']})',
+                                      style: TextStyle(fontSize: 11)),
+                                ],
+                              ),
+                              Text('  :  '),
+                              Expanded(
+                                  child: Text(
+                                mbti_result[index1]['comment'],
+                              ))
+                          ],),
+                        ),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: AssetImage('assets/mbti/' + hits[0] + '.png'),
+                          ),
+                          title: Row(children: <Widget>[
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    hits[1],
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.green),
+                                  ),
+                                  Text('(${mbti_result[index2]['keyword']})',
+                                      style: TextStyle(fontSize: 11)),
+                                ],
+                              ),
+                              Text('  :  '),
+                              Expanded(
+                                  child: Text(
+                                mbti_result[index2]['comment'],
+                              ))
+                          ],),
+                        ),
+                        
+                      ],
+                    ),
+
+                    /*Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
                         shrinkWrap: true,
@@ -383,7 +450,7 @@ class _ProfileState extends State<Profile> {
                           );
                         },
                       ),
-                    ),
+                    ),*/
                     Divider(),
                     Container(height: 3.0),
                     Padding(

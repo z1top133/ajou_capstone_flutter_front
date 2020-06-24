@@ -24,7 +24,7 @@ class DBHelper {
 
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'MyMessageDB2.db');
+    String path = join(documentsDirectory.path, 'MyMessageDB4.db');
 
     return await openDatabase(
       path,
@@ -37,7 +37,8 @@ class DBHelper {
             username TEXT,
             mbti TEXT,
             img TEXT,
-            message TEXT
+            message TEXT,
+            type TEXT
           )
         ''');
       },
@@ -49,7 +50,7 @@ class DBHelper {
   createData(List<ChatMessage> message) async {
     final db = await database;
     for(int i = message.length -1; i>= 0; i--){
-      await db.rawInsert('INSERT INTO $TableName(room, id, username, mbti, img, message) VALUES(?, ?, ?, ?, ?, ?)', [message[i].data['room'], message[i].data['id'], message[i].data['username'], message[i].data['mbti'], message[i].data['img'], message[i].data['message']],);
+      await db.rawInsert('INSERT INTO $TableName(room, id, username, mbti, img, message, type) VALUES(?, ?, ?, ?, ?, ?, ?)', [message[i].data['room'], message[i].data['id'], message[i].data['username'], message[i].data['mbti'], message[i].data['img'], message[i].data['message'], message[i].data['type']]);
     }
   }
 
@@ -68,7 +69,8 @@ class DBHelper {
           'username': res[i]['username'],
           'mbti': res[i]['mbti'],
           'img': res[i]['img'],
-          'message': res[i]['message']
+          'message': res[i]['message'],
+          'type': res[i]['type']
         };
         messages.insert(0, data);
         
