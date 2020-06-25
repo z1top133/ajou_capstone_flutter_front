@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:trafit/screens/details.dart';
+import 'package:trafit/screens/ChatPage.dart';
 import 'package:trafit/screens/notifications.dart';
 import 'package:trafit/util/MyIP.dart';
 import 'package:trafit/util/api_service.dart';
@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
 SharedPreferences shared;
+var room = 0;
 //Directory dir;
 Future<SharedPreferences> call() async {
   //dir = await getTemporaryDirectory();
@@ -20,6 +21,7 @@ class Postscreen extends StatefulWidget {
   final String _name;
   final String _img;
   final String _category;
+  
 
   Postscreen(this._name, this._img, this._category);
 
@@ -55,7 +57,7 @@ class _PostscreenState extends State<Postscreen> {
           if (snapshot.hasData) {
             return body(snapshot.data);
           } else {
-            return Text('Calculating answer...');
+            return Text('');
           }
         });
   }
@@ -420,12 +422,15 @@ class _PostscreenState extends State<Postscreen> {
                     textColor: Colors.white,
                     onPressed: () async {
                       await _addpost(widget._category);
+                      String room_num = shared.getString('room_num');
+                      shared.setString('room_num', room_num + ','+ room.toString());
+                      print('asdas'+room.toString());
+                      Navigator.pop(context);
                       Navigator.pop(context);
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return ProductDetails(
-                                widget._img, widget._name, widget._category);
+                            return ChatPage(room, widget._category);
                           },
                         ),
                       );
@@ -457,6 +462,7 @@ class _PostscreenState extends State<Postscreen> {
       msg: response['message'],
       toastLength: Toast.LENGTH_LONG,
     );
+    room = response['room'];
 
     /*setState(() {
       chatrooms.add({

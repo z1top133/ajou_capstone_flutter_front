@@ -75,9 +75,9 @@
     },
     {
       "name": "crypto",
-      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/crypto-2.1.5",
+      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/crypto-2.1.4",
       "packageUri": "lib/",
-      "languageVersion": "2.3"
+      "languageVersion": "2.1"
     },
     {
       "name": "cupertino_icons",
@@ -237,7 +237,7 @@
     },
     {
       "name": "image",
-      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/image-2.1.13",
+      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/image-2.1.12",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -327,9 +327,9 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/petitparser-3.0.4",
+      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/petitparser-2.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.4"
     },
     {
       "name": "phone_number",
@@ -507,9 +507,9 @@
     },
     {
       "name": "xml",
-      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/xml-3.7.0",
+      "rootUri": "file:///C:/Users/pc/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/xml-3.6.1",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.6"
     },
     {
       "name": "yaml",
@@ -524,7 +524,7 @@
       "languageVersion": "2.3"
     }
   ],
-  "generated": "2020-06-24T08:16:48.182660Z",
+  "generated": "2020-06-25T04:54:20.950721Z",
   "generator": "pub",
   "generatorVersion": "2.9.0-8.2.beta"
 }
