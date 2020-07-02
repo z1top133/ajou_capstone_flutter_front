@@ -8,7 +8,7 @@ const Map<String, String> headers1 = {"Content-type": "application/json"};
 
 String _hostname() {
   if (Platform.isAndroid)
-    return 'http://49.50.174.200:3100';
+    return 'http://218.148.42.126:3001';
   else
     return 'http://localhost:3000';
 }
@@ -19,7 +19,7 @@ class ApiService{
     return jsonDecode(toJson);
   }
 
-  Future<String> register(_id ,_username, _email, _password, _gender, _age, _introduce, _emailFlag, _roomNum, _mbti) async{
+  Future<Map<String, dynamic>> register(_id ,_username, _email, _password, _gender, _age, _introduce, _emailFlag, _roomNum, _mbti) async{
 
     Map<String, dynamic> pass = {//변수를 json으로
       'id' : _id,
@@ -38,9 +38,9 @@ class ApiService{
     int statusCode = response.statusCode;
     String body = response.body.toString();
     print('Status: $statusCode, $body');
-    return body;//json으로 파싱
+    return jsonDecode(response.body);//json으로 파싱
   }
-  Future<String> login(_id, _password) async{
+  Future<Map<String,dynamic>> login(_id, _password) async{
 
     Map<String, dynamic> pass = {//변수를 json으로
       'id': _id,
@@ -49,7 +49,7 @@ class ApiService{
 
     Response response = await post(_hostname()+'/login_check', headers: headers1, body: jsonEncode(pass));
 
-    return response.body.toString();//json으로 파싱
+    return jsonDecode(response.body);//json으로 파싱
   }
 
   Future<String> Id_check(_id) async{
@@ -94,6 +94,40 @@ class ApiService{
 
     Response response = await post(_hostname()+'/test1', headers: headers1, body: jsonEncode(pass));
     print(response);
+    return jsonDecode(response.body);
+  }
+
+  Future<Map<String, dynamic>> mbti_set(_id, mbti) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id' : _id,
+      'mbti': mbti
+    };
+
+    Response response = await post(_hostname()+'/mbti_set', headers: headers1, body: jsonEncode(pass));
+    
+    return jsonDecode(response.body);
+  }
+
+  Future<Map<String, dynamic>> post_room(_id, _username, _comment, _category) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'id' : _id,
+      'username': _username,
+      'comment': _comment,
+      'category': _category
+    };
+
+    Response response = await post(_hostname()+'/post_room', headers: headers1, body: jsonEncode(pass));
+    
+    return jsonDecode(response.body);
+  }
+
+  Future<List> show_room(_category) async{
+    Map<String, dynamic> pass = {//변수를 json으로
+      'category': _category
+    };
+
+    Response response = await post(_hostname()+'/show_room', headers: headers1, body: jsonEncode(pass));
+    
     return jsonDecode(response.body);
   }
 

@@ -8,8 +8,16 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
+<<<<<<< HEAD
         android:label="trafit"
         android:icon="@mipmap/ic_launcher">
+=======
+        android:label="restaurant_ui_kit"
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        >
+>>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:restaurant_ui_kit/screens/details.dart';
+import 'package:restaurant_ui_kit/screens/login.dart';
 import 'package:restaurant_ui_kit/screens/notifications.dart';
 import 'package:restaurant_ui_kit/util/ChatRoom.dart';
+import 'package:restaurant_ui_kit/util/api_service.dart';
 import 'package:restaurant_ui_kit/util/comments.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Postscreen extends StatefulWidget {
   final String _name;
   final String _img;
   final String _category;
+  final List<dynamic> rooms;
 
-  Postscreen(this._name, this._img, this._category);
+  Postscreen(this._name, this._img, this._category, this.rooms);
   @override
   _PostscreenState createState() => _PostscreenState();
 }
@@ -121,13 +126,14 @@ class _PostscreenState extends State<Postscreen> {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  onPressed: () {
-                    _addpost(widget._category);
+                  onPressed: () async{
+
+                    await _addpost(widget._category);
                     Navigator.pop(context);
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return ProductDetails(widget._img, widget._name, widget._category);
+                          return ProductDetails(widget._img, widget._name, widget._category, widget.rooms);
                         },
                       ),
                     );
@@ -141,9 +147,19 @@ class _PostscreenState extends State<Postscreen> {
     );
   }
 
-  void _addpost(String category) {
+  Future _addpost(String category) async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String id = sharedPreferences.getString('id');
+    String username = sharedPreferences.getString('username');
     String _comment = _commentControl.text;
-    String name = "sdsdfs";
+    ApiService apiService = new ApiService();
+
+    Map<String, dynamic> response = await apiService.post_room(id, username, _comment, category);
+    Fluttertoast.showToast(
+      msg: response['message'],
+        toastLength: Toast.LENGTH_LONG,
+    );
+
     setState(() {
       chatrooms.add({
 //        "img": "assets/cm1.jpeg",

@@ -16,6 +16,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5_API_28" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -88,6 +89,9 @@
       </file>
     </leaf>
   </component>
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_XL_API_25" />
+>>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -95,6 +99,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="FindInProjectRecents">
     <findStrings>
       <find>view</find>
@@ -105,10 +110,13 @@
       <find>restaurant_ui_kit</find>
     </findStrings>
   </component>
+=======
+>>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+<<<<<<< HEAD
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -125,6 +133,9 @@
     <option name="width" value="1278" />
     <option name="height" value="998" />
   </component>
+=======
+  <component name="ProjectId" id="1clNAf48j3kDT9nevIFZYVvrPfB" />
+>>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -216,7 +227,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -274,6 +285,7 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+<<<<<<< HEAD
   <component name="ToolWindowManager">
     <frame x="598" y="25" width="1278" height="998" extended-state="0" />
     <editor active="true" />
@@ -301,6 +313,20 @@
       <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Flutter Performance" />
     </layout>
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+>>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="asd" />

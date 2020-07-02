@@ -4,6 +4,8 @@ import 'package:restaurant_ui_kit/screens/Mbti_ei_screen.dart';
 import 'package:restaurant_ui_kit/screens/main_screen.dart';
 import 'package:restaurant_ui_kit/util/User.dart';
 import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 
@@ -157,34 +159,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               onPressed: () async {
-
-                String abc = await apiService.login(_useridControl.text, _passwordControl.text);
-                String ttt = '{"id": "z1top123","email":"z1top123@naver.com"}';
-                print(abc);
-                Map<String, dynamic>map = jsonDecode(abc);
-                user.add(
-                    {
-                      "id" : map['id'],
-                      "email": map['email'],
-                      "age": map['age'],
-                      "gender" : map['gender'],
-                      "room_num" : map['room_num'],
-                      "mbti" : map['mbti'],
-                      "introduce" : map['introduce']
-                    }
+                
+                Map<String, dynamic> response = await apiService.login(_useridControl.text, _passwordControl.text);
+                
+                SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                
+                sharedPreferences.setString('id', _useridControl.text);
+                debugPrint(response['username']);
+                sharedPreferences.setString('username', response['username']);
+                Fluttertoast.showToast(
+                  msg: response['message'],
+                  toastLength: Toast.LENGTH_LONG,
                 );
-
-                //로그인 버튼 클릭시 user_email, user_password 서버에 보내고 User 정보 받아온 뒤 User list에 저장
-                Navigator.of(context).push(
+              
+                
+                if(response['code'] == 200){
+                  Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context){
-                      if(user[0]['mbti']==null)
+                      if((response['mbti']==null) | (response['mbti']==''))
                         return Mbti_ei("hello",0);
                       else
                         return MainScreen();
                     },
                   ),
                 );
+                }
+                //로그인 버튼 클릭시 user_email, user_password 서버에 보내고 User 정보 받아온 뒤 User list에 저장
+                
               },
               color: Theme.of(context).accentColor,
             ),

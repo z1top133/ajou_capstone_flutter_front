@@ -11,6 +11,7 @@ class GridProduct extends StatelessWidget {
   final double rating;
   final int raters;
   final String category;
+  final List<dynamic> rooms;
 
   GridProduct({
     Key key,
@@ -19,7 +20,8 @@ class GridProduct extends StatelessWidget {
     @required this.isFav,
     @required this.rating,
     @required this.raters,
-    @required this.category})
+    @required this.category,
+    @required this.rooms})
       :super(key: key);
 
   @override
@@ -110,7 +112,7 @@ class GridProduct extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context){
-              return ProductDetails("$name", "$img","$category");
+              return ProductDetails("$name", "$img","$category", rooms);
             },
           ),
         );
