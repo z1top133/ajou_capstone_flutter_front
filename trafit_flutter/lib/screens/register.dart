@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:restaurant_ui_kit/screens/main_screen.dart';
-import 'package:restaurant_ui_kit/util/User.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
+import 'package:trafit/util/api_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 ApiService apiService = new ApiService();
@@ -27,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String dropdownValue_age = '20';
   String dropdownValue_gender = '남';
   int emailauthCheck =0;
+  bool emailCheck = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -294,10 +292,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 msg: "학교 이메일을 입력하세요!",
                                 toastLength: Toast.LENGTH_LONG,
                               );
-
                             }
-                            String abc = await apiService.emailAuth(_emailControl.text);
-                            print(abc);
+                            else {
+                              emailCheck = true;
+                              Fluttertoast.showToast(
+                                msg: "이메일을 확인하세요!",
+                                toastLength: Toast.LENGTH_LONG,
+                              );
+                            }
+                            if(emailCheck) {
+                              String abc = await apiService.emailAuth(_emailControl.text);
+                              print(abc);
+                            }
                           },
                           color: Theme.of(context).accentColor,
                         ),
@@ -369,20 +375,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white,
                             ),
                           ),
-                          onPressed: () {
-                            Fluttertoast.showToast(
-                              msg: "인증 성공!!",
-                              toastLength: Toast.LENGTH_LONG,
-                            );
-//                            String message = await apiService.emailauthCheck(_emailcodeControl.text);
-//                            if(message=='인증성공'){
-//                              emailauthCheck = 1;
-//                              Fluttertoast.showToast(
-//                                msg: "인증 성공!!",
-//                                toastLength: Toast.LENGTH_LONG,
-//                              );
+                          onPressed: () async{
+                            String message = await apiService.emailauthCheck(_emailcodeControl.text);
+                            if(message=='인증성공'){
+                              emailauthCheck = 1;
+                              Fluttertoast.showToast(
+                                msg: "인증 성공!!",
+                                toastLength: Toast.LENGTH_LONG,
+                              );
 
-//                            }
+                            }
 
                           },
                           color: Theme.of(context).accentColor,
@@ -420,7 +422,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(width: 15.0),
                     DropdownButton<String>(
                       value: dropdownValue_gender,
-                      autofocus: true,
+                      autofocus: false,
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),
@@ -474,7 +476,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(width: 35.0),
                     DropdownButton<String>(
                       value: dropdownValue_age,
-                      autofocus: true,
+                      autofocus: false,
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),
@@ -555,21 +557,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               onPressed: () async{//중복체크 했고, 인증 완료 되었을 때 가입 가능한 조건문
-                Map<String, dynamic> response = await apiService.register(
-                    _useridControl.text,
-                    _usernameControl.text,
-                    _emailControl.text,
-                    _passwordControl.text,
-                    genderCheck,
-                    int.parse(dropdownValue_age),
-                    _introduceControl.text,
-                    null,
-                    null,
-                    null);
-                Fluttertoast.showToast(
-                  msg: response['message'],
-                  toastLength: Toast.LENGTH_LONG,
-                );
+                if(emailauthCheck==1) {
+                  Map<String, dynamic> response = await apiService.register(
+                      _useridControl.text,
+                      _usernameControl.text,
+                      _emailControl.text,
+                      _passwordControl.text,
+                      genderCheck,
+                      int.parse(dropdownValue_age),
+                      _introduceControl.text,
+                      null,
+                      null,
+                      null);
+                  Fluttertoast.showToast(
+                    msg: response['message'],
+                    toastLength: Toast.LENGTH_LONG,
+                  );
+                }
                 
 //                user.add(
 //                  {

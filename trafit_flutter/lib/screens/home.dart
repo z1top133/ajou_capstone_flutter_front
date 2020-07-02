@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/dishes.dart';
-import 'package:restaurant_ui_kit/widgets/grid_product.dart';
-import 'package:restaurant_ui_kit/widgets/home_category.dart';
-import 'package:restaurant_ui_kit/widgets/slider_item.dart';
-import 'package:restaurant_ui_kit/util/travel_spots.dart';
-import 'package:restaurant_ui_kit/util/categories.dart';
+import 'package:trafit/screens/all_spot.dart';
+import 'package:trafit/util/popular_spots.dart';
+import 'package:trafit/widgets/grid_product.dart';
+import 'package:trafit/widgets/home_category.dart';
+import 'package:trafit/widgets/slider_item.dart';
+import 'package:trafit/util/travel_spots.dart';
+import 'package:trafit/util/categories.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 
@@ -79,7 +80,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height / 2.4,
+                  .height / 2.6,
               items: map<Widget>(
                 travel_spots,
                     (index, i) {
@@ -105,7 +106,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 });
               },
             ),
-            SizedBox(height: 20.0),
+
 
             Text(
               "패키지 여행",
@@ -128,6 +129,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                     icon: cat['icon'],
                     title: cat['name'],
                     items: cat['items'].toString(),
+                    category_num : cat['category_num'],
+                    img: cat['img'],
                     isHome: true,
                   );
                 },
@@ -147,19 +150,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                   ),
                 ),
 
-                FlatButton(
-                  child: Text(
-                    "View More",
-                    style: TextStyle(
-//                      fontSize: 22,
-//                      fontWeight: FontWeight.w800,
-                      color: Theme
-                          .of(context)
-                          .accentColor,
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
+//                FlatButton(
+//                  child: Text(
+//                    "View More",
+//                    style: TextStyle(
+////                      fontSize: 22,
+////                      fontWeight: FontWeight.w800,
+//                      color: Theme
+//                          .of(context)
+//                          .accentColor,
+//                    ),
+//                  ),
+//                  onPressed: () {},
+//                ),
               ],
             ),
             SizedBox(height: 10.0),
@@ -177,9 +180,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                     (MediaQuery
                         .of(context)
                         .size
-                        .height / 1.25),
+                        .height / 1.4),
               ),
-              itemCount: travel_spots == null ? 0 : travel_spots.length,
+              itemCount: popular_spots == null ? 0 : popular_spots.length,
               itemBuilder: (BuildContext context, int index) {
 //                Food food = Food.fromJson(foods[index]);
                 Map travel_spot = travel_spots[index];
@@ -189,6 +192,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                   img: travel_spot['img'],
                   isFav: false,
                   name: travel_spot['name'],
+                  category: travel_spot['category'],
                   rating: 5.0,
                   raters: 23,
                 );

@@ -1,14 +1,17 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/cart.dart';
-import 'package:restaurant_ui_kit/screens/favorite_screen.dart';
-import 'package:restaurant_ui_kit/screens/home.dart';
-import 'package:restaurant_ui_kit/screens/notifications.dart';
-import 'package:restaurant_ui_kit/screens/profile.dart';
-import 'package:restaurant_ui_kit/screens/search.dart';
-import 'package:restaurant_ui_kit/util/const.dart';
-import 'package:restaurant_ui_kit/widgets/badge.dart';
+import 'package:trafit/screens/cart.dart';
+import 'package:trafit/screens/home.dart';
+import 'package:trafit/screens/notifications.dart';
+import 'package:trafit/screens/profile.dart';
+import 'package:trafit/util/const.dart';
+import 'package:trafit/widgets/badge.dart';
+import 'package:trafit/screens/user_in_chat.dart';
+import 'package:trafit/screens/search_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 class MainScreen extends StatefulWidget {
   @override
@@ -32,26 +35,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
           elevation: 0.0,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.notifications,
-                size: 24.0,
-              ),
-//              icon: IconBadge(
-//                icon: Icons.notifications,
-//                size: 22.0,
-//              ),
-              onPressed: (){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context){
-                      return Notifications();
-                    },
-                  ),
-                );
-              },
-              tooltip: "Notifications",
-            ),
           ],
         ),
 
@@ -61,8 +44,8 @@ class _MainScreenState extends State<MainScreen> {
           onPageChanged: onPageChanged,
           children: <Widget>[
             Home(),
-            FavoriteScreen(),
-            SearchScreen(),
+            userInChatScreen(),
+            chatSearchScreen(""),
             CartScreen(),
             Profile(),
           ],
@@ -114,19 +97,30 @@ class _MainScreenState extends State<MainScreen> {
 //                onPressed: ()=>_pageController.jumpToPage(2),
 //              ),
 
+//              IconButton(
+//                icon: IconBadge(
+//                  icon: Icons.search,
+//                  size: 24.0,
+//                ),
+//                color: _page == 3
+//                    ? Theme.of(context).accentColor
+//                    : Theme
+//                    .of(context)
+//                    .textTheme.caption.color,
+//                onPressed: ()=>_pageController.jumpToPage(2),
+//              ),
               IconButton(
-                icon: IconBadge(
-                  icon: Icons.search,
+                icon: Icon(
+                  Icons.search,
                   size: 24.0,
                 ),
-                color: _page == 3
+                color: _page == 2
                     ? Theme.of(context).accentColor
                     : Theme
                     .of(context)
                     .textTheme.caption.color,
                 onPressed: ()=>_pageController.jumpToPage(2),
               ),
-
               IconButton(
                 icon: Icon(
                   Icons.person,
@@ -168,6 +162,13 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    firebaseCloudMessaging_Listeners();
+    _firebaseMessaging.configure(
+      // 앱이 실행중일 경우
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+      },
+    );
   }
 
   @override
@@ -181,4 +182,36 @@ class _MainScreenState extends State<MainScreen> {
       this._page = page;
     });
   }
+  void firebaseCloudMessaging_Listeners() {
+    if (Platform.isIOS) iOS_Permission();
+
+    _firebaseMessaging.getToken().then((token){
+      print('token:'+token);
+    });
+
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print('on message $message');
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print('on resume $message');
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print('on launch $message');
+      },
+    );
+  }
+
+  void iOS_Permission() {
+    _firebaseMessaging.requestNotificationPermissions(
+        IosNotificationSettings(sound: true, badge: true, alert: true)
+    );
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings)
+    {
+      print("Settings registered: $settings");
+    });
+  }
+
+
 }

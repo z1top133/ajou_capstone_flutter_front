@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">401068850573-cs7kg9evcvucnqlhjgio9sr7t6n5qpa2.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://ajou-capstone-03echoaplus.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">401068850573</string>
+    <string name="google_api_key" translatable="false">AIzaSyBschYgjS-8rpsM5yQuho7BiYAaAu3p4L8</string>
+    <string name="google_app_id" translatable="false">1:401068850573:android:a3d1b7266aef778b8111c4</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBschYgjS-8rpsM5yQuho7BiYAaAu3p4L8</string>
+    <string name="google_storage_bucket" translatable="false">ajou-capstone-03echoaplus.appspot.com</string>
+    <string name="project_id" translatable="false">ajou-capstone-03echoaplus</string>
+</resources>

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:restaurant_ui_kit/screens/join.dart';
+import 'package:trafit/screens/join.dart';
 
 
 class Walkthrough extends StatefulWidget {
@@ -13,23 +13,17 @@ class _WalkthroughState extends State<Walkthrough> {
   List pageInfos = [
     {
       "title": "안전한 동행",
-      "body": "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus."
-          " Vestibulum ac diam sit amet quam vehicula elementum sed sit amet "
-          "dui. Nulla porttitor accumsan tincidunt.",
+      "body": "사회에서 보장된 신분을 통해 최소한의 신원을 보장합니다. 개인 정보를 가장 최소한으로 사용하며 그 사람의 보안을 확인하도록 합니다.",
       "img": "assets/on1.png",
     },
     {
-      "title": "Fast Delivery",
-      "body": "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus."
-          " Vestibulum ac diam sit amet quam vehicula elementum sed sit amet "
-          "dui. Nulla porttitor accumsan tincidunt.",
+      "title": "신속한 동행",
+      "body": "실시간 통신을 통해 즉각적인 계획 수립과 수정을 이뤄드립니다. 이러한 방식을 통해 실시간으로 여행의 계획을 수립할 수 있으며 토론하여 그를 수정하도록 합니다.",
       "img": "assets/on2.png",
     },
     {
-      "title": "Easy Payment",
-      "body": "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus."
-          " Vestibulum ac diam sit amet quam vehicula elementum sed sit amet "
-          "dui. Nulla porttitor accumsan tincidunt.",
+      "title": "마음에 맞는 동행",
+      "body": "MBTI 검사를 통해 자신과 마음에 맞는 동행을 우선적으로 구해드립니다. 만약 마음에 맞는 방이 없다면 필터를 통해 푸시 알림을 설정할 수 있습니다.",
       "img": "assets/on3.png",
     },
   ];

@@ -9,10 +9,14 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:label="trafit"
         android:icon="@mipmap/ic_launcher">
 =======
         android:label="restaurant_ui_kit"
+=======
+        android:label="trafit"
+>>>>>>> dbc1f61eb9716a2367eff269c82fa9878ea53f1b
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -34,6 +38,7 @@
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
                 android:value="true" />
             <intent-filter>
+                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>

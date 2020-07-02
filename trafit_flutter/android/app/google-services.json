@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "401068850573",
+    "firebase_url": "https://ajou-capstone-03echoaplus.firebaseio.com",
+    "project_id": "ajou-capstone-03echoaplus",
+    "storage_bucket": "ajou-capstone-03echoaplus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401068850573:android:a3d1b7266aef778b8111c4",
+        "android_client_info": {
+          "package_name": "com.echoAplus.trafit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401068850573-cs7kg9evcvucnqlhjgio9sr7t6n5qpa2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBschYgjS-8rpsM5yQuho7BiYAaAu3p4L8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401068850573-cs7kg9evcvucnqlhjgio9sr7t6n5qpa2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

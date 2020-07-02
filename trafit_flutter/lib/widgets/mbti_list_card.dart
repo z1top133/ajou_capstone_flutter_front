@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/util/mbti_result_percentage.dart';
+import 'package:trafit/util/mbti_result_percentage.dart';
 
 
 class Mbti_list extends StatefulWidget {
@@ -43,6 +43,7 @@ class _Mbti_listState extends State<Mbti_list> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 15,
+                                  color: Colors.blueGrey[700]
                                 ),
                               ),
                               SizedBox(height: 10.0),
@@ -51,13 +52,16 @@ class _Mbti_listState extends State<Mbti_list> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text("동의",
-                                    style: TextStyle(fontSize: 10)
+                                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.lightGreen[700])
                                   ),
-                                  Radio(
+                                  SizedBox(width: 10,),
+                                  Transform.scale(
+                                    scale: 1.65,
+                                    child: Radio(
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     value: 0,
                                     groupValue: check,
-                                    activeColor: Colors.red,
+                                    activeColor: Colors.lightGreen[700],
                                     onChanged: (int value) {
                                       setState(() {
                                         check = value;
@@ -69,11 +73,14 @@ class _Mbti_listState extends State<Mbti_list> {
                                       });
                                     },
                                   ),
-                                  Radio(
+                                  ),
+                                  Transform.scale(
+                                    scale: 1.3,
+                                    child: Radio(
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     value: 1,
                                     groupValue: check,
-                                    activeColor: Colors.red,
+                                    activeColor: Colors.lightGreen[700],
                                     onChanged: (int value) {
                                       setState(() {
                                         check = value;
@@ -85,11 +92,15 @@ class _Mbti_listState extends State<Mbti_list> {
                                       });
                                     },
                                   ),
-                                  Radio(
+                                  ),
+                                  
+                                  Transform.scale(
+                                    scale: 1.0,
+                                    child: Radio(
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     value: 2,
                                     groupValue: check,
-                                    activeColor: Colors.red,
+                                    activeColor: Colors.lightGreen[700],
                                     onChanged: (int value) {
                                       setState(() {
                                         check = value;
@@ -101,11 +112,15 @@ class _Mbti_listState extends State<Mbti_list> {
                                       });
                                     },
                                   ),
-                                  Radio(
+                                  ),
+                                  
+                                  Transform.scale(
+                                    scale: 1.0,
+                                    child: Radio(
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     value: 3,
                                     groupValue: check,
-                                    activeColor: Colors.red,
+                                    activeColor: Colors.brown[700],
                                     onChanged: (int value) {
                                       setState(() {
                                         check = value;
@@ -117,11 +132,15 @@ class _Mbti_listState extends State<Mbti_list> {
                                       });
                                     },
                                   ),
-                                  Radio(
+                                  ),
+                                  
+                                  Transform.scale(
+                                    scale: 1.3,
+                                    child: Radio(
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     value: 4,
                                     groupValue: check,
-                                    activeColor: Colors.red,
+                                    activeColor: Colors.brown[700],
                                     onChanged: (int value) {
                                       setState(() {
                                         check = value;
@@ -133,11 +152,15 @@ class _Mbti_listState extends State<Mbti_list> {
                                       });
                                     },
                                   ),
-                                  Radio(
+                                  ),
+                                  
+                                  Transform.scale(
+                                    scale: 1.65,
+                                    child: Radio(
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     value: 5,
                                     groupValue: check,
-                                    activeColor: Colors.red,
+                                    activeColor: Colors.brown[700],
                                     onChanged: (int value) {
                                       setState(() {
                                         check = value;
@@ -150,8 +173,10 @@ class _Mbti_listState extends State<Mbti_list> {
                                       });
                                     },
                                   ),
+                                  ),
+                                  SizedBox(width: 10,),
                                   Text("비동의",
-                                      style: TextStyle(fontSize: 10)
+                                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.brown[700])
                                   )
 //                          Radio(
 //                            value: SingingCharacter.lafayette,

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\android\app\src\main\jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\android\app\src\debug\jniLibs"/></dataSet></merger>
 =======
 <merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\project\ajou_capstone_flutter_front\trafit_flutter\android\app\src\main\jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\project\ajou_capstone_flutter_front\trafit_flutter\android\app\src\debug\jniLibs"/></dataSet></merger>
 >>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
+=======
+<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\debug\jniLibs"/></dataSet></merger>
+>>>>>>> dbc1f61eb9716a2367eff269c82fa9878ea53f1b

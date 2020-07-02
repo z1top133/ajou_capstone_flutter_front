@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/categories_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trafit/screens/details.dart';
+import 'package:trafit/screens/categories_screen.dart';
+import 'package:trafit/util/api_service.dart';
 
 
 class HomeCategory extends StatefulWidget {
@@ -8,12 +11,16 @@ class HomeCategory extends StatefulWidget {
   final String items;
   final Function tap;
   final bool isHome;
+  final String category_num;
+  final String img;
 
   HomeCategory({
     Key key,
     @required this.icon,
     @required this.title,
     @required this.items,
+    @required this.category_num,
+    @required this.img,
     this.tap, this.isHome})
       : super(key: key);
 
@@ -25,15 +32,6 @@ class _HomeCategoryState extends State<HomeCategory> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.isHome?(){
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (BuildContext context){
-              return CategoriesScreen();
-            },
-          ),
-        );
-      }:widget.tap,
       child: Card(
         shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(10.0)),
         elevation: 4.0,
@@ -62,13 +60,6 @@ class _HomeCategoryState extends State<HomeCategory> {
                     ),
                   ),
 
-                  Text(
-                    "${widget.items} Items",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 10,
-                    ),
-                  ),
                   SizedBox(height: 5),
                 ],
               ),
@@ -77,6 +68,22 @@ class _HomeCategoryState extends State<HomeCategory> {
           ),
         ),
       ),
+      onTap: () async{
+        ApiService apiService = new ApiService();
+        List<dynamic> rooms = await apiService.show_room(widget.category_num);
+        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              //print('$name');
+              print(widget.img);
+              //print(category+'dd');
+
+              return ProductDetails(widget.title, widget.img,widget.category_num);
+            },
+          ),
+        );
+      },
     );
   }
 }

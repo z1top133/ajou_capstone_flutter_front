@@ -2,13 +2,17 @@
     "logs": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "outputFile": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rXC\\values-en-rXC.xml",
 =======
             "outputFile": "C:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rXC\\values-en-rXC.xml",
 >>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
+=======
+            "outputFile": "C:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rXC\\values-en-rXC.xml",
+>>>>>>> dbc1f61eb9716a2367eff269c82fa9878ea53f1b
             "map": [
                 {
-                    "source": "C:\\Users\\JKing\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\b21712e8dc4cdfa0c8e8dac216296423\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\1ff3216e16f14c31ed3f07f51b5aefd4\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/login.dart';
-import 'package:restaurant_ui_kit/screens/register.dart';
+import 'package:trafit/screens/login.dart';
+import 'package:trafit/screens/register.dart';
 import 'package:flutter/services.dart';
 
 
@@ -8,8 +8,6 @@ class JoinApp extends StatefulWidget {
   @override
   _JoinAppState createState() => _JoinAppState();
 }
-
-
 
 class _JoinAppState extends State<JoinApp> with SingleTickerProviderStateMixin{
 
@@ -49,10 +47,10 @@ class _JoinAppState extends State<JoinApp> with SingleTickerProviderStateMixin{
           ),
           tabs: <Widget>[
             Tab(
-              text: "로그인",
+              text: "회원가입",
             ),
             Tab(
-              text: "회원가입",
+              text: "로그인",
             ),
           ],
         ),
@@ -61,8 +59,9 @@ class _JoinAppState extends State<JoinApp> with SingleTickerProviderStateMixin{
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          LoginScreen(),
           RegisterScreen(),
+          LoginScreen(),
+
         ],
       ),
 

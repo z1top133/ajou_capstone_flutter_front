@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
+import 'package:trafit/screens/checkout.dart';
+import 'package:trafit/util/travel_spots.dart';
+import 'package:trafit/widgets/cart_item.dart';
+=======
 import 'package:restaurant_ui_kit/screens/checkout.dart';
 import 'package:restaurant_ui_kit/util/travel_spots.dart';
 import 'package:restaurant_ui_kit/widgets/cart_item.dart';
+import 'pacakage:trafit';
 
+>>>>>>> Stashed changes
 
 class CartScreen extends StatefulWidget {
   @override

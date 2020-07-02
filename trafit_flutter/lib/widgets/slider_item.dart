@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_ui_kit/screens/details.dart';
-import 'package:restaurant_ui_kit/screens/login.dart';
-import 'package:restaurant_ui_kit/util/api_service.dart';
-import 'package:restaurant_ui_kit/util/const.dart';
-import 'package:restaurant_ui_kit/widgets/smooth_star_rating.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trafit/screens/details.dart';
 
 class SliderItem extends StatelessWidget {
   final String name;
@@ -44,24 +39,20 @@ class SliderItem extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                right: -10.0,
-                bottom: 3.0,
-                child: RawMaterialButton(
-                  onPressed: () {},
-                  fillColor: Colors.white,
-                  shape: CircleBorder(),
-                  elevation: 10.0,
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Icon(
-                      isFav ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.red,
-                      size: 17,
-                    ),
-                  ),
-                ),
-              ),
+//              Positioned(
+//                right: -10.0,
+//                bottom: 3.0,
+//                child: RawMaterialButton(
+//                  onPressed: () {},
+//
+//                  shape: CircleBorder(),
+//                  elevation: 10.0,
+//                  child: Padding(
+//                    padding: EdgeInsets.all(5),
+//
+//                  ),
+//                ),
+//              ),
             ],
           ),
           Padding(
@@ -75,41 +66,28 @@ class SliderItem extends StatelessWidget {
               maxLines: 2,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 5.0, top: 2.0),
-            child: Row(
-              children: <Widget>[
-//                SmoothStarRating(
-//                  starCount: 5,
-//                  color: Constants.ratingBG,
-//                  allowHalfRating: true,
-//                  rating: rating,
-//                  size: 10.0,
-//                ),
-                Text(
-                  "($raters개의 게시글)",
-//                  " $rating ($raters개의 게시글)",
-                  style: TextStyle(
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
+//          Padding(
+//            padding: EdgeInsets.only(bottom: 5.0, top: 2.0),
+//            child: Row(
+//              children: <Widget>[
+////                SmoothStarRating(
+////                  starCount: 5,
+////                  color: Constants.ratingBG,
+////                  allowHalfRating: true,
+////                  rating: rating,
+////                  size: 10.0,
+////                ),
+//
+//              ],
+//            ),
+//          ),
         ],
       ),
       onTap: () async{
-        ApiService apiService = new ApiService();
-        List<dynamic> rooms = await apiService.show_room(category);
-        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              //print('$name');
-              print('$img');
-              //print(category+'dd');
-              return ProductDetails('$name', '$img','$category', rooms);
+              return ProductDetails('$name', '$img','$category');
             },
           ),
         );
