@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,14 @@ import 'package:trafit/util/api_service.dart';
 import 'package:trafit/util/mbti_result.dart';
 import 'package:trafit/util/mbti_result_percentage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+=======
+import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:restaurant_ui_kit/screens/main_screen.dart';
+import 'package:restaurant_ui_kit/util/User.dart';
+import 'package:restaurant_ui_kit/util/mbti_result.dart';
+import 'package:restaurant_ui_kit/util/mbti_result_percentage.dart';
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 
 
 class result_screen extends StatefulWidget {
@@ -56,6 +65,7 @@ class _result_screenState extends State<result_screen> {
         actions: <Widget>[
         ],
       ),
+<<<<<<< HEAD
       body: Container(
         width: MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio,
         child: Center(
@@ -331,6 +341,265 @@ class _result_screenState extends State<result_screen> {
               )
             ],
           ),
+=======
+      body: Center(
+        child: ListView(
+          children: <Widget>[
+            Center(
+              child: Text(
+                "당신의 성격 유형은 " + widget.E_I + widget.N_S + widget.T_F + widget.J_P+"입니다."
+                ,style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Card(
+              shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              elevation: 4.0,
+              child: Container(
+                height: 50,
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(80.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(result_percentage[0].toString()+ "%"),
+                          Text("내향형"  ,style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 15,
+                          ),),
+                        ],
+                      ),
+                    ),
+                    LinearPercentIndicator(
+                      width: 120.0,
+                      lineHeight: 10.0,
+                      percent: result_percentage_float[0],
+                      backgroundColor: Colors.grey,
+                      progressColor: Colors.blue,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text((100-result_percentage[0]).toString()+ "%"),
+                          Text("외향형"
+                            ,style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                            ),),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              elevation: 4.0,
+              child: Container(
+                height: 50,
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(80.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(result_percentage[1].toString()+ "%"),
+                          Text("직관형"
+                            ,style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                            ),),
+                        ],
+                      ),
+                    ),
+                    LinearPercentIndicator(
+                      width: 120.0,
+                      lineHeight: 10.0,
+                      percent: result_percentage_float[1],
+                      backgroundColor: Colors.grey,
+                      progressColor: Colors.blue,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 0.0),
+                            child: Text((100-result_percentage[1]).toString()+ "%"),
+                          ),
+                          Text("현실주의형"
+                            ,style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                            ),),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              elevation: 4.0,
+              child: Container(
+                height: 50,
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(55.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(28.0, 0.0, 0.0, 0.0),
+                            child: Text(result_percentage[2].toString()+ "%"),
+                          ),
+                          Text("원칙주의형"
+                            ,style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                            ),),
+                        ],
+                      ),
+                    ),
+                    LinearPercentIndicator(
+                      width: 120.0,
+                      lineHeight: 10.0,
+                      percent: result_percentage_float[2],
+                      backgroundColor: Colors.grey,
+                      progressColor: Colors.blue,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
+                            child: Text((100-result_percentage[2]).toString()+ "%"),
+                          ),
+                          Text("이성적 사고형"
+                            ,style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                            ),),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              elevation: 4.0,
+              child: Container(
+                height: 50,
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(82.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(result_percentage[3].toString()+ "%"),
+                          Text("탐색형"
+                            ,style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                            ),),
+                        ],
+                      ),
+                    ),
+                    LinearPercentIndicator(
+                      width: 120.0,
+                      lineHeight: 10.0,
+                      percent: result_percentage_float[3],
+                      backgroundColor: Colors.grey,
+                      progressColor: Colors.blue,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text((100-result_percentage[3]).toString()+ "%"),
+                          Text("계획형"
+                            ,style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                            ),),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              elevation: 4.0,
+              child: Column(
+                children: <Widget>[
+                  Center(child:
+                  Text(widget.E_I + widget.N_S + widget.T_F + widget.J_P+"형"
+                    ,style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                    ),
+                  )
+                  ),
+                  SizedBox(height: 10.0),
+                  Center(child: Text('$mbti_keyword'
+                    ,style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                    ),)
+                  ),
+                  SizedBox(height: 10.0),
+                  Center(child: Text('$mbti_comment'
+                    ,style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                    ),)),
+                  SizedBox(height: 10.0),
+                  Center(child: Text('당신과 잘 맞는 유형은 $mbti_hit_it_off 입니다'
+                    ,style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                    ),)),
+                ],
+              ),
+            ),
+            Center(
+              child: Card(
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                elevation: 4.0,
+                child: FlatButton(
+                  child: Text("결과 제출"),
+                  onPressed: (){
+                    user[0]['mbti']=widget.E_I + widget.N_S + widget.T_F + widget.J_P;
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return MainScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
         ),
       ),
     );

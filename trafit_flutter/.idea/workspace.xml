@@ -3,10 +3,15 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
     <list default="true" id="754a5b1b-5ed3-4b09-901d-c639708d8884" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/../../flutter-nodejs_test/flutter_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter-nodejs_test/flutter_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter-nodejs_test/server.js" beforeDir="false" />
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
     </list>
 =======
 <<<<<<< HEAD
@@ -81,6 +86,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5_API_28" />
@@ -161,6 +167,9 @@
 =======
   <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_29_x86" />
 >>>>>>> dbc1f61eb9716a2367eff269c82fa9878ea53f1b
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_28" />
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -182,7 +191,9 @@
 =======
 >>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
     <option name="ROOT_SYNC" value="SYNC" />
+<<<<<<< HEAD
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
 <<<<<<< HEAD
@@ -292,6 +303,11 @@
       </pane>
     </panes>
   </component>
+=======
+  </component>
+  <component name="ProjectId" id="1cY5vsYUQuFgma4J3dqV7Wdq8bh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
@@ -301,6 +317,7 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+<<<<<<< HEAD
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\icon" />
       <recent name="C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\android\app\src\main\res" />
@@ -313,6 +330,17 @@
       <recent name="C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\android\app" />
       <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\widgets" />
       <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\screens" />
+=======
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\widgets" />
+      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\screens" />
+      <recent name="C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\assets" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\util" />
+      <recent name="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\lib\screens" />
+      <recent name="C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\lib\widgets" />
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
       <recent name="C:\Users\pc\Desktop\atornel-RestaurantAppUIKit-f2e8b41\assets" />
     </key>
   </component>
@@ -358,6 +386,7 @@
     </todo-panel>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ToolWindowManager">
     <frame x="598" y="25" width="1278" height="998" extended-state="0" />
     <editor active="true" />
@@ -388,6 +417,8 @@
 =======
 =======
 >>>>>>> dbc1f61eb9716a2367eff269c82fa9878ea53f1b
+=======
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -400,7 +431,10 @@
         </entry>
       </map>
     </option>
+<<<<<<< HEAD
 >>>>>>> f9c2723ea5a16717059773e4386f38fe4fd1b1f5
+=======
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="asd" />
@@ -410,6 +444,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
+<<<<<<< HEAD
           <url>file://$PROJECT_DIR$/lib/screens/Mbti_jp_screen.dart</url>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
@@ -421,10 +456,25 @@
           <url>file://$PROJECT_DIR$/lib/screens/details.dart</url>
           <line>284</line>
           <option name="timeStamp" value="8" />
+=======
+          <url>file://$PROJECT_DIR$/lib/screens/register.dart</url>
+          <line>439</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/Mbti_jp_screen.dart</url>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/register.dart</url>
+          <line>493</line>
+          <option name="timeStamp" value="6" />
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
+<<<<<<< HEAD
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
@@ -582,4 +632,6 @@
       </provider>
     </entry>
   </component>
+=======
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 </project>

@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Thu Jun 04 19:49:57 KST 2020
 base.0=C\:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 =======
@@ -10,5 +11,9 @@ base.0=C\:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\in
 #Thu Jun 25 13:55:09 KST 2020
 base.0=C\:\\Users\\pc\\Desktop\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 >>>>>>> dbc1f61eb9716a2367eff269c82fa9878ea53f1b
+=======
+#Fri May 29 15:23:41 KST 2020
+base.0=C\:\\cap\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 path.0=classes.dex
 renamed.0=classes.dex

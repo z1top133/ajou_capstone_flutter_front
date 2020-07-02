@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:trafit/util/api_service.dart';
+=======
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant_ui_kit/screens/main_screen.dart';
+import 'package:restaurant_ui_kit/util/User.dart';
+import 'package:restaurant_ui_kit/util/api_service.dart';
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 import 'package:fluttertoast/fluttertoast.dart';
 
 ApiService apiService = new ApiService();
@@ -23,8 +30,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   int genderCheck = 0;
   String dropdownValue_age = '20';
   String dropdownValue_gender = '남';
+<<<<<<< HEAD
   int emailauthCheck =0;
   bool emailCheck = false;
+=======
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -113,7 +123,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             String abc = await apiService.Id_check(_useridControl.text);
 //                            String abc = '중복되지 않음';
                             if(abc == '중복되지 않음'){
+<<<<<<< HEAD
                               idCheck = 0;
+=======
+                              idCheck = 1;
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                               Fluttertoast.showToast(
                                 msg: "가입 가능한 아이디 입니다.",
                                 toastLength: Toast.LENGTH_LONG,
@@ -285,6 +299,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white,
                             ),
                           ),
+<<<<<<< HEAD
                           onPressed: () async {
                             String ajouEmail = _emailControl.text;
                             if(ajouEmail.split('@')[1] != 'ajou.ac.kr'){
@@ -304,6 +319,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               String abc = await apiService.emailAuth(_emailControl.text);
                               print(abc);
                             }
+=======
+                          onPressed: () {
+                            apiService.emailAuth(_emailControl.text);
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                           },
                           color: Theme.of(context).accentColor,
                         ),
@@ -375,6 +394,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white,
                             ),
                           ),
+<<<<<<< HEAD
                           onPressed: () async{
                             String message = await apiService.emailauthCheck(_emailcodeControl.text);
                             if(message=='인증성공'){
@@ -386,6 +406,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                             }
 
+=======
+                          onPressed: () {
+                            apiService.emailauthCheck(_emailcodeControl.text);
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                           },
                           color: Theme.of(context).accentColor,
                         ),
@@ -422,7 +446,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(width: 15.0),
                     DropdownButton<String>(
                       value: dropdownValue_gender,
+<<<<<<< HEAD
                       autofocus: false,
+=======
+                      autofocus: true,
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),
@@ -433,8 +461,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onChanged: (String newValue) {
                         setState(() {
                           dropdownValue_gender = newValue;
+<<<<<<< HEAD
                           if(dropdownValue_gender=='남')genderCheck = 0;
                           else genderCheck =1;
+=======
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                         });
                       },
                       items: <String>['남', '여']
@@ -476,7 +507,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(width: 35.0),
                     DropdownButton<String>(
                       value: dropdownValue_age,
+<<<<<<< HEAD
                       autofocus: false,
+=======
+                      autofocus: true,
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                       iconSize: 24,
                       elevation: 16,
                       style: TextStyle(color: Colors.grey),
@@ -556,6 +591,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   color: Colors.white,
                 ),
               ),
+<<<<<<< HEAD
               onPressed: () async{//중복체크 했고, 인증 완료 되었을 때 가입 가능한 조건문
                 if(emailauthCheck==1) {
                   Map<String, dynamic> response = await apiService.register(
@@ -575,6 +611,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   );
                 }
                 
+=======
+              onPressed: () {//중복체크 했고, 인증 완료 되었을 때 가입 가능한 조건문
+                apiService.register(
+                    _useridControl.text,
+                    _usernameControl.text,
+                    _emailControl.text,
+                    _passwordControl.text,
+                    dropdownValue_gender,
+                    dropdownValue_age,
+                    _introduceControl.text,
+                    null,
+                    null,
+                    null);
+
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 //                user.add(
 //                  {
 //                    "id": "$_useridControl",
@@ -623,4 +674,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _handleSubmitted(String value) {
     _emailcodeControl.clear();
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23

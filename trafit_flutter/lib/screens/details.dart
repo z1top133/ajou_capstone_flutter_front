@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trafit/screens/ChatPage.dart';
 import 'package:trafit/screens/notifications.dart';
@@ -13,6 +14,19 @@ ApiService apiService = new ApiService();
 Future<List> call(String category) async {
   return apiService.show_room(category);
 }
+=======
+import 'package:restaurant_ui_kit/screens/ChatPage.dart';
+import 'package:restaurant_ui_kit/screens/main_screen.dart';
+import 'package:restaurant_ui_kit/screens/notifications.dart';
+import 'package:restaurant_ui_kit/screens/post_screen.dart';
+import 'package:restaurant_ui_kit/util/ChatRoom.dart';
+import 'package:restaurant_ui_kit/util/comments.dart';
+import 'package:restaurant_ui_kit/util/const.dart';
+import 'package:restaurant_ui_kit/util/travel_spots.dart';
+import 'package:restaurant_ui_kit/widgets/badge.dart';
+import 'package:restaurant_ui_kit/widgets/chat.dart';
+import 'package:restaurant_ui_kit/widgets/smooth_star_rating.dart';
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 
 class ProductDetails extends StatefulWidget {
   final String _name;
@@ -159,6 +173,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: rooms == null ? 0 : rooms.length,
                 itemBuilder: (BuildContext context, int index) {
+<<<<<<< HEAD
                   if (rooms.length != 0) {
                     Map chatroom = rooms[index];
                     DateTime startTime = DateTime(
@@ -184,11 +199,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                       c = CachedNetworkImageProvider(
                           'http://$myIP:3001/${chatroom['img']}');
                     }
+=======
+                  if (widget._category == chatrooms[index]['category']) {
+                    Map chatroom = chatrooms[index];
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                     return Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
                       elevation: 4.0,
                       child: ListTile(
+<<<<<<< HEAD
                         leading: Column(
                           children: <Widget>[
                             CircleAvatar(radius: 25.0, backgroundImage: c),
@@ -199,12 +219,25 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ],
                         ),
                         title: Text("${chatroom['bossname']}님의 게시글"),
+=======
+                        leading: CircleAvatar(
+                          radius: 25.0,
+                          backgroundImage: AssetImage(
+                            "${chatroom['user_photo']}",
+                          ),
+                        ),
+                        title: Text("${chatroom['user_name']}"),
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                         subtitle: Column(
                           children: <Widget>[
                             Row(
                               children: <Widget>[
                                 Text(
+<<<<<<< HEAD
                                   chatroom['date'],
+=======
+                                  "February 14, 2020",
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w300,
@@ -212,6 +245,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 ),
                               ],
                             ),
+<<<<<<< HEAD
                             Padding(
                               padding: EdgeInsets.all(4),
                               child: Row(
@@ -304,6 +338,37 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     }),
                               ),
                             ),
+=======
+                            SizedBox(height: 7.0),
+                            Text(
+                              "${chatroom["comment"]}",
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 70.0, 0),
+                              child: Container(
+                                child: FlatButton(
+                                    child: Text(
+                                      "채팅방 입장",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    color: Theme.of(context).accentColor,
+                                    textColor: Colors.white,
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                            return ChatPage();
+                                          },
+                                        ),
+                                      );
+                                    }),
+                              ),
+                            ),
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                           ],
                         ),
                       ),

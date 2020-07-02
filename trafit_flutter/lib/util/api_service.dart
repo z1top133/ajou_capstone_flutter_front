@@ -1,16 +1,27 @@
 import 'dart:convert';
 import 'dart:io';
+<<<<<<< HEAD
 import 'package:http/http.dart';
 import 'MyIP.dart';
+=======
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 
 const Map<String, String> headers1 = {"Content-type": "application/json"};
 
 String _hostname() {
   if (Platform.isAndroid)
+<<<<<<< HEAD
     return 'http://$myIP:3001';
   else if(Platform.isIOS) {
     return 'http://$myIP:3001';
   }
+=======
+    return 'http://49.50.174.200:3100';
+  else
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
     return 'http://localhost:3000';
 }
 
@@ -20,7 +31,11 @@ class ApiService{
     return jsonDecode(toJson);
   }
 
+<<<<<<< HEAD
   Future<Map<String, dynamic>> register(_id ,_username, _email, _password, _gender, _age, _introduce, _emailFlag, _roomNum, _mbti) async{
+=======
+  Future<String> register(_id ,_username, _email, _password, _gender, _age, _introduce, _emailFlag, _roomNum, _mbti) async{
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 
     Map<String, dynamic> pass = {//변수를 json으로
       'id' : _id,
@@ -39,9 +54,15 @@ class ApiService{
     int statusCode = response.statusCode;
     String body = response.body.toString();
     print('Status: $statusCode, $body');
+<<<<<<< HEAD
     return jsonDecode(response.body);//json으로 파싱
   }
   Future<Map<String,dynamic>> login(_id, _password) async{
+=======
+    return body;//json으로 파싱
+  }
+  Future<String> login(_id, _password) async{
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 
     Map<String, dynamic> pass = {//변수를 json으로
       'id': _id,
@@ -50,7 +71,11 @@ class ApiService{
 
     Response response = await post(_hostname()+'/login_check', headers: headers1, body: jsonEncode(pass));
 
+<<<<<<< HEAD
     return jsonDecode(response.body);//json으로 파싱
+=======
+    return response.body.toString();//json으로 파싱
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
   }
 
   Future<String> Id_check(_id) async{
@@ -64,15 +89,25 @@ class ApiService{
     return abc;//json으로 파싱
   }
 
+<<<<<<< HEAD
   Future<String> emailAuth(_email) async{
+=======
+  Future<Map<String, dynamic>> emailAuth(_email) async{
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 
     Map<String, dynamic> pass = {//변수를 json으로
       'email': _email
     };
 
+<<<<<<< HEAD
     Response response = await post('http://49.50.174.200:3001/emailauth', headers: headers1, body: jsonEncode(pass));
     String abc = response.body.toString();
     return abc;//json으로 파싱
+=======
+    Response response = await post(_hostname()+'/emailauth', headers: headers1, body: jsonEncode(pass));
+
+    return jsonDecode(response.body);//json으로 파싱
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
   }
   Future<String> emailauthCheck(_code) async{
 
@@ -80,7 +115,11 @@ class ApiService{
       'authCode': _code
     };
 
+<<<<<<< HEAD
     Response response = await post('http://49.50.174.200:3001/emailauth/authprocess', headers: headers1, body: jsonEncode(pass));
+=======
+    Response response = await post(_hostname()+'/emailauth/authprocess', headers: headers1, body: jsonEncode(pass));
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
     String emailauthMessage = response.body.toString();
     print(response.body);
     return emailauthMessage;//json으로 파싱
@@ -98,6 +137,7 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
+<<<<<<< HEAD
   Future<Map<String, dynamic>> mbti_set(_id, mbti) async{
     Map<String, dynamic> pass = {//변수를 json으로
       'id' : _id,
@@ -266,4 +306,15 @@ class ApiService{
     return jsonDecode(response.body);
   }
 
+=======
+  Future<bool> upload(File file) async{
+    final length = await file.length();
+
+    var request = new MultipartRequest('POST', Uri.parse(_hostname()+'/upload'));
+    request.files.add(new MultipartFile('image', file.readAsBytes().asStream(), length, filename: "profile.jpg"));
+    Response response = await Response.fromStream(await request.send());
+
+    return true;
+  }
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 }

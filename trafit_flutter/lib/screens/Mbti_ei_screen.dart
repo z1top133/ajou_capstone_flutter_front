@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:trafit/screens/Mbti_ns_screen.dart';
 import 'package:trafit/util/MBTI_EI.dart';
 import 'package:trafit/util/mbti_result_percentage.dart';
 import 'package:trafit/widgets/mbti_list_card.dart';
+=======
+import 'package:restaurant_ui_kit/screens/Mbti_ns_screen.dart';
+import 'package:restaurant_ui_kit/util/MBTI_EI.dart';
+import 'package:restaurant_ui_kit/util/mbti_result_percentage.dart';
+import 'package:restaurant_ui_kit/widgets/mbti_list_card.dart';
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
 
 
 class Mbti_ei extends StatefulWidget {
@@ -37,6 +44,7 @@ class _Mbti_eiState extends State<Mbti_ei> {
           ),
           elevation: 0.0,
           actions: <Widget>[
+<<<<<<< HEAD
           ],
         ),
         body: Container(
@@ -91,6 +99,74 @@ class _Mbti_eiState extends State<Mbti_ei> {
                 ),
               ],
             ),
+=======
+            IconButton(
+              icon: Icon(
+                Icons.edit,
+                size: 24.0,
+              ),
+              onPressed: () {
+//                Navigator.of(context).push(
+//                  MaterialPageRoute(
+//                    builder: (BuildContext context) {
+//                      return Notifications();
+//                    },
+//                  ),
+//                );
+              },
+            ),
+          ],
+        ),
+        body: Padding(
+          padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+          child: ListView(
+            children: <Widget>[
+              ListView.builder(
+                  shrinkWrap: true,
+                  primary: false,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: mbti_ej == null ? 0 : mbti_ej.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Map comment_ = mbti_ej[index];
+                    return Mbti_list(
+                      comment: comment_['comment'],
+                      index: index,
+                    );
+                  }),
+              SizedBox(height: 5.0),
+              Center(
+                child: Card(
+                  shape:
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  elevation: 4.0,
+                  child: FlatButton(
+                    child: Text("다음 >"),
+                        onPressed: () {
+                  for(int i=0; i<sum_a.length; i++){
+                  sum_A += sum_a[i];
+                  sum_B += sum_b[i];
+                  }
+                  if(sum_A>sum_B)
+                  E_I = "I";
+                  else
+                  E_I = "E";
+                  print(sum_a);
+                  print(sum_b);
+                  print(E_I);
+                  result_percentage[0] = (sum_A / (sum_A+sum_B) *100).round();
+                  Navigator.of(context).push(
+                  MaterialPageRoute(
+                  builder: (BuildContext context) {
+                  return Mbti_ns(E_I);
+                  },
+                  ),
+                  );
+                  },
+                  ),
+                ),
+              ),
+            ],
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
           ),
         ));
   }

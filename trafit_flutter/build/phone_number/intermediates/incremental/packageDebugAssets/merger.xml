@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\main\assets"/><source path="C:\Users\pc\Desktop\trafit_ajou_capstone\trafit_flutter\build\phone_number\intermediates\shader_assets\debug\compileDebugShaders\out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\debug\assets"/></dataSet></merger>
 =======
 <merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\flutter\.pub-cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\main\assets"/><source path="C:\project\ajou_capstone_flutter_front\trafit_flutter\build\phone_number\intermediates\shader_assets\debug\compileDebugShaders\out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\flutter\.pub-cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\debug\assets"/></dataSet></merger>
@@ -8,3 +9,6 @@
 =======
 <merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\main\assets"/><source path="C:\Users\pc\Desktop\ajou_capstone_flutter_front-develope\trafit_flutter\build\phone_number\intermediates\shader_assets\debug\compileDebugShaders\out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\pc\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\debug\assets"/></dataSet></merger>
 >>>>>>> dbc1f61eb9716a2367eff269c82fa9878ea53f1b
+=======
+<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\flutter\.pub-cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\main\assets"/><source path="C:\cap\ajou_capstone_flutter_front-develope\trafit_flutter\build\phone_number\intermediates\shader_assets\debug\compileDebugShaders\out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\flutter\.pub-cache\hosted\pub.dartlang.org\phone_number-0.6.2+3\android\src\debug\assets"/></dataSet></merger>
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23

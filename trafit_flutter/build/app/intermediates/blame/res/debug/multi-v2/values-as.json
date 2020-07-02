@@ -3,6 +3,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "outputFile": "C:\\Users\\pc\\Desktop\\trafit_ajou_capstone\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-as\\values-as.xml",
 =======
             "outputFile": "C:\\project\\ajou_capstone_flutter_front\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-as\\values-as.xml",
@@ -64,6 +65,12 @@
                 },
                 {
                     "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\1ff3216e16f14c31ed3f07f51b5aefd4\\res\\values-as\\values-as.xml",
+=======
+            "outputFile": "C:\\cap\\ajou_capstone_flutter_front-develope\\trafit_flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-as\\values-as.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\jaehu\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\bd8c6f31a0fa3c59e546c59bed4edf63\\res\\values-as\\values-as.xml",
+>>>>>>> 7b79f081ace62148a95778bc249d687905f1da23
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
