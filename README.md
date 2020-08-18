@@ -1,7 +1,7 @@
 # 1인 여행자를 위한 모바일 서비스 - Trafit
 
 # 핵심 기능요소
----------------
+
  1. 개인별 이메일 인증 기능
  2. MBTI 검사 및 자신에 맞는 MBTI 추천 기능
  3. 채팅방 검색 및 필터링 기능
@@ -11,7 +11,7 @@
 
 
 # Screenshots
-------------
+
 ![image](https://user-images.githubusercontent.com/39829838/90504623-51119800-e18c-11ea-80f2-a8c41de9ea74.png)
 ![image](https://user-images.githubusercontent.com/39829838/90504694-6ab2df80-e18c-11ea-894e-74942e6e5cbd.png)
 ![image](https://user-images.githubusercontent.com/39829838/90504726-7a322880-e18c-11ea-9504-b82e10cdb8fc.png)
