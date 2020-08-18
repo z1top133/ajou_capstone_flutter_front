@@ -10,7 +10,7 @@
  6. 사용자 평가 및 불량 유저 신고 기능
 
 
-Screenshots
+# Screenshots
 ------------
 ![image](https://user-images.githubusercontent.com/39829838/90504623-51119800-e18c-11ea-80f2-a8c41de9ea74.png)
 ![image](https://user-images.githubusercontent.com/39829838/90504694-6ab2df80-e18c-11ea-894e-74942e6e5cbd.png)
